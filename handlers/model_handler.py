@@ -43,7 +43,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def main():
-    message = request.json["message"]
+    message = request.json["body"]
 
     return {
         'status': 200,
