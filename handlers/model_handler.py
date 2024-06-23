@@ -54,11 +54,15 @@ def load_protocol_document(protocol_hash):
     else:
         return None
 
+CONVERSATIONS = {}
+
 @app.route("/", methods=['POST'])
 def main():
     message = request.json["body"]
     protocol_hash = request.json.get('protocolHash', None)
     protocol_document = None
+    stateful = request.json.get('stateful', False)
+    conversation_id = request.json.get('conversationId', None)
 
     if protocol_hash is not None:
         protocol_document = load_protocol_document(protocol_hash)
@@ -83,12 +87,27 @@ def main():
     if protocol_document is None:
         # Note: Here you should also fetch the protocol document from the relevant URL
         toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), DEFAULT_PROMPT, get_tools())
-        conversation = toolformer.new_conversation()
     else:
         toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), ROUTINE_FALLBACK_PROMPT + '\n\n' + protocol_document, get_tools())
+
+    if stateful:
+        if conversation_id is None:
+            conversation_id = len(CONVERSATIONS)
+        
+        if conversation_id not in CONVERSATIONS:
+            CONVERSATIONS[conversation_id] = toolformer.new_conversation()
+        conversation = CONVERSATIONS[conversation_id]
+    else:
         conversation = toolformer.new_conversation()
 
-    return {
+    reply = conversation.chat(message, role='user', print_output=True)
+
+    reply_object = {
         'status': 200,
-        'body': conversation.chat(message, role='user', print_output=True)
+        'body': reply
     }
+
+    if stateful:
+        reply_object['conversationId'] = conversation_id
+
+    return reply_object
