@@ -9,6 +9,9 @@ class Parameter:
     def as_openai_info(self):
         pass
 
+    def as_standard_api(self):
+        pass
+
 class StringParameter(Parameter):
     def __init__(self, name, description, required):
         super().__init__(name, description, required)
@@ -19,6 +22,18 @@ class StringParameter(Parameter):
             "name": self.name,
             "description": self.description
         }
+
+    def as_standard_api(self):
+        return {
+            "type": "string",
+            "name": self.name,
+            "description": self.description,
+            "required": self.required
+        }
+
+    @staticmethod
+    def from_standard_api(api_info):
+        return StringParameter(api_info["name"], api_info["description"], api_info["required"])
 
 class EnumParameter(Parameter):
     def __init__(self, name, description, values, required):
@@ -31,6 +46,19 @@ class EnumParameter(Parameter):
             "description": self.description,
             "values": self.values
         }
+
+    def as_standard_api(self):
+        return {
+            "type": "enum",
+            "name": self.name,
+            "description": self.description,
+            "values": self.values,
+            "required": self.required
+        }
+    
+    @staticmethod
+    def from_standard_api(api_info):
+        return EnumParameter(api_info["name"], api_info["description"], api_info["values"], api_info["required"])
 
 class Tool:
     def __init__(self, name, description, parameters, function):
@@ -52,6 +80,26 @@ class Tool:
                 }
             }
         }
+
+    def as_standard_api(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "parameters": [parameter.as_standard_api() for parameter in self.parameters]
+        }
+
+    @staticmethod
+    def from_standard_api(api_info):
+        parameters = []
+        for parameter in api_info["parameters"]:
+            if parameter["type"] == "string":
+                parameters.append(StringParameter.from_standard_api(parameter))
+            elif parameter["type"] == "enum":
+                parameters.append(EnumParameter.from_standard_api(parameter))
+            else:
+                raise ValueError(f"Unknown parameter type: {parameter['type']}")
+
+        return Tool(api_info["name"], api_info["description"], parameters, None)
 
 
 class Conversation(ABC):
