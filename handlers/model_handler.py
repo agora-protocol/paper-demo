@@ -46,6 +46,14 @@ print('Started model handler. Available tools:', ', '.join([tool.name for tool i
 
 app = Flask(__name__)
 
+
+def load_protocol_document(protocol_hash):
+    if Path(f'protocol_documents/{protocol_hash}.txt').exists():
+        with open(f'protocol_documents/{protocol_hash}.txt', 'r') as f:
+            return f.read()
+    else:
+        return None
+
 @app.route("/", methods=['POST'])
 def main():
     message = request.json["body"]
@@ -53,10 +61,24 @@ def main():
     protocol_document = None
 
     if protocol_hash is not None:
-        if Path(f'protocol_documents/{protocol_hash}.txt').exists():
-            with open(f'protocol_documents/{protocol_hash}.txt', 'r') as f:
-                protocol_document = f.read()
-        
+        protocol_document = load_protocol_document(protocol_hash)
+        protocol_uris = request.json.get('protocolURIs', [])
+
+        while protocol_document is None and len(protocol_uris) > 0:
+            uri = protocol_uris.pop(0)
+
+            print('Fetching protocol document from:', uri)
+
+            response = request_manager.get(uri)
+
+            if response.status_code == 200:
+                # TODO: Check if the document is the correct one
+                protocol_document = response.text
+
+                # Save the protocol document
+                with open(f'protocol_documents/{protocol_hash}.txt', 'w') as f:
+                    f.write(protocol_document)
+
 
     if protocol_document is None:
         # Note: Here you should also fetch the protocol document from the relevant URL
