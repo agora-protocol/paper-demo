@@ -1,0 +1,5 @@
+ADDITION PROTOCOL
+
+This protocol works as follows. Let's assume that Alice is the sender and Bob is the receiver.
+- Alice sends a string containing a sum, e.g. "2 + 2" (without quotes)
+- Bob replies with a string containing the result, e.g. "4" (again without quotes)

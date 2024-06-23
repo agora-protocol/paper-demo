@@ -1,0 +1,3 @@
+IGNORE REPLY PROTOCOL
+
+With this protocol, the receiver must reply with the string "I will not answer your question" (without quotes), no matter what the sender sends.
