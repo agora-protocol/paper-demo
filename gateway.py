@@ -1,45 +1,28 @@
+import os
+
 from flask import Flask, request
 import requests as request_manager
 
 app = Flask(__name__)
 
-NO_HASH = 'no_hash'
 
-DEFAULT_HANDLER = 'http://localhost:5001'
+MODEL_HANDLER_URL = 'http://localhost:' + os.environ.get('MODEL_HANDLER_PORT', '5001')
+ROUTINE_MANAGER_URL = 'http://localhost:' + os.environ.get('ROUTINE_MANAGER_PORT', '5002')
 
-SUPPORTED_HANDLERS = {}
-
-def call_handler(protocol_hash, data, disable_default_handler=False):
-    # Call the handler for the protocol hash
-    print(data)
-    response = request_manager.post(SUPPORTED_HANDLERS.get(protocol_hash, DEFAULT_HANDLER), json=data)
-
-    # Check if the query was successful
-    if response.status_code != 200:
-        if disable_default_handler:
-            return {
-                'status': response.status_code,
-                'body': response.text
-            }
-        return call_handler(NO_HASH, data, disable_default_handler=True)
-
-    return {
-        'status': response.status_code,
-        'body': response.text
-    }
 
 @app.route("/", methods=['POST'])
 def main():
-    data = request.get_json(force=True, silent=True)
+    data = request.get_json()
 
-    if data is None:
-        # Parsing failed, treat as raw text
-        data = request.data.decode('utf-8')
-        protocol_hash = NO_HASH
+    protocol_hash = data.get('protocolHash', None)
+
+    if protocol_hash is None:
+        return request_manager.post(MODEL_HANDLER_URL, json=data).json()
     else:
-        protocol_hash = data.get('protocolHash', NO_HASH)
-        data = data.get('body', None)
+        known_hashes = request_manager.get(ROUTINE_MANAGER_URL + '/routines').json()['body']
 
-    result = call_handler(protocol_hash, data)
-
-    return result
+        if protocol_hash in known_hashes:
+            return request_manager.post(ROUTINE_MANAGER_URL + '/call', json=data).json()
+        else:
+            print('Unknown hash, forwarding to the model handler.')
+            return request_manager.post(MODEL_HANDLER_URL, json=data).json()
