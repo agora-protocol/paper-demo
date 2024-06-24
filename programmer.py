@@ -31,9 +31,7 @@ def create_and_save_routine(protocol_hash):
         protocol_document = f.read()
 
     routine = write_routine(protocol_document)
-    print(routine)
+    print('Obtained routine:\n' + routine)
 
     with open(f'routines/{protocol_hash}.py', 'w') as f:
         f.write(routine)
-
-create_and_save_routine('dummy_mathematics')

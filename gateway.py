@@ -30,7 +30,8 @@ def main():
             return request_manager.post(ROUTINE_MANAGER_URL + '/call', json=data).json()
         else:
             print('Unknown hash, forwarding to the model handler.')
-            HASH_COUNTER[protocol_hash] = HASH_COUNTER.get(protocol_hash, 0) + 1
+            if protocol_hash != 'chat': # Do not count regular stateful chats
+                HASH_COUNTER[protocol_hash] = HASH_COUNTER.get(protocol_hash, 0) + 1
 
             if HASH_COUNTER[protocol_hash] >= TRIGGER_NUM_CALLS:
                 print('Reached query count for hash, writing a routine.')
