@@ -19,7 +19,17 @@ NEGOTIATOR_PROMPT = 'You are NegotiatorGPT. You are about to chat with another G
     '- You can assume that the protocol has a sender and a receiver. Do not worry about how the messages will be delivered, focus only on the content of the messages.\n' + \
     '- Keep the protocol short and simple. It should be easy to understand and implement.\n' + \
     '- Do not specify how the protocol should be implemented internally. That will be up to the implementer.\n' + \
+    '- The protocol must specify the exact format of what is sent and received. Do not leave it open to interpretation.\n' + \
+    '- The implementation will be written by a programmer that does not have access to the negotiation process, so make sure the protocol is clear and unambiguous.\n' + \
     '- The implementation will receive a string and return a string, so structure your protocol accordingly.'
+
+from tools import TOOLS
+
+NEGOTIATOR_PROMPT += 'Keep in mind that the implementer will have access to the following tools:\n\n' + '\n\n'.join([tool.as_natural_language() for tool in TOOLS]) + '\n\n' + \
+    'The protocol must not specify the use of these tools or any implementation details, but the communication format should still allow the implementer to use them effectively.\n' + \
+    'Note that these tools are not necessarily relevant to the task, so if they don\'t make sense in the context of the protocol, you can ignore them.'
+
+NEGOTIATOR_PROMPT += 'And remember: keep the protocol as simple and unequivocal as necessary. The implementer can code, but they are not a mind reader.'
 
 def chat(message, conversation_id):
     data = {
@@ -32,6 +42,8 @@ def chat(message, conversation_id):
         'protocolHash' : 'chat',
         'body' : json.dumps(data)
     }).json()
+
+    print('Raw reply:', raw_reply)
 
     wrapped_reply = json.loads(raw_reply['body'])
 

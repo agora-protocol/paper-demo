@@ -14,8 +14,8 @@ TOOL_MANAGER_URL = 'http://localhost:' + os.environ.get('TOOL_MANAGER_PORT', '50
 
 DEFAULT_PROMPT = 'You are an AI assistant. Use the provided functions to answer questions and perform actions.'
 
-ROUTINE_FALLBACK_PROMPT = 'You are ProtocolGPT. You will receive a protocol document detailing how to reply to a query provided by the user. Use the provided functions to answer questions and perform actions.' \
-    'When replying, only reply with the string required by the protocol, with no additional information or escaping.'
+ROUTINE_FALLBACK_PROMPT = 'You are ProtocolGPT. You will receive a protocol document detailing how to reply to a query provided by the user. Use the provided tools to answer questions and perform actions.' \
+    'When replying, only reply with the string required by the protocol, with no additional information or escaping. Reply in the exact format specified by the protocol.'
 
 def call_tool(tool_name, arguments):
     response = request_manager.post(TOOL_MANAGER_URL + '/call', json={
