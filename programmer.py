@@ -26,11 +26,18 @@ def write_routine(protocol_document):
 
     return code
 
+BOILERPLATE = """import sys
+sys.path.append('.')
+from tools import call_tool
+
+"""
+
 def create_and_save_routine(protocol_hash):
     with open(f'protocol_documents/{protocol_hash}.txt', 'r') as f:
         protocol_document = f.read()
 
     routine = write_routine(protocol_document)
+    routine = BOILERPLATE + routine
     print('Obtained routine:\n' + routine)
 
     with open(f'routines/{protocol_hash}.py', 'w') as f:
