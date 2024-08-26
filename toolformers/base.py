@@ -31,6 +31,12 @@ class StringParameter(Parameter):
             "required": self.required
         }
 
+    def as_natural_language(self):
+        return f'{self.name} (string{", required" if self.required else ""}): {self.description}.'
+
+    def as_documented_python(self):
+        return f'{self.name} (str{", required" if self.required else ""}): {self.description}.'
+
     @staticmethod
     def from_standard_api(api_info):
         return StringParameter(api_info["name"], api_info["description"], api_info["required"])
@@ -55,6 +61,12 @@ class EnumParameter(Parameter):
             "values": self.values,
             "required": self.required
         }
+    
+    def as_natural_language(self):
+        return f'{self.name} (enum{", required" if self.required else ""}): {self.description}. Possible values: {", ".join(self.values)}'
+    
+    def as_documented_python(self):
+        return f'{self.name} (str{", required" if self.required else ""}): {self.description}. Possible values: {", ".join(self.values)}'
     
     @staticmethod
     def from_standard_api(api_info):
@@ -81,12 +93,18 @@ class Tool:
             }
         }
 
+    def as_natural_language(self):
+        return f'Function {self.name}: {self.description}. Parameters:\n' + '\n'.join([parameter.as_natural_language() for parameter in self.parameters])
+
     def as_standard_api(self):
         return {
             "name": self.name,
             "description": self.description,
             "parameters": [parameter.as_standard_api() for parameter in self.parameters]
         }
+    
+    def as_documented_python(self):
+        return f'Tool {self.name}:\n\n{self.description}\nParameters:\n' + '\n'.join([parameter.as_documented_python() for parameter in self.parameters])
 
     @staticmethod
     def from_standard_api(api_info):
