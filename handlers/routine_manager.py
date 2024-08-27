@@ -34,6 +34,9 @@ def call():
             # Note: this is ridiculously unsafe. In an actual production environment, all of this would be containerized
             output = routine.run(body)
 
+            print('Routine output:', output)
+            print('Output type:', type(output))
+
             return {
                 'status' : 200,
                 'body' : str(output)
