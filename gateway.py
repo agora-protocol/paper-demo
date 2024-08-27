@@ -21,15 +21,17 @@ def main():
     protocol_hash = data.get('protocolHash', None)
 
     if protocol_hash is None:
+        print('No protocol hash, forwarding to the model handler.')
         return request_manager.post(MODEL_HANDLER_URL, json=data).json()
     else:
 
         known_hashes = request_manager.get(ROUTINE_MANAGER_URL + '/routines').json()['body']
 
         if protocol_hash in known_hashes:
+            print(f'Received known hash {protocol_hash}, forwarding to the routine manager.')
             return request_manager.post(ROUTINE_MANAGER_URL + '/call', json=data).json()
         else:
-            print('Unknown hash, forwarding to the model handler.')
+            print(f'Unknown hash {protocol_hash}, forwarding to the model handler.')
             if protocol_hash != 'chat': # Do not count regular stateful chats
                 HASH_COUNTER[protocol_hash] = HASH_COUNTER.get(protocol_hash, 0) + 1
 
