@@ -74,8 +74,8 @@ def main():
     if protocol_id is not None:
         print('Using protocol:', protocol_id)
         increment_num_protocol_uses(protocol_id)
-        # Check if we have an implementation
 
+        # Check if we have an implementation
         if has_implementation(protocol_id):
             return call_using_implementation(protocol_id, task_data, target_node)
         # If we've talked enough times using a certain protocol, write an implementation

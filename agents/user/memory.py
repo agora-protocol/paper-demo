@@ -41,7 +41,7 @@ def save_memory():
         json.dump({
             'protocol_infos': PROTOCOL_INFOS,
             'num_conversations': NUM_CONVERSATIONS
-        }, f)
+        }, f, indent=4)
 
 def get_num_protocol_uses(protocol_id):
     if protocol_id not in PROTOCOL_INFOS:

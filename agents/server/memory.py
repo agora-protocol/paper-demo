@@ -28,7 +28,7 @@ def save_memory():
     with open(storage_path, 'w') as f:
         json.dump({
             'protocol_infos': PROTOCOL_INFOS
-        }, f)
+        }, f, indent=4)
 
 def register_new_protocol(protocol_hash, protocol_source, protocol_document):
     PROTOCOL_INFOS[protocol_hash] = {
