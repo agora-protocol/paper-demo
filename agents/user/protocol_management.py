@@ -5,11 +5,12 @@ from pathlib import Path
 import requests as request_manager
 
 
-from utils import load_protocol_document, save_protocol_document
+from utils import load_protocol_document, save_protocol_document, compute_hash
 from agents.user.tasks import TASK_SCHEMAS
 from agents.user.memory import get_num_conversations, PROTOCOL_INFOS, save_memory
 
 from specialized_toolformers.protocol_checker import check_protocol_for_task
+from specialized_toolformers.negotiator import negotiate_protocol_for_task
 from agents.common.core import Suitability
 
 
@@ -52,7 +53,7 @@ def get_an_adequate_protocol(task_type, eligible_protocols):
     # Will ignore protocols that haven't been downloaded yet
 
     # First, try with protocols having an implementation
-    protocols_with_implementations = [ protocol_id for protocol_id in eligible_protocols if has_implementation(protocol_id) ]
+    protocols_with_implementations = [ protocol_id for protocol_id in eligible_protocols if is_adequate(task_type, protocol_id) and has_implementation(protocol_id) ]
 
     if len(protocols_with_implementations) > 0:
         print('Found protocol with implementation:', protocols_with_implementations[0])
@@ -102,6 +103,34 @@ def register_new_protocol(protocol_id, source, protocol_document):
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
     save_protocol_document(base_folder, protocol_id, protocol_document)
     save_memory()
+
+def submit_protocol_to_public_db(protocol_id, protocol_document):
+    response = request_manager.post(f'{PUBLIC_PROTOCOL_DB_URL}', json={
+        'id': protocol_id,
+        'protocol': protocol_document
+    })
+
+    source_url = f'{PUBLIC_PROTOCOL_DB_URL}/protocol?' + urllib.parse.urlencode({
+            'id': protocol_id
+        })
+    print('Submitted protocol to public database. URL:', source_url)
+
+    return source_url if response.status_code == 200 else None
+
+def negotiate_protocol(task_type, target_node):
+    task_schema = TASK_SCHEMAS[task_type]
+    protocol = negotiate_protocol_for_task(task_schema, target_node)
+
+    protocol_id = compute_hash(protocol)
+
+    source_url = submit_protocol_to_public_db(protocol_id, protocol)
+
+    if source_url is not None:
+        register_new_protocol(protocol_id, source_url, protocol)
+    else:
+        raise Exception('Failed to submit protocol to public database')
+
+    return protocol_id
 
 def decide_protocol(task_type, target_node, num_conversations_for_protocol):
     target_protocols = query_protocols(target_node)

@@ -10,6 +10,8 @@ import os
 if os.environ.get('STORAGE_PATH') is None:
     os.environ['STORAGE_PATH'] = str(Path().parent / 'storage' / 'server')
 
+import json
+
 from flask import Flask, request
 
 
@@ -19,6 +21,7 @@ from utils import load_protocol_document, execute_routine, download_and_verify_p
 from specialized_toolformers.responder import reply_to_query
 from specialized_toolformers.protocol_checker import check_protocol_for_tools
 from specialized_toolformers.programmer import write_routine_for_tools
+from specialized_toolformers.negotiator import handle_negotiation_for_tools
 
 app = Flask(__name__)
 
@@ -55,11 +58,33 @@ def handle_query_suitable(protocol_hash, query):
         return call_implementation(protocol_hash, query)
     else:
         return reply_to_query(query, protocol_hash)
-        
+
+def handle_negotiation(raw_query):
+    # TODO: Tools
+    raw_query = json.loads(raw_query)
+    conversation_id = raw_query.get('conversationId', None)
+    query = raw_query['body']
+
+    reply, conversation_id = handle_negotiation_for_tools(query, conversation_id, [])
+
+    raw_reply = {
+        'conversationId': conversation_id,
+        'body': reply
+    }
+
+    return {
+        'status': 'success',
+        'body': json.dumps(raw_reply)
+    }
+
 
 def handle_query(protocol_hash, protocol_sources, query):
     if protocol_hash is None:
         return reply_to_query(query, None)
+    
+    if protocol_hash == 'negotiation':
+        # Special protocol, default to human-written routine
+        return handle_negotiation(query)
 
     if has_implementation(protocol_hash):
         return call_implementation(protocol_hash, query)
