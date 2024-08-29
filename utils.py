@@ -36,3 +36,10 @@ def load_protocol_document(base_folder, protocol_id):
 
     with open(str(path), 'r') as f:
         return f.read()
+
+def send_raw_query(text, protocol_id, target_node, source):
+    return request_manager.post(target_node, json={
+        'protocolHash': protocol_id,
+        'body': text,
+        'protocolSources' : [source]
+    })
