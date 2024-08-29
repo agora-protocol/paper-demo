@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import Path
 
-from utils import save_protocol_document
+from utils import save_routine
 
 # Stores for each protocol
 # - The id
@@ -43,6 +43,16 @@ def save_memory():
             'num_conversations': NUM_CONVERSATIONS
         }, f)
 
+def get_num_protocol_uses(protocol_id):
+    if protocol_id not in PROTOCOL_INFOS:
+        return 0
+    
+    return PROTOCOL_INFOS[protocol_id]['num_uses']
+
+def increment_num_protocol_uses(protocol_id):
+    PROTOCOL_INFOS[protocol_id]['num_uses'] += 1
+    save_memory()
+
 
 def get_num_conversations(task_type, target_node):
     if task_type not in NUM_CONVERSATIONS:
@@ -62,12 +72,11 @@ def increment_num_conversations(task_type, target_node):
     
     NUM_CONVERSATIONS[task_type][target_node] += 1
 
-def register_new_protocol(protocol_id, source, protocol_document):
-    PROTOCOL_INFOS[protocol_id] = {
-        'suitability_info': {},
-        'source': source,
-        'has_implementation': False
-    }
-    base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
-    save_protocol_document(base_folder, protocol_id, protocol_document)
+
+def add_routine(protocol_id, implementation):
+    PROTOCOL_INFOS[protocol_id]['has_implementation'] = True
+    base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
+
+    save_routine(base_folder, protocol_id, implementation)
+
     save_memory()

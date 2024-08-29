@@ -2,15 +2,13 @@ import urllib
 
 import os
 from pathlib import Path
-import random
 import requests as request_manager
 
 
-from utils import load_protocol_document
+from utils import load_protocol_document, save_protocol_document
 from agents.user.tasks import TASK_SCHEMAS
-from agents.user.memory import get_num_conversations, increment_num_conversations, PROTOCOL_INFOS, register_new_protocol, save_memory
+from agents.user.memory import get_num_conversations, PROTOCOL_INFOS, save_memory
 
-from specialized_toolformers.querier import send_query_with_protocol, send_query_without_protocol
 from specialized_toolformers.protocol_checker import check_protocol_for_task
 from agents.common.core import Suitability
 
@@ -94,9 +92,18 @@ def categorize_protocol(protocol_id, task_type):
     
     return suitable
 
+def register_new_protocol(protocol_id, source, protocol_document):
+    PROTOCOL_INFOS[protocol_id] = {
+        'suitability_info': {},
+        'source': source,
+        'has_implementation': False,
+        'num_uses' : 0
+    }
+    base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
+    save_protocol_document(base_folder, protocol_id, protocol_document)
+    save_memory()
 
-
-def decide_protocol(task_type, target_node):
+def decide_protocol(task_type, target_node, num_conversations_for_protocol):
     target_protocols = query_protocols(target_node)
 
     protocol_id = get_an_adequate_protocol(task_type, list(target_protocols.keys()))
@@ -174,7 +181,7 @@ def decide_protocol(task_type, target_node):
     
     # If there are still none, check if we have talked enough times with the target to warrant a new protocol
 
-    if get_num_conversations(task_type, target_node) > 10:
+    if get_num_conversations(task_type, target_node) > num_conversations_for_protocol:
         # TODO: Negotiate a new protocol
         protocol_id = negotiate_protocol(task_type, target_node)
 
