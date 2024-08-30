@@ -98,6 +98,7 @@ def handle_query(protocol_hash, protocol_sources, query):
                 PROTOCOL_INFOS[protocol_hash]['suitability'] = Suitability.ADEQUATE
             else:
                 PROTOCOL_INFOS[protocol_hash]['suitability'] = Suitability.INADEQUATE
+            save_memory()
 
         if PROTOCOL_INFOS[protocol_hash]['suitability'] == Suitability.ADEQUATE:
             return handle_query_suitable(protocol_hash, query)
@@ -120,6 +121,7 @@ def handle_query(protocol_hash, protocol_sources, query):
 
 @app.route("/", methods=['POST'])
 def main():
+    load_memory()
     data = request.get_json()
 
     protocol_hash = data.get('protocolHash', None)
