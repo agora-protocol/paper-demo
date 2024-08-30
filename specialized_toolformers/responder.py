@@ -7,6 +7,7 @@ sys.path.append('.')
 import dotenv
 dotenv.load_dotenv()
 
+import json
 import os
 from pathlib import Path
 
@@ -24,31 +25,49 @@ PROTOCOL_RESPONDER_PROMPT = 'You are ResponderGPT. You will receive a protocol d
     'Only reply with the response itself, with no additional information or escaping. Similarly, do not add any additional whitespace or formatting.' \
     'If you do not have enough information to reply, or if you cannot execute the request, reply with "ERROR" (without quotes).'
 
-def reply_with_protocol_document(query, protocol_document):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_RESPONDER_PROMPT, [])
+def reply_with_protocol_document(query, protocol_document, tools):
+    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_RESPONDER_PROMPT, tools)
 
     conversation = toolformer.new_conversation()
 
     reply = conversation.chat('The protocol is the following:\n\n' + protocol_document + '\n\nThe query is the following:' + query , print_output=False)
 
-    return reply
+    if 'error' in reply.lower().strip()[-10:]:
+        return json.dumps({
+            'status': 'error',
+        })
+
+    return json.dumps({
+        'status': 'success',
+        'body': reply
+    })
 
 NL_RESPONDER_PROMPT = 'You are NaturalLanguageResponderGPT. You will receive a query from a user. ' \
     'Use the provided functions to execute what is requested and reply with a response (in natural language). ' \
     'If you do not have enough information to reply, if you cannot execute the request, or if the request is invalid, reply with "ERROR" (without quotes).'
 
-def reply_to_nl_query(query):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_RESPONDER_PROMPT, [])
+def reply_to_nl_query(query, tools):
+    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_RESPONDER_PROMPT, tools)
 
     conversation = toolformer.new_conversation()
 
-    return conversation.chat(query, print_output=False)
+    reply = conversation.chat(query, print_output=False)
+
+    if 'error' in reply.lower().strip()[-10:]:
+        return json.dumps({
+            'status': 'error',
+        })
+
+    return json.dumps({
+        'status': 'success',
+        'body': reply
+    })
 
 
-def reply_to_query(query, protocol_id):
+def reply_to_query(query, protocol_id, tools):
     if protocol_id is None:
-        return reply_to_nl_query(query)
+        return reply_to_nl_query(query, tools)
     else:
         base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
         protocol_document = load_protocol_document(base_folder, protocol_id)
-        return reply_with_protocol_document(query, protocol_document)
+        return reply_with_protocol_document(query, protocol_document, tools)

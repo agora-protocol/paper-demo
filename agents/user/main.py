@@ -35,7 +35,7 @@ def get_target_node():
 
 def call_using_implementation(protocol_id, task_data, target_node):
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
-    formatted_query = execute_routine(base_folder, protocol_id, task_data)
+    formatted_query = execute_routine(base_folder, protocol_id, task_data, [])
     print('Sending query:', formatted_query)
     response = send_raw_query(formatted_query, protocol_id, target_node, PROTOCOL_INFOS[protocol_id]['source'])
 

@@ -40,7 +40,7 @@ def load_protocol_document(base_folder, protocol_id):
     with open(str(path), 'r') as f:
         return f.read()
 
-def execute_routine(base_folder, protocol_id, task_data):
+def execute_routine(base_folder, protocol_id, task_data, tools):
     if isinstance(base_folder, str):
         base_folder = Path(base_folder)
 
@@ -55,6 +55,9 @@ def execute_routine(base_folder, protocol_id, task_data):
     loaded_module = importlib.util.module_from_spec(spec)
 
     spec.loader.exec_module(loaded_module)
+
+    for tool in tools:
+        loaded_module.__dict__[tool.name] = tool.as_executable_function()
 
     return loaded_module.run(task_data)
 

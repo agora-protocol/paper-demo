@@ -16,27 +16,31 @@ from flask import Flask, request
 
 
 from agents.common.core import Suitability
-from agents.server.memory import PROTOCOL_INFOS, register_new_protocol, has_implementation, get_num_conversations, increment_num_conversations, has_implementation, add_routine
+from agents.server.memory import PROTOCOL_INFOS, register_new_protocol, has_implementation, get_num_conversations, increment_num_conversations, has_implementation, add_routine, load_memory, save_memory
 from utils import load_protocol_document, execute_routine, download_and_verify_protocol
 from specialized_toolformers.responder import reply_to_query
 from specialized_toolformers.protocol_checker import check_protocol_for_tools
 from specialized_toolformers.programmer import write_routine_for_tools
 from specialized_toolformers.negotiator import handle_negotiation_for_tools
 
+from tools.dummy import book_room_tool, check_availability_tool
+
 app = Flask(__name__)
 
 NUM_CONVERSATIONS_FOR_ROUTINE = -1
+TOOLS = [book_room_tool, check_availability_tool]
 
 def call_implementation(protocol_hash, query):
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
 
     try:
-        output = execute_routine(base_folder, protocol_hash, query)
+        output = execute_routine(base_folder, protocol_hash, query, TOOLS)
         return {
             'status': 'success',
-            'message': output
+            'body': output
         }
-    except:
+    except Exception as e:
+        print(e)
         # TODO: In case of failure, you should fall back to the responder
         return {
             'status': 'error',
@@ -50,22 +54,20 @@ def handle_query_suitable(protocol_hash, query):
         return call_implementation(protocol_hash, query)
     elif get_num_conversations(protocol_hash) >= NUM_CONVERSATIONS_FOR_ROUTINE:
         # We've used this protocol enough times to justify writing a routine
-        # TODO: Tools should be passed in here
         base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
         protocol_document = load_protocol_document(base_folder, protocol_hash)
-        implementation = write_routine_for_tools([], protocol_document)
+        implementation = write_routine_for_tools(TOOLS, protocol_document)
         add_routine(protocol_hash, implementation)
         return call_implementation(protocol_hash, query)
     else:
-        return reply_to_query(query, protocol_hash)
+        return reply_to_query(query, protocol_hash, TOOLS)
 
 def handle_negotiation(raw_query):
-    # TODO: Tools
     raw_query = json.loads(raw_query)
     conversation_id = raw_query.get('conversationId', None)
     query = raw_query['body']
 
-    reply, conversation_id = handle_negotiation_for_tools(query, conversation_id, [])
+    reply, conversation_id = handle_negotiation_for_tools(query, conversation_id, TOOLS)
 
     raw_reply = {
         'conversationId': conversation_id,
@@ -80,7 +82,7 @@ def handle_negotiation(raw_query):
 
 def handle_query(protocol_hash, protocol_sources, query):
     if protocol_hash is None:
-        return reply_to_query(query, None)
+        return reply_to_query(query, None, TOOLS)
     
     if protocol_hash == 'negotiation':
         # Special protocol, default to human-written routine
@@ -94,7 +96,7 @@ def handle_query(protocol_hash, protocol_sources, query):
             # Determine if we can support this protocol
             base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
             protocol_document = load_protocol_document(base_folder, protocol_hash)
-            if check_protocol_for_tools(protocol_document, query):
+            if check_protocol_for_tools(protocol_document, TOOLS):
                 PROTOCOL_INFOS[protocol_hash]['suitability'] = Suitability.ADEQUATE
             else:
                 PROTOCOL_INFOS[protocol_hash]['suitability'] = Suitability.INADEQUATE

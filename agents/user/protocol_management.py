@@ -211,7 +211,6 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
     # If there are still none, check if we have talked enough times with the target to warrant a new protocol
 
     if get_num_conversations(task_type, target_node) > num_conversations_for_protocol:
-        # TODO: Negotiate a new protocol
         protocol_id = negotiate_protocol(task_type, target_node)
 
         return protocol_id

@@ -106,6 +106,13 @@ class Tool:
     def as_documented_python(self):
         return f'Tool {self.name}:\n\n{self.description}\nParameters:\n' + '\n'.join([parameter.as_documented_python() for parameter in self.parameters])
 
+    def as_executable_function(self):
+        # Create an actual function that can be called
+        def f(*args, **kwargs):
+            return self.function(*args, **kwargs)
+        
+        return f
+
     @staticmethod
     def from_standard_api(api_info):
         parameters = []
