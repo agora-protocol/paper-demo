@@ -33,13 +33,18 @@ load_memory()
 def get_target_node():
     return random.choice(TARGET_NODES)
 
-def call_using_implementation(protocol_id, task_data, target_node):
-    base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
-    formatted_query = execute_routine(base_folder, protocol_id, task_data, [])
-    print('Sending query:', formatted_query)
-    response = send_raw_query(formatted_query, protocol_id, target_node, PROTOCOL_INFOS[protocol_id]['source'])
+def call_using_implementation(task_schema, protocol_id, task_data, target_node):
+    try:
+        base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
+        formatted_query = execute_routine(base_folder, protocol_id, task_data, [])
+        print('Sending query:', formatted_query)
+        response = send_raw_query(formatted_query, protocol_id, target_node, PROTOCOL_INFOS[protocol_id]['source'])
 
-    return response.text
+        return response.text
+    except Exception as e:
+        print('Error executing routine:', e)
+        print('Falling back to querier')
+        send_query_with_protocol(task_schema, task_data, target_node, protocol_id, PROTOCOL_INFOS[protocol_id]['source'])
 
 def main():
     # Generate task info (with structured data) and pick a target node
@@ -77,14 +82,14 @@ def main():
 
         # Check if we have an implementation
         if has_implementation(protocol_id):
-            return call_using_implementation(protocol_id, task_data, target_node)
+            return call_using_implementation(TASK_SCHEMAS[task_type], protocol_id, task_data, target_node)
         # If we've talked enough times using a certain protocol, write an implementation
         elif get_num_protocol_uses(protocol_id) > NUM_CONVERSATIONS_FOR_ROUTINE:
             protocol_document = load_protocol_document(Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents', protocol_id)
             routine = write_routine_for_task(TASK_SCHEMAS[task_type], protocol_document)
 
             add_routine(protocol_id, routine)
-            return call_using_implementation(protocol_id, task_data, target_node)
+            return call_using_implementation(TASK_SCHEMAS[task_type], protocol_id, task_data, target_node)
         else:
             # Use the querier with the protocol
             response = send_query_with_protocol(TASK_SCHEMAS[task_type], task_data, target_node, protocol_id, source)

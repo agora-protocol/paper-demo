@@ -40,12 +40,9 @@ def call_implementation(protocol_hash, query):
             'body': output
         }
     except Exception as e:
-        print(e)
-        # TODO: In case of failure, you should fall back to the responder
-        return {
-            'status': 'error',
-            'message': 'Failed to execute routine.'
-        }
+        print('Error executing routine:', e)
+        print('Falling back to responder')
+        return reply_to_query(query, protocol_hash, TOOLS)
 
 def handle_query_suitable(protocol_hash, query):
     increment_num_conversations(protocol_hash)
