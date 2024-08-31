@@ -102,8 +102,7 @@ def create_negotiation_conversation(tools):
         prompt += 'No additional tools provided'
     else:
         for tool in tools:
-            # TODO: Task formatting
-            prompt += tool + '\n\n'
+            prompt += tool.as_documented_python() + '\n\n'
 
     print('Prompt:', prompt)
 
