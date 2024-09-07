@@ -63,7 +63,7 @@ def main():
         port = id_to_url_mappings[protocol_db_id].split(':')[-1]
         log_path = base_log_path / 'protocol_db' / (protocol_db_id + '.log')
         log_path.parent.mkdir(parents=True, exist_ok=True)
-        pane.send_keys(f'flask --app agents/protocol_db/main.py run --port {port} 2>&1 | tee {log_path}')
+        pane.send_keys(f'PYTHONUNBUFFERED=1 flask --app agents/protocol_db/main.py run --port {port} 2>&1 | tee {log_path}')
 
     # 4. Launch the server agents
 
@@ -74,7 +74,7 @@ def main():
         storage_path = base_storage_path / 'server' / server_id
         log_path = base_log_path / 'server' / (server_id + '.log')
         log_path.parent.mkdir(parents=True, exist_ok=True)
-        pane.send_keys(f'STORAGE_PATH={storage_path} AGENT_ID={server_id} flask --app agents/server/main.py run --port {port} 2>&1 | tee {log_path}')
+        pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={server_id} flask --app agents/server/main.py run --port {port} 2>&1 | tee {log_path}')
 
     # 5. Launch the user agents
 
@@ -85,7 +85,7 @@ def main():
         storage_path = base_storage_path / 'user' / user_id
         log_path = base_log_path / 'user' / (user_id + '.log')
         log_path.parent.mkdir(parents=True, exist_ok=True)
-        pane.send_keys(f'STORAGE_PATH={storage_path} AGENT_ID={user_id} flask --app agents/user/main.py run --port {port} 2>&1 | tee {log_path}')
+        pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={user_id} flask --app agents/user/main.py run --port {port} 2>&1 | tee {log_path}')
 
     # 6. Wait for the agents to be ready
     
