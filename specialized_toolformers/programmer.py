@@ -67,8 +67,8 @@ def write_routine_for_task(task_schema, protocol_document):
     return implementation
 
 
-def write_routine_for_tools(tools, protocol_document):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), TOOL_PROGRAMMER_PROMPT, [])
+def write_routine_for_tools(tools, protocol_document, additional_info):
+    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), TOOL_PROGRAMMER_PROMPT + additional_info, [])
 
     message = 'Protocol document:\n\n' + protocol_document + '\n\n' + 'Additional functions:\n\n'
 

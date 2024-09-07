@@ -37,6 +37,7 @@ def construct_query(protocol_document, task_schema, task_data):
     return reply
 
 NL_QUERIER_PROMPT = 'You are NaturalLanguageQuerierGPT. You will receive a task description and data. Reply with a natural language message where you ask to perform the task according to the data.' \
+    'Note: The person sending the query won\'t have the possibility to ask follow-up questions, so make sure to ask exactly what is provided. Do not ask anything more than is provided in the task.'
 
 def construct_nl_query(task_schema, task_data):
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_QUERIER_PROMPT, [])

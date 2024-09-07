@@ -25,12 +25,14 @@ PROTOCOL_RESPONDER_PROMPT = 'You are ResponderGPT. You will receive a protocol d
     'Only reply with the response itself, with no additional information or escaping. Similarly, do not add any additional whitespace or formatting.' \
     'If you do not have enough information to reply, or if you cannot execute the request, reply with "ERROR" (without quotes).'
 
-def reply_with_protocol_document(query, protocol_document, tools):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_RESPONDER_PROMPT, tools)
+def reply_with_protocol_document(query, protocol_document, tools, additional_info):
+    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_RESPONDER_PROMPT + additional_info, tools)
 
     conversation = toolformer.new_conversation()
 
-    reply = conversation.chat('The protocol is the following:\n\n' + protocol_document + '\n\nThe query is the following:' + query , print_output=False)
+    prompt = 'The protocol is the following:\n\n' + protocol_document + '\n\nThe query is the following:' + query
+
+    reply = conversation.chat(prompt, print_output=True)
 
     if 'error' in reply.lower().strip()[-10:]:
         return json.dumps({
@@ -44,14 +46,16 @@ def reply_with_protocol_document(query, protocol_document, tools):
 
 NL_RESPONDER_PROMPT = 'You are NaturalLanguageResponderGPT. You will receive a query from a user. ' \
     'Use the provided functions to execute what is requested and reply with a response (in natural language). ' \
-    'If you do not have enough information to reply, if you cannot execute the request, or if the request is invalid, reply with "ERROR" (without quotes).'
+    'If you do not have enough information to reply, if you cannot execute the request, or if the request is invalid, reply with "ERROR" (without quotes).' \
+    'Important: the user does not have the capacity to respond to follow-up questions, so if you think you have enough information to reply/execute the actions, do so.'
 
-def reply_to_nl_query(query, tools):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_RESPONDER_PROMPT, tools)
+def reply_to_nl_query(query, tools, additional_info):
+    print(NL_RESPONDER_PROMPT + additional_info)
+    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_RESPONDER_PROMPT + additional_info, tools)
 
     conversation = toolformer.new_conversation()
 
-    reply = conversation.chat(query, print_output=False)
+    reply = conversation.chat(query, print_output=True)
 
     if 'error' in reply.lower().strip()[-10:]:
         return json.dumps({
@@ -64,10 +68,11 @@ def reply_to_nl_query(query, tools):
     })
 
 
-def reply_to_query(query, protocol_id, tools):
+def reply_to_query(query, protocol_id, tools, additional_info):
+    print('Additional info:', additional_info)
     if protocol_id is None:
-        return reply_to_nl_query(query, tools)
+        return reply_to_nl_query(query, tools, additional_info)
     else:
         base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
         protocol_document = load_protocol_document(base_folder, protocol_id)
-        return reply_with_protocol_document(query, protocol_document, tools)
+        return reply_with_protocol_document(query, protocol_document, tools, additional_info)

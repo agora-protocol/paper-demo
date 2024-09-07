@@ -94,8 +94,11 @@ def negotiate_protocol_for_task(task_schema, target_node):
 # Poor man's state management
 ACTIVE_CONVERSATIONS = {}
 
-def create_negotiation_conversation(tools):
+def create_negotiation_conversation(tools, additional_info):
     prompt = TOOLS_NEGOTIATOR_PROMPT
+
+    prompt += '\n\n' + additional_info
+
     prompt += '\n\nThe tools available are:\n\n'
 
     if len(tools) == 0:
@@ -110,13 +113,13 @@ def create_negotiation_conversation(tools):
 
     return toolformer.new_conversation()
 
-def handle_negotiation_for_tools(message, conversation_id, tools):
+def handle_negotiation_for_tools(message, conversation_id, tools, additional_info):
     if conversation_id is None:
         # Generate a new conversation ID
         conversation_id = str(uuid.uuid4())
     
     if conversation_id not in ACTIVE_CONVERSATIONS:
-        ACTIVE_CONVERSATIONS[conversation_id] = create_negotiation_conversation(tools)
+        ACTIVE_CONVERSATIONS[conversation_id] = create_negotiation_conversation(tools, additional_info)
     
     conversation = ACTIVE_CONVERSATIONS[conversation_id]
 

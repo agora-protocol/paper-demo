@@ -23,12 +23,12 @@ from specialized_toolformers.protocol_checker import check_protocol_for_tools
 from specialized_toolformers.programmer import write_routine_for_tools
 from specialized_toolformers.negotiator import handle_negotiation_for_tools
 
-from tools.dummy import book_room_tool, check_availability_tool
+from agents.server.config import TOOLS, get_additional_info, load_config
+
 
 app = Flask(__name__)
 
 NUM_CONVERSATIONS_FOR_ROUTINE = -1
-TOOLS = [book_room_tool, check_availability_tool]
 
 def call_implementation(protocol_hash, query):
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
@@ -42,7 +42,7 @@ def call_implementation(protocol_hash, query):
     except Exception as e:
         print('Error executing routine:', e)
         print('Falling back to responder')
-        return reply_to_query(query, protocol_hash, TOOLS)
+        return reply_to_query(query, protocol_hash, TOOLS, get_additional_info())
 
 def handle_query_suitable(protocol_hash, query):
     increment_num_conversations(protocol_hash)
@@ -53,18 +53,18 @@ def handle_query_suitable(protocol_hash, query):
         # We've used this protocol enough times to justify writing a routine
         base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
         protocol_document = load_protocol_document(base_folder, protocol_hash)
-        implementation = write_routine_for_tools(TOOLS, protocol_document)
+        implementation = write_routine_for_tools(TOOLS, protocol_document, get_additional_info())
         add_routine(protocol_hash, implementation)
         return call_implementation(protocol_hash, query)
     else:
-        return reply_to_query(query, protocol_hash, TOOLS)
+        return reply_to_query(query, protocol_hash, TOOLS, get_additional_info())
 
 def handle_negotiation(raw_query):
     raw_query = json.loads(raw_query)
     conversation_id = raw_query.get('conversationId', None)
     query = raw_query['body']
 
-    reply, conversation_id = handle_negotiation_for_tools(query, conversation_id, TOOLS)
+    reply, conversation_id = handle_negotiation_for_tools(query, conversation_id, TOOLS, get_additional_info())
 
     raw_reply = {
         'conversationId': conversation_id,
@@ -79,7 +79,7 @@ def handle_negotiation(raw_query):
 
 def handle_query(protocol_hash, protocol_sources, query):
     if protocol_hash is None:
-        return reply_to_query(query, None, TOOLS)
+        return reply_to_query(query, None, TOOLS, get_additional_info())
     
     if protocol_hash == 'negotiation':
         # Special protocol, default to human-written routine
