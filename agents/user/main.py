@@ -8,7 +8,6 @@ import os
 from pathlib import Path
 import random
 
-
 if os.environ.get('STORAGE_PATH') is None:
     os.environ['STORAGE_PATH'] = str(Path().parent / 'storage' / 'user')
 
@@ -26,10 +25,10 @@ from utils import load_protocol_document, execute_routine, send_raw_query
     
 NUM_CONVERSATIONS_FOR_PROTOCOL = -1
 NUM_CONVERSATIONS_FOR_ROUTINE = -1
-TARGET_NODES = ['http://localhost:5003']
 
-def get_target_node():
-    return random.choice(TARGET_NODES)
+from flask import Flask, request
+
+app = Flask(__name__)
 
 def call_using_implementation(task_schema, protocol_id, task_data, target_node):
     try:
@@ -44,7 +43,14 @@ def call_using_implementation(task_schema, protocol_id, task_data, target_node):
         print('Falling back to querier')
         send_query_with_protocol(task_schema, task_data, target_node, protocol_id, PROTOCOL_INFOS[protocol_id]['source'])
 
+@app.route("/", methods=['POST'])
 def main():
+    response = run_task()
+    print('Response:', response, flush=True)
+    save_memory()
+    return response
+
+def run_task():
     # Generate task info (with structured data) and pick a target node
     # Query the node to know its preferred protocols
     # If you already support a protocol, use it and call the corresponding routine
