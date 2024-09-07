@@ -25,7 +25,7 @@ def parse_mongo_output(output):
         output['_id'] = str(output['_id'])
     return output
 
-def full_reset():
+def reset_databases():
     # Get all databases and drop them
     for db_name in client.list_database_names():
         if db_name in ['admin', 'config', 'local']:
