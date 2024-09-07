@@ -19,6 +19,16 @@ def update_one(database, collection, query, update):
     collection = db[collection]
     collection.update_one(query, update)
 
+def insert_one(database, collection, doc):
+    db = client[database]
+    collection = db[collection]
+    collection.insert_one(doc)
+
+def delete_one(database, collection, query):
+    db = client[database]
+    collection = db[collection]
+    collection.delete_one(query)
+
 def parse_mongo_output(output):
     # Replace the ObjectId with a string
     if '_id' in output:
@@ -28,7 +38,7 @@ def parse_mongo_output(output):
 def reset_databases():
     # Get all databases and drop them
     for db_name in client.list_database_names():
-        if db_name in ['admin', 'config', 'local']:
+        if db_name in ['admin', 'config', 'local', 'usageLogs']:
             continue
         db = client[db_name]
         for collection_name in db.list_collection_names():
