@@ -21,6 +21,18 @@ def add_mongo_database(internal_name, external_name, schema):
         ADDITIONAL_INFO += json.dumps(collection_schema, indent=2) + '\n\n'
 
 def add_mongo_tools(name_mappings):
+    def insert_element(database, collection, doc):
+        doc = json.loads(doc)
+        external_name = name_mappings[database]
+        mongo.insert_one(external_name, collection, doc)
+        return 'Done'
+
+    insert_element_tool = Tool('insert_into_database', 'Insert into a database (MongoDB).', [
+        StringParameter('database', 'The database to insert into', True),
+        StringParameter('collection', 'The collection to insert into', True),
+        StringParameter('doc', 'The document to insert, as a formatted JSON string for MongoDB', True)
+    ], insert_element)
+
     def query_database(database, collection, query):
         query = json.loads(query)
         external_name = name_mappings[database]
@@ -28,8 +40,7 @@ def add_mongo_tools(name_mappings):
         print(output)
         return json.dumps(output)
 
-
-    find_in_database_tool = Tool('find_in_database', 'Find in a database (MongoDB).', [
+    find_in_database_tool = Tool('find_in_database', 'Find in a database (MongoDB). Returns a JSON formatted string with the result.', [
         StringParameter('database', 'The database to query', True),
         StringParameter('collection', 'The collection to query', True),
         StringParameter('query', 'The query to run, as a formatted JSON string for MongoDB', True)
@@ -49,8 +60,24 @@ def add_mongo_tools(name_mappings):
         StringParameter('update', 'The update to run, as a formatted JSON string for MongoDB', True)
     ], update_element)
 
+    def delete_element(database, collection, query):
+        query = json.loads(query)
+        external_name = name_mappings[database]
+        mongo.delete_one(external_name, collection, query)
+        return 'Done'
+
+    delete_element_tool = Tool('delete_element_in_database', 'Delete an element in a database (MongoDB).', [
+        StringParameter('database', 'The database to query', True),
+        StringParameter('collection', 'The collection to query', True),
+        StringParameter('query', 'The query to run, as a formatted JSON string for MongoDB', True)
+    ], delete_element)
+
+    TOOLS.append(insert_element_tool)
     TOOLS.append(find_in_database_tool)
     TOOLS.append(update_element_tool)
+    TOOLS.append(delete_element_tool)
+
+    # TODO: Test insert and delete tools
 
 def load_config(server_name):
     global ADDITIONAL_INFO
