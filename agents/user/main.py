@@ -20,7 +20,7 @@ from specialized_toolformers.querier import send_query_with_protocol, send_query
 from specialized_toolformers.programmer import write_routine_for_task
 
 from agents.user.protocol_management import decide_protocol, has_implementation
-from agents.user.config import get_task, load_config, TASK_SCHEMAS
+from agents.user.config import get_task, load_config, TASK_SCHEMAS, NODE_URLS
 
 from utils import load_protocol_document, execute_routine, send_raw_query
     
@@ -60,13 +60,10 @@ def main():
     # If you've checked all the public protocols and none are suitable:
     # - If the communication is sufficiently rare, use the querier without any protocol
     # - Otherwise, use the negotiator to reach an agreement with the target on a new protocol
-
-    load_memory()
-    load_config('alice') # TODO: Temp
     
     task_type, task_data, target_server = get_task()
     task_schema = TASK_SCHEMAS[task_type]
-    target_node = get_target_node() # TODO: Match the target node with the target server
+    target_node = NODE_URLS[target_server]
 
     protocol_id = decide_protocol(task_type, target_node, NUM_CONVERSATIONS_FOR_PROTOCOL)
     if protocol_id is None:

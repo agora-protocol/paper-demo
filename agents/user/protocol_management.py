@@ -13,8 +13,7 @@ from specialized_toolformers.protocol_checker import check_protocol_for_task
 from specialized_toolformers.negotiator import negotiate_protocol_for_task
 from agents.common.core import Suitability
 
-
-PUBLIC_PROTOCOL_DB_URL = 'http://localhost:5006'
+from agents.user.config import get_protocol_db_url
 
 def query_protocols(target_node):
     response = request_manager.get(f'{target_node}/wellknown')
@@ -105,12 +104,12 @@ def register_new_protocol(protocol_id, source, protocol_document):
     save_memory()
 
 def submit_protocol_to_public_db(protocol_id, protocol_document):
-    response = request_manager.post(f'{PUBLIC_PROTOCOL_DB_URL}', json={
+    response = request_manager.post(get_protocol_db_url(), json={
         'id': protocol_id,
         'protocol': protocol_document
     })
 
-    source_url = f'{PUBLIC_PROTOCOL_DB_URL}/protocol?' + urllib.parse.urlencode({
+    source_url = f'{get_protocol_db_url()}/protocol?' + urllib.parse.urlencode({
             'id': protocol_id
         })
     print('Submitted protocol to public database. URL:', source_url)
@@ -172,7 +171,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
     # Note: in a real system, we wouldn't get all protocols from the database, but rather
     # only the ones likely to be suitable for the task
 
-    public_protocols_response = request_manager.get(PUBLIC_PROTOCOL_DB_URL).json()
+    public_protocols_response = request_manager.get(get_protocol_db_url()).json()
 
     if public_protocols_response['status'] == 'success':
         public_protocols = public_protocols_response['protocols']
@@ -189,7 +188,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
         
         print('Protocol ID:', urllib.parse.quote_plus(protocol_id))
 
-        uri = f'{PUBLIC_PROTOCOL_DB_URL}/protocol?' + urllib.parse.urlencode({
+        uri = f'{get_protocol_db_url()}/protocol?' + urllib.parse.urlencode({
             'id': protocol_id
         })
         print('URI:', uri)
