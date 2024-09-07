@@ -6,7 +6,7 @@ import requests as request_manager
 
 
 from utils import load_protocol_document, save_protocol_document, compute_hash
-from agents.user.tasks import TASK_SCHEMAS
+from agents.user.config import TASK_SCHEMAS
 from agents.user.memory import get_num_conversations, PROTOCOL_INFOS, save_memory
 
 from specialized_toolformers.protocol_checker import check_protocol_for_task

@@ -20,15 +20,13 @@ from specialized_toolformers.querier import send_query_with_protocol, send_query
 from specialized_toolformers.programmer import write_routine_for_task
 
 from agents.user.protocol_management import decide_protocol, has_implementation
-from agents.user.tasks import TASK_SCHEMAS, get_task
+from agents.user.config import get_task, load_config, TASK_SCHEMAS
 
 from utils import load_protocol_document, execute_routine, send_raw_query
     
 NUM_CONVERSATIONS_FOR_PROTOCOL = -1
 NUM_CONVERSATIONS_FOR_ROUTINE = -1
 TARGET_NODES = ['http://localhost:5003']
-
-load_memory()
 
 def get_target_node():
     return random.choice(TARGET_NODES)
@@ -63,10 +61,12 @@ def main():
     # - If the communication is sufficiently rare, use the querier without any protocol
     # - Otherwise, use the negotiator to reach an agreement with the target on a new protocol
 
+    load_memory()
+    load_config('alice') # TODO: Temp
     
-
-    task_type, task_data = get_task()
-    target_node = get_target_node()
+    task_type, task_data, target_server = get_task()
+    task_schema = TASK_SCHEMAS[task_type]
+    target_node = get_target_node() # TODO: Match the target node with the target server
 
     protocol_id = decide_protocol(task_type, target_node, NUM_CONVERSATIONS_FOR_PROTOCOL)
     if protocol_id is None:
@@ -82,22 +82,22 @@ def main():
 
         # Check if we have an implementation
         if has_implementation(protocol_id):
-            return call_using_implementation(TASK_SCHEMAS[task_type], protocol_id, task_data, target_node)
+            return call_using_implementation(task_schema, protocol_id, task_data, target_node)
         # If we've talked enough times using a certain protocol, write an implementation
         elif get_num_protocol_uses(protocol_id) > NUM_CONVERSATIONS_FOR_ROUTINE:
             protocol_document = load_protocol_document(Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents', protocol_id)
-            routine = write_routine_for_task(TASK_SCHEMAS[task_type], protocol_document)
+            routine = write_routine_for_task(task_schema, protocol_document)
 
             add_routine(protocol_id, routine)
-            return call_using_implementation(TASK_SCHEMAS[task_type], protocol_id, task_data, target_node)
+            return call_using_implementation(task_schema, protocol_id, task_data, target_node)
         else:
             # Use the querier with the protocol
-            response = send_query_with_protocol(TASK_SCHEMAS[task_type], task_data, target_node, protocol_id, source)
+            response = send_query_with_protocol(task_schema, task_data, target_node, protocol_id, source)
             return response.text
     else:
         # Use the querier without any protocol
         print('Using the querier without any protocol')
-        response = send_query_without_protocol(TASK_SCHEMAS[task_type], task_data, target_node)
+        response = send_query_without_protocol(task_schema, task_data, target_node)
         return response.text
     
     # TODO: Should I save the memory here?
