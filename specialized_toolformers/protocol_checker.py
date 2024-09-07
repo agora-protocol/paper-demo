@@ -19,7 +19,7 @@ CHECKER_TASK_PROMPT = 'You are ProtocolCheckerGPT. Your task is to look at the p
 def check_protocol_for_task(protocol_document, task_schema):
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), CHECKER_TASK_PROMPT, [])
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='protocolChecking')
 
     message = 'The protocol is the following:\n\n' + protocol_document + '\n\nThe task is the following:\n\n' + json.dumps(task_schema)
 
@@ -43,7 +43,7 @@ def check_protocol_for_tools(protocol_document, tools):
         for tool in tools:
             message += tool.as_documented_python() + '\n\n'
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='protocolChecking')
 
     reply = conversation.chat(message, print_output=True)
 

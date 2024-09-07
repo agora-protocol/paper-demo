@@ -54,7 +54,7 @@ def reply(query):
 
 def write_routine_for_task(task_schema, protocol_document):
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), TASK_PROGRAMMER_PROMPT, [])
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='programming')
     reply = conversation.chat('JSON schema:\n\n' + json.dumps(task_schema) + '\n\n' + 'Protocol document:\n\n' + protocol_document, print_output=True)
 
     if reply.find('<IMPLEMENTATION>') == -1 or reply.find('</IMPLEMENTATION>') == -1:
@@ -78,7 +78,7 @@ def write_routine_for_tools(tools, protocol_document, additional_info):
         for tool in tools:
             message += tool.as_documented_python() + '\n\n'
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='programming')
 
     reply = conversation.chat(message, print_output=True)
 

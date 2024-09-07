@@ -28,7 +28,7 @@ PROTOCOL_RESPONDER_PROMPT = 'You are ResponderGPT. You will receive a protocol d
 def reply_with_protocol_document(query, protocol_document, tools, additional_info):
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_RESPONDER_PROMPT + additional_info, tools)
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='conversation')
 
     prompt = 'The protocol is the following:\n\n' + protocol_document + '\n\nThe query is the following:' + query
 
@@ -53,7 +53,7 @@ def reply_to_nl_query(query, tools, additional_info):
     print(NL_RESPONDER_PROMPT + additional_info)
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_RESPONDER_PROMPT + additional_info, tools)
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='conversation')
 
     reply = conversation.chat(query, print_output=True)
 

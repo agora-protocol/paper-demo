@@ -1,9 +1,13 @@
 from openai import AssistantEventHandler, OpenAI
 
+import datetime
 import json
+import os
 from typing_extensions import override
 
 from toolformers.base import Toolformer, Conversation
+
+from databases.mongo import insert_one
 
 class EventHandler(AssistantEventHandler):
     def __init__(self, conversation, print_output=True):
@@ -25,6 +29,12 @@ class EventHandler(AssistantEventHandler):
             self.conversation.current_message += delta
         elif event.event == 'thread.message.completed' and self.print_output:
             print()
+        
+        if event.event == 'thread.run.completed':
+            dump = event.model_dump()['data']
+            if dump.get('usage', None) is not None:
+                assert self.conversation.current_usage is None
+                self.conversation.current_usage = dump['usage']
  
     def handle_requires_action(self, data, run_id):
         tool_outputs = []
@@ -70,19 +80,36 @@ class OpenAIToolformer(Toolformer):
             tools=[tool.as_openai_info() for tool in tools]
         )
 
-    def new_conversation(self, starting_messages = None):
+    def new_conversation(self, starting_messages=None, category=None):
         if starting_messages is None:
             starting_messages = []
         thread = self.client.beta.threads.create(messages=starting_messages)
 
-        return OpenAIConversation(self, thread.id, self.assistant.id)
+        return OpenAIConversation(self, thread.id, self.assistant.id, category=category)
+
+def send_usage_to_db(usage, time_start, time_end, agent, category):
+    usage = {
+        'timeStart': {
+            '$date': time_start.isoformat()
+        },
+        'timeEnd': {
+            '$date': time_end.isoformat()
+        },
+        'prompt_tokens': usage['prompt_tokens'],
+        'completion_tokens': usage['completion_tokens'],
+        'agent': agent,
+        'category': category
+    }
+    insert_one('usageLogs', 'main', usage)
 
 class OpenAIConversation(Conversation):
-    def __init__(self, toolformer, thread_id, assistant_id):
+    def __init__(self, toolformer, thread_id, assistant_id, category=None):
         self.toolformer = toolformer
         self.thread_id = thread_id
         self.assistant_id = assistant_id
         self.current_message = ''
+        self.current_usage = None
+        self.category = category
 
     def chat(self, message, role='user', print_output=True):
         message = self.toolformer.client.beta.threads.messages.create(
@@ -92,6 +119,11 @@ class OpenAIConversation(Conversation):
         )
 
         self.current_message = ''
+        self.current_usage = None
+
+        agent_id = os.environ.get('AGENT_ID', None)
+
+        start_time = datetime.datetime.now()
 
         with self.toolformer.client.beta.threads.runs.stream(
             thread_id=self.thread_id,
@@ -99,8 +131,15 @@ class OpenAIConversation(Conversation):
             event_handler=EventHandler(self, print_output=print_output)
             ) as stream:
                 stream.until_done()
-        
+
+        end_time = datetime.datetime.now()
+
         reply = self.current_message
         self.current_message = ''
+
+        if self.current_usage is not None:
+            send_usage_to_db(self.current_usage, start_time, end_time, agent_id, self.category)
+
+        self.current_usage = None
 
         return reply

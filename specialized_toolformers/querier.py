@@ -23,7 +23,7 @@ PROTOCOL_QUERIER_PROMPT = 'You are QuerierGPT. You will receive a protocol docum
 def construct_query(protocol_document, task_schema, task_data):
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_QUERIER_PROMPT, [])
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='conversation')
 
     query_description = 'Protocol document:\n\n'
     query_description += protocol_document + '\n\n'
@@ -42,7 +42,7 @@ NL_QUERIER_PROMPT = 'You are NaturalLanguageQuerierGPT. You will receive a task 
 def construct_nl_query(task_schema, task_data):
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_QUERIER_PROMPT, [])
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='conversation')
 
     return conversation.chat('Task schema:\n' + json.dumps(task_schema) + '\n\nTask data:' + json.dumps(task_data), print_output=False)
 

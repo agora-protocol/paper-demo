@@ -73,7 +73,7 @@ def negotiate_protocol_for_task(task_schema, target_node):
 
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), prompt, [registerTool])
 
-    conversation = toolformer.new_conversation()
+    conversation = toolformer.new_conversation(category='negotiation')
 
     other_message = 'Hello! How may I help you?'
     conversation_id = None
@@ -111,7 +111,7 @@ def create_negotiation_conversation(tools, additional_info):
 
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), prompt, tools)
 
-    return toolformer.new_conversation()
+    return toolformer.new_conversation(category='negotiation')
 
 def handle_negotiation_for_tools(message, conversation_id, tools, additional_info):
     if conversation_id is None:
