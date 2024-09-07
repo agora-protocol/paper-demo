@@ -134,3 +134,9 @@ def wellknown():
         'status': 'success',
         'protocols': { protocol_hash: [PROTOCOL_INFOS[protocol_hash]['source']] for protocol_hash in PROTOCOL_INFOS }
     }
+
+
+def init():
+    load_config(os.environ.get('AGENT_ID'))
+
+init()

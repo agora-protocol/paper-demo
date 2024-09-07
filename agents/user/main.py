@@ -96,8 +96,10 @@ def main():
         print('Using the querier without any protocol')
         response = send_query_without_protocol(task_schema, task_data, target_node)
         return response.text
-    
-    # TODO: Should I save the memory here?
-    save_memory()
 
-print(main())
+def init():
+    load_memory()
+    load_config(os.environ.get('AGENT_ID'))
+    print('Agent initialized')
+
+init()
