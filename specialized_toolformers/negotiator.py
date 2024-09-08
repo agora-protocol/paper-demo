@@ -20,6 +20,9 @@ Here are some rules (that should also be explained to the other GPT):
 - The implementation will be written by a programmer that does not have access to the negotiation process, so make sure the protocol is clear and unambiguous.
 - The implementation will receive a string and return a string, so structure your protocol accordingly.
 - The other party might have a different internal data schema, so make sure that the protocol is flexible enough to accommodate that.
+- Keep the negotiation short: no need to repeat the same things over and over.
+- If the other party has proposed a protocol and you're good with it, there's no reason to keep negotiating or to repeat the protocol to the other party.
+- Do not restate parts of the protocols that have already been agreed upon.
 And remember: keep the protocol as simple and unequivocal as necessary. The programmer that will implement the protocol can code, but they are not a mind reader.
 '''
 
@@ -28,7 +31,7 @@ You are ProtocolNegotiatorGPT. Your task is to negotiate a protocol that can be 
 You will receive a JSON schema of the task that the service must perform. Negotiate with the service to determine a protocol that can be used to query it.
 To do so, you will chat with another GPT (role: user) that will negotiate on behalf of the service.
 {NEGOTIATION_RULES}
-Once you are ready to save the protocol, call the tool "registerProtocol" with the protocol as argument.
+Once you are ready to save the protocol, call the tool "registerProtocol" with the protocol as argument. In that case, do not write anything else, just call the tool.
 '''
 
 TOOLS_NEGOTIATOR_PROMPT = f'''
@@ -39,6 +42,7 @@ that, given the query formatted according to the protocol and the tools at the s
 the protocol's specification, perform the task (if any) and send a reply.
 {NEGOTIATION_RULES}
 You will receive a list of tools that are available to the programmer that will implement the protocol.
+When you are okay with the protocol, don't further repeat everything, just tell to the other party that you are done.
 '''
 
 def chat(message, conversation_id, target_node):
@@ -81,6 +85,9 @@ def negotiate_protocol_for_task(task_schema, target_node):
     while found_protocol is None:
         print('===NegotiatorGPT===')
         message = conversation.chat(other_message, print_output=True)
+
+        if found_protocol is not None:
+            break
 
         other_message, conversation_id = chat(message, conversation_id, target_node)
         print()

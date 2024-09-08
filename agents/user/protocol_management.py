@@ -211,6 +211,8 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
     if get_num_conversations(task_type, target_node) > num_conversations_for_protocol:
         protocol_id = negotiate_protocol(task_type, target_node)
+        # Negotiated protocols are always suitable
+        PROTOCOL_INFOS[protocol_id]['suitability_info'][task_type] = Suitability.ADEQUATE
 
         return protocol_id
     
