@@ -41,7 +41,8 @@ def call_using_implementation(task_schema, protocol_id, task_data, target_node):
     except Exception as e:
         print('Error executing routine:', e)
         print('Falling back to querier')
-        send_query_with_protocol(task_schema, task_data, target_node, protocol_id, PROTOCOL_INFOS[protocol_id]['source'])
+        response = send_query_with_protocol(task_schema, task_data, target_node, protocol_id, PROTOCOL_INFOS[protocol_id]['source'])
+        return response.text
 
 @app.route("/", methods=['POST'])
 def main():
