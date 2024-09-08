@@ -66,6 +66,7 @@ def main():
         log_path.parent.mkdir(parents=True, exist_ok=True)
         pane.send_keys(f'PYTHONUNBUFFERED=1 flask --app agents/protocol_db/main.py run --port {port} 2>&1 | tee {log_path}')
 
+    time.sleep(1)
     # 4. Launch the server agents
 
     for server_id in config['servers'].keys():
@@ -77,6 +78,7 @@ def main():
         log_path.parent.mkdir(parents=True, exist_ok=True)
         pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={server_id} flask --app agents/server/main.py run --port {port} 2>&1 | tee {log_path}')
 
+    time.sleep(1)
     # 5. Launch the user agents
 
     for user_id in config['users'].keys():
