@@ -131,7 +131,7 @@ def main():
 def wellknown():
     return {
         'status': 'success',
-        'protocols': { protocol_hash: [PROTOCOL_INFOS[protocol_hash]['source']] for protocol_hash in PROTOCOL_INFOS }
+        'protocols': { protocol_hash: [PROTOCOL_INFOS[protocol_hash]['source']] for protocol_hash in PROTOCOL_INFOS if PROTOCOL_INFOS[protocol_hash]['suitability'] == Suitability.ADEQUATE }
     }
 
 
