@@ -15,9 +15,10 @@ Rules:
 - You can define any number of helper functions and import any libraries that are part of the Python standard library.
 - Do not import libraries that are not part of the Python standard library.
 - Your task is to prepare the query. Do not compute the response! That will be the service's job.
+- Remember to import standard libraries if you need them.
 - If there is an unexpected error that is not covered by the protocol, throw an exception.\
  If instead the protocol specifies how to handle the error, return the response according to the protocol's specification.
-- Do not execute anything when the file itself is loaded. I will personally import the file and call the prepare_query function with the task data.
+- Do not execute anything (aside from library imports) when the file itself is loaded. I will personally import the file and call the prepare_query function with the task data.
 Begin by thinking about the implementation and how you would structure the code. \
 Then, write your implementation by writing a code block that contains the tags <IMPLEMENTATION> and </IMPLEMENTATION>. For example:
 ```python
@@ -38,9 +39,10 @@ Rules:
 - The implementation must be written in Python.
 - You can define any number of helper functions and import any libraries that are part of the Python standard library.
 - Do not import libraries that are not part of the Python standard library.
+- Remember to import standard libraries if you need them.
 - If there is an unexpected error that is not covered by the protocol, throw an exception.\
  If instead the protocol specifies how to handle the error, return the response according to the protocol's specification.
-- Do not execute anything when the file itself is loaded. I will personally import the file and call the reply function with the task data.
+- Do not execute anything (aside from library imports) when the file itself is loaded. I will personally import the file and call the reply function with the task data.
 Begin by thinking about the implementation and how you would structure the code. \
 Then, write your implementation by writing a code block that contains the tags <IMPLEMENTATION> and </IMPLEMENTATION>. For example:
 ```python
@@ -53,7 +55,7 @@ def reply(query):
 '''
 
 def write_routine_for_task(task_schema, protocol_document):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), TASK_PROGRAMMER_PROMPT, [])
+    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), TASK_PROGRAMMER_PROMPT, [], model='gpt-4o')
     conversation = toolformer.new_conversation(category='programming')
     reply = conversation.chat('JSON schema:\n\n' + json.dumps(task_schema) + '\n\n' + 'Protocol document:\n\n' + protocol_document, print_output=True)
 
@@ -68,7 +70,7 @@ def write_routine_for_task(task_schema, protocol_document):
 
 
 def write_routine_for_tools(tools, protocol_document, additional_info):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), TOOL_PROGRAMMER_PROMPT + additional_info, [])
+    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), TOOL_PROGRAMMER_PROMPT + additional_info, [], model='gpt-4o')
 
     message = 'Protocol document:\n\n' + protocol_document + '\n\n' + 'Additional functions:\n\n'
 
