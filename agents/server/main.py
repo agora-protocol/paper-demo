@@ -112,7 +112,16 @@ def handle_query(protocol_hash, protocol_sources, query):
             protocol_document = download_and_verify_protocol(protocol_hash, protocol_source)
             if protocol_document is not None:
                 register_new_protocol(protocol_hash, protocol_source, protocol_document)
-                return handle_query_suitable(protocol_hash, query)
+                is_suitable = check_protocol_for_tools(protocol_document, TOOLS)
+
+                if is_suitable:
+                    PROTOCOL_INFOS[protocol_hash]['suitability'] = Suitability.ADEQUATE
+                else:
+                    PROTOCOL_INFOS[protocol_hash]['suitability'] = Suitability.INADEQUATE
+                save_memory()
+
+                if is_suitable:
+                    return handle_query_suitable(protocol_hash, query)
         return {
             'status': 'error',
             'message': 'No valid protocol source provided.'
