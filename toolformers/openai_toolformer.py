@@ -87,7 +87,7 @@ class OpenAIToolformer(Toolformer):
 
         return OpenAIConversation(self, thread.id, self.assistant.id, category=category)
 
-def send_usage_to_db(usage, time_start, time_end, agent, category):
+def send_usage_to_db(usage, time_start, time_end, agent, category, model):
     usage = {
         'timeStart': {
             '$date': time_start.isoformat()
@@ -98,7 +98,8 @@ def send_usage_to_db(usage, time_start, time_end, agent, category):
         'prompt_tokens': usage['prompt_tokens'],
         'completion_tokens': usage['completion_tokens'],
         'agent': agent,
-        'category': category
+        'category': category,
+        'model': model
     }
     insert_one('usageLogs', 'main', usage)
 
@@ -138,7 +139,7 @@ class OpenAIConversation(Conversation):
         self.current_message = ''
 
         if self.current_usage is not None:
-            send_usage_to_db(self.current_usage, start_time, end_time, agent_id, self.category)
+            send_usage_to_db(self.current_usage, start_time, end_time, agent_id, self.category, self.toolformer.model)
 
         self.current_usage = None
 
