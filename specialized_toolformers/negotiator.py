@@ -63,15 +63,23 @@ def chat(message, conversation_id, target_node):
 def negotiate_protocol_for_task(task_schema, target_node):
     found_protocol = None
 
-    def register_protocol(protocol):
+    def register_protocol(protocolName, protocolDescription, protocol):
         nonlocal found_protocol
-        found_protocol = protocol
+        
+        found_protocol = {
+            'name': protocolName,
+            'description': protocolDescription,
+            'protocol': protocol
+        }
+
         return 'done'
 
     registerTool = Tool(
         'registerProtocol', 'Register a protocol document. Returns "done" if done.', [
-        StringParameter('protocol', 'The protocol document to register', True
-                    )], register_protocol)
+            StringParameter('protocolName', 'The name of the protocol', True),
+            StringParameter('protocolDescription', 'A short description of the protocol', True),
+            StringParameter('protocol', 'The protocol document to register', True),
+        ], register_protocol)
 
     prompt = TASK_NEGOTIATOR_PROMPT + '\nThe JSON schema of the task is the following:\n\n' + json.dumps(task_schema, indent=4)
 
