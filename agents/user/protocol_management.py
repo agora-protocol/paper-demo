@@ -92,21 +92,27 @@ def categorize_protocol(protocol_id, task_type):
     
     return suitable
 
-def register_new_protocol(protocol_id, source, protocol_document):
+
+def register_new_protocol(protocol_id, source, protocol_data):
     PROTOCOL_INFOS[protocol_id] = {
         'suitability_info': {},
         'source': source,
         'has_implementation': False,
-        'num_uses' : 0
+        'num_uses' : 0,
+        'metadata' : {
+            'name' : protocol_data['name'],
+            'description' : protocol_data['description']
+        }
     }
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
-    save_protocol_document(base_folder, protocol_id, protocol_document)
+    save_protocol_document(base_folder, protocol_id, protocol_data['protocol'])
     save_memory()
 
-def submit_protocol_to_public_db(protocol_id, protocol_document):
+def submit_protocol_to_public_db(protocol_id, protocol_data):
     response = request_manager.post(get_protocol_db_url(), json={
-        'id': protocol_id,
-        'protocol': protocol_document
+        'name': protocol_data['name'],
+        'description': protocol_data['description'],
+        'protocol': protocol_data['protocol']
     })
 
     source_url = f'{get_protocol_db_url()}/protocol?' + urllib.parse.urlencode({
@@ -118,14 +124,14 @@ def submit_protocol_to_public_db(protocol_id, protocol_document):
 
 def negotiate_protocol(task_type, target_node):
     task_schema = TASK_SCHEMAS[task_type]
-    protocol = negotiate_protocol_for_task(task_schema, target_node)
+    protocol_data = negotiate_protocol_for_task(task_schema, target_node)
 
-    protocol_id = compute_hash(protocol)
+    protocol_id = compute_hash(protocol_data['protocol'])
 
-    source_url = submit_protocol_to_public_db(protocol_id, protocol)
+    source_url = submit_protocol_to_public_db(protocol_id, protocol_data)
 
     if source_url is not None:
-        register_new_protocol(protocol_id, source_url, protocol)
+        register_new_protocol(protocol_id, source_url, protocol_data)
     else:
         raise Exception('Failed to submit protocol to public database')
 
@@ -147,10 +153,22 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
                 response = request_manager.get(source)
                 protocol_document = response.text
 
-                register_new_protocol(protocol_id, source, protocol_document)
+                metadata = request_manager.get(source.replace('protocol', 'metadata')).json()
 
-                # Categorize the protocol
-                suitable = categorize_protocol(protocol_id, task_type)
+                if metadata['status'] != 'success':
+                    print('Failed to retrieve metadata:', metadata)
+                    continue
+
+                metadata = metadata['metadata']
+
+
+                protocol_data = {
+                    'name': metadata['name'],
+                    'description': metadata['description'],
+                    'protocol': protocol_document
+                }
+
+                register_new_protocol(protocol_id, source, protocol_data)
 
                 if suitable:
                     return protocol_id
@@ -174,16 +192,15 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
     public_protocols_response = request_manager.get(get_protocol_db_url()).json()
 
     if public_protocols_response['status'] == 'success':
-        public_protocols = public_protocols_response['protocols']
+        public_protocols = [x['id'] for x in public_protocols_response['protocols']]
     else:
         public_protocols = []
-
-    public_protocols = [ protocol_id for protocol_id in public_protocols if protocol_id not in PROTOCOL_INFOS ]
 
     print('Stored protocols:', PROTOCOL_INFOS.keys())
     print('Public protocols:', public_protocols)
 
-    for protocol_id in public_protocols:
+    for protocol_metadata in public_protocols:
+        protocol_id = protocol_metadata['id']
         # Retrieve the protocol
         
         print('Protocol ID:', urllib.parse.quote_plus(protocol_id))
@@ -197,7 +214,13 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
         if protocol_document_response.status_code == 200:
             protocol_document = protocol_document_response.text
-            register_new_protocol(protocol_id, uri, protocol_document)
+            protocol_data = {
+                'name': protocol_metadata['name'],
+                'description': protocol_metadata['description'],
+                'protocol': protocol_document
+            }
+            register_new_protocol(protocol_id, uri, protocol_data)
+
 
     for protocol_id in public_protocols:
         # Categorize the protocol
