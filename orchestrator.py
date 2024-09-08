@@ -64,7 +64,7 @@ def main():
         storage_path = base_storage_path / 'protocol_db' / protocol_db_id
         log_path = base_log_path / 'protocol_db' / (protocol_db_id + '.log')
         log_path.parent.mkdir(parents=True, exist_ok=True)
-        pane.send_keys(f'PYTHONUNBUFFERED=1 flask --app agents/protocol_db/main.py run --port {port} 2>&1 | tee {log_path}')
+        pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={protocol_db_id} flask --app agents/protocol_db/main.py run --port {port} 2>&1 | tee {log_path}')
 
     time.sleep(1)
     # 4. Launch the server agents
