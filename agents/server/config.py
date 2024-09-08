@@ -18,6 +18,10 @@ def add_mongo_database(internal_name, external_name, schema):
 
     for collection_name, collection_schema in schema['collections'].items():
         ADDITIONAL_INFO += f'=={collection_name}==\n'
+
+        if 'startingValues' in collection_schema:
+            del collection_schema['startingValues']
+
         ADDITIONAL_INFO += json.dumps(collection_schema, indent=2) + '\n\n'
 
 def add_mongo_tools(name_mappings):
@@ -53,11 +57,11 @@ def add_mongo_tools(name_mappings):
         mongo.update_one(external_name, collection, query, update)
         return 'Done'
 
-    update_element_tool = Tool('update_element_in_database', 'Update an element in a database (MongoDB).', [
+    update_element_tool = Tool('update_one_in_database', 'Update an element in a database (MongoDB).', [
         StringParameter('database', 'The database to query', True),
         StringParameter('collection', 'The collection to query', True),
         StringParameter('query', 'The query to run, as a formatted JSON string for MongoDB', True),
-        StringParameter('update', 'The update to run, as a formatted JSON string for MongoDB', True)
+        StringParameter('update', 'The update to run, as a formatted JSON string for MongoDB. Remember the $ operator (e.g. {$set : {...}})', True)
     ], update_element)
 
     def delete_element(database, collection, query):
