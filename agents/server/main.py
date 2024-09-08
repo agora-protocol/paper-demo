@@ -120,7 +120,6 @@ def handle_query(protocol_hash, protocol_sources, query):
 
 @app.route("/", methods=['POST'])
 def main():
-    load_memory()
     data = request.get_json()
 
     protocol_hash = data.get('protocolHash', None)
@@ -138,5 +137,6 @@ def wellknown():
 
 def init():
     load_config(os.environ.get('AGENT_ID'))
+    load_memory()
 
 init()
