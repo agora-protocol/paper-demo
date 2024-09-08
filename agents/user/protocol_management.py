@@ -195,8 +195,12 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
                 register_new_protocol(protocol_id, source, protocol_data)
 
-                if suitable:
-                    return protocol_id
+    for protocol_id in prefilter_protocols(list(target_protocols.keys()), task_type):
+        # Categorize the protocol
+        suitable = categorize_protocol(protocol_id, task_type)
+
+        if suitable:
+            return protocol_id
     
     # protocol = get_an_adequate_protocol(task_info, target_protocols)
 
@@ -246,6 +250,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
             }
             register_new_protocol(protocol_id, uri, protocol_data)
 
+    public_protocols = prefilter_protocols(public_protocols, task_type)
 
     for protocol_id in public_protocols:
         # Categorize the protocol
