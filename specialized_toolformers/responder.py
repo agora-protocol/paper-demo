@@ -26,6 +26,7 @@ PROTOCOL_RESPONDER_PROMPT = 'You are ResponderGPT. You will receive a protocol d
     'If you do not have enough information to reply, or if you cannot execute the request, reply with "ERROR" (without quotes).'
 
 def reply_with_protocol_document(query, protocol_document, tools, additional_info):
+    print('===NL RESPONDER (WITH PROTOCOL)===')
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_RESPONDER_PROMPT + additional_info, tools)
 
     conversation = toolformer.new_conversation(category='conversation')
@@ -33,6 +34,8 @@ def reply_with_protocol_document(query, protocol_document, tools, additional_inf
     prompt = 'The protocol is the following:\n\n' + protocol_document + '\n\nThe query is the following:' + query
 
     reply = conversation.chat(prompt, print_output=True)
+
+    print('======')
 
     if 'error' in reply.lower().strip()[-10:]:
         return json.dumps({
@@ -50,12 +53,14 @@ NL_RESPONDER_PROMPT = 'You are NaturalLanguageResponderGPT. You will receive a q
     'Important: the user does not have the capacity to respond to follow-up questions, so if you think you have enough information to reply/execute the actions, do so.'
 
 def reply_to_nl_query(query, tools, additional_info):
+    print('===NL RESPONDER (NO PROTOCOL)===')
     print(NL_RESPONDER_PROMPT + additional_info)
     toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_RESPONDER_PROMPT + additional_info, tools)
 
     conversation = toolformer.new_conversation(category='conversation')
 
     reply = conversation.chat(query, print_output=True)
+    print('======')
 
     if 'error' in reply.lower().strip()[-10:]:
         return json.dumps({

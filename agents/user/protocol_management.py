@@ -164,6 +164,7 @@ def negotiate_protocol(task_type, target_node):
 
 def decide_protocol(task_type, target_node, num_conversations_for_protocol):
     target_protocols = query_protocols(target_node)
+    print('Target protocols:', target_protocols)
 
     protocol_id = get_an_adequate_protocol(task_type, list(target_protocols.keys()))
 

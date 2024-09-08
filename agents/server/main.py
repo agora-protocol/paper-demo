@@ -134,7 +134,9 @@ def main():
     protocol_hash = data.get('protocolHash', None)
     protocol_sources = data.get('protocolSources', [])
 
-    return handle_query(protocol_hash, protocol_sources, data['body'])
+    response = handle_query(protocol_hash, protocol_sources, data['body'])
+    print('Final response:', response)
+    return response
 
 @app.route("/wellknown", methods=['GET'])
 def wellknown():

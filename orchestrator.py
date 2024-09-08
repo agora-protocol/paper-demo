@@ -96,6 +96,8 @@ def main():
         print('.', end='', flush=True)
     print('')
 
+    print('Sending sample ping.')
+
     # 6. Send a sample ping to a user agent
     response = request_manager.post(id_to_url_mappings['alice'])
     print('Response from Alice:', response.text)
