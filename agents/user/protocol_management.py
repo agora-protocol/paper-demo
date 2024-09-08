@@ -9,7 +9,7 @@ from utils import load_protocol_document, save_protocol_document, compute_hash
 from agents.user.config import TASK_SCHEMAS
 from agents.user.memory import get_num_conversations, PROTOCOL_INFOS, save_memory
 
-from specialized_toolformers.protocol_checker import check_protocol_for_task
+from specialized_toolformers.protocol_checker import check_protocol_for_task, filter_protocols_for_task
 from specialized_toolformers.negotiator import negotiate_protocol_for_task
 from agents.common.core import Suitability
 
@@ -64,8 +64,10 @@ def get_an_adequate_protocol(task_type, eligible_protocols):
     if len(adequate_protocols) > 0:
         return adequate_protocols[0]
     
-    # If there are still none, try with protocols that haven't been categorized yet, categorize them and check again
-    uncategorized_protocols = [protocol_id for protocol_id in eligible_protocols if not is_categorized(task_type, protocol_id)]
+    # If there are still none, try with protocols that haven't been categorized yet (but are already in memory), categorize them and check again
+    uncategorized_protocols = [protocol_id for protocol_id in eligible_protocols if protocol_id in PROTOCOL_INFOS and not is_categorized(task_type, protocol_id)]
+
+    uncategorized_protocols = prefilter_protocols(uncategorized_protocols, task_type)
 
     for protocol_id in uncategorized_protocols:
         suitable = categorize_protocol(protocol_id, task_type)
@@ -92,6 +94,29 @@ def categorize_protocol(protocol_id, task_type):
     
     return suitable
 
+def prefilter_protocols(protocol_ids, task_type):
+    print('Prefiltering protocols:', protocol_ids)
+
+    protocol_metadatas = []
+
+    for protocol_id in protocol_ids:
+        if task_type not in PROTOCOL_INFOS[protocol_id]['suitability_info'] or \
+          PROTOCOL_INFOS[protocol_id]['suitability_info'][task_type] == Suitability.UNKNOWN:
+            protocol_metadatas.append({ 'id' : protocol_id, **PROTOCOL_INFOS[protocol_id]['metadata']})
+
+    filtered_protocols = filter_protocols_for_task(protocol_metadatas, TASK_SCHEMAS[task_type])
+
+    probably_inadequate = [protocol['id'] for protocol in protocol_metadatas if protocol not in filtered_protocols]
+    for protocol_id in probably_inadequate:
+        PROTOCOL_INFOS[protocol_id]['suitability_info'][task_type] = Suitability.PROBABLY_INADEQUATE
+    
+    save_memory()
+
+    filtered_ids = [protocol['id'] for protocol in filtered_protocols]
+
+    print('Filtered protocols:', filtered_ids)
+
+    return filtered_ids
 
 def register_new_protocol(protocol_id, source, protocol_data):
     PROTOCOL_INFOS[protocol_id] = {
