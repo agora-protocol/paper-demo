@@ -46,7 +46,7 @@ class EventHandler(AssistantEventHandler):
             if tool is not None:
                 # Call the tool function with the tool_call data
                 arguments = json.loads(tool_call.function.arguments)
-                output = tool.function(**arguments)
+                output = tool.call_tool_for_toolformer(**arguments)
                 tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
 
         # Submit all tool_outputs at the same time
