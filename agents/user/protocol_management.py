@@ -222,7 +222,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
     public_protocols_response = request_manager.get(get_protocol_db_url()).json()
 
     if public_protocols_response['status'] == 'success':
-        public_protocols = [x['id'] for x in public_protocols_response['protocols']]
+        public_protocols = [x for x in public_protocols_response['protocols']]
     else:
         public_protocols = []
 
@@ -253,12 +253,12 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
     public_protocols = prefilter_protocols(public_protocols, task_type)
 
-    for protocol_id in public_protocols:
+    for protocol_metadata in public_protocols:
         # Categorize the protocol
-        suitable = categorize_protocol(protocol_id, task_type)
+        suitable = categorize_protocol(protocol_metadata['id'], task_type)
 
         if suitable:
-            return protocol_id
+            return protocol_metadata['id']
 
     
     # If there are still none, check if we have talked enough times with the target to warrant a new protocol
