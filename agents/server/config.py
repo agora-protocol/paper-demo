@@ -1,11 +1,16 @@
 import json
+import os
 import random
+
+import requests as request_manager
 
 import databases.mongo as mongo
 from toolformers.base import Tool, StringParameter
 
 TOOLS = []
 ADDITIONAL_INFO = ''
+NODE_URLS = {}
+
 def get_additional_info():
     return ADDITIONAL_INFO
 
@@ -105,10 +110,59 @@ def prepare_mock_tool(tool_schema, internal_name):
 
     return mock_tool
 
+def prepare_external_tool(tool_schema, internal_name, external_server_name):
+    input_schema = tool_schema['input']
+
+    required_parameter_names = input_schema['required']
+    parameters = []
+
+    for parameter_name, parameter_data in input_schema['properties'].items():
+        if parameter_data['type'] == 'string':
+            parameters.append(StringParameter(parameter_name, parameter_data['description'], parameter_name in required_parameter_names))
+        else:
+            raise ValueError('Unknown parameter type:', parameter_data['type'])
+        
+    helper_id = os.environ.get('AGENT_ID') + '_helper'
+    helper_url = NODE_URLS[helper_id]
+
+    def run_external_tool(*args, **kwargs):
+        for i, arg in enumerate(args):
+            argument_name = parameters[i].name
+            kwargs[argument_name] = arg
+
+        # TODO: Check that the parameter names are correct?
+
+        print('Running external tool:', internal_name, kwargs)
+        query_parameters = {
+            'type' : internal_name, # TODO: Use the schema name instead? Must be matched on the other side
+            'data' : kwargs,
+            'targetServer' : external_server_name
+        }
+        response = request_manager.post(helper_url + '/customRun', json=query_parameters)
+
+        print('Response from external tool:', response.text)
+
+        if response.status_code == 200:
+            parsed_response = json.loads(response.text)
+
+            return json.dumps(parsed_response)
+            #if parsed_response['status'] == 'success':
+            #    return parsed_response['body']
+        return 'Failed to call the tool: ' + response.text
+
+    external_tool = Tool(internal_name, tool_schema['description'], parameters, run_external_tool, output_schema=tool_schema['output'])
+
+    return external_tool
+
 def load_config(server_name):
     global ADDITIONAL_INFO
     with open('config.json') as f:
         config = json.load(f)
+
+    with open('node_urls.json') as f:
+        node_urls = json.load(f)
+    for node_id, node_url in node_urls.items():
+        NODE_URLS[node_id] = node_url
     
     server_config = config['servers'][server_name]
 
@@ -140,6 +194,13 @@ def load_config(server_name):
     for internal_name, schema_name in server_config.get('mockTools', {}).items():
         tool_schema = config['toolSchemas'][schema_name]
         tool = prepare_mock_tool(tool_schema, internal_name)
+        TOOLS.append(tool)
+
+    for internal_name, external_tool_config in server_config.get('externalTools', {}).items():
+        schema_name = external_tool_config['schema']
+        tool_schema = config['toolSchemas'][schema_name]
+        tool_server = external_tool_config['server']
+        tool = prepare_external_tool(tool_schema, internal_name, tool_server)
         TOOLS.append(tool)
 
     print('Final additional info:', ADDITIONAL_INFO)

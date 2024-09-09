@@ -28,6 +28,12 @@ def create_id_to_url_mappings(config):
     for server_id in config['servers'].keys():
         mapping[server_id] = f'http://localhost:{server_agent_port}'
         server_agent_port += 1
+
+        external_tools_config = config['servers'][server_id].get('externalTools', {})
+        if len(external_tools_config) > 0:
+            # Build a helper user agent
+            helper_user_id = server_id + '_helper'
+            mapping[helper_user_id] = f'http://localhost:{user_agent_port}'
     
     protocol_db_port = config['orchestration']['startingPorts']['protocolDb']
 
@@ -72,8 +78,15 @@ def main():
     time.sleep(1)
 
     # 4. Launch the server agents
-    for server_id in config['servers'].keys():
+    for server_id, server_config in config['servers'].items():
         launch_instance(tmux_server, 'server', server_id, base_log_path, base_storage_path, id_to_url_mappings)
+
+        external_tools_config = server_config.get('externalTools', {})
+
+        if len(external_tools_config) > 0:
+            # Build a helper user agent
+            helper_user_id = server_id + '_helper'
+            launch_instance(tmux_server, 'user', helper_user_id, base_log_path, base_storage_path, id_to_url_mappings)
 
     time.sleep(1)
 
