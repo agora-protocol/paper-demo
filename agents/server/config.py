@@ -1,4 +1,5 @@
 import json
+import random
 
 import databases.mongo as mongo
 from toolformers.base import Tool, StringParameter
@@ -83,6 +84,27 @@ def add_mongo_tools(name_mappings):
 
     # TODO: Test insert and delete tools
 
+def prepare_mock_tool(tool_schema, internal_name):
+    input_schema = tool_schema['input']
+
+    required_parameter_names = input_schema['required']
+    parameters = []
+
+    for parameter_name, parameter_data in input_schema['properties'].items():
+        if parameter_data['type'] == 'string':
+            parameters.append(StringParameter(parameter_name, parameter_data['description'], parameter_name in required_parameter_names))
+        else:
+            raise ValueError('Unknown parameter type:', parameter_data['type'])
+
+    output_description = json.dumps(tool_schema['output'])
+
+    def run_mock_tool(*args, **kwargs):
+        return json.dumps(random.choice(tool_schema['mockValues']))
+
+    mock_tool = Tool(internal_name, tool_schema['description'] + '\nOutput schema:' + output_description, [], run_mock_tool)
+
+    return mock_tool
+
 def load_config(server_name):
     global ADDITIONAL_INFO
     with open('config.json') as f:
@@ -114,3 +136,10 @@ def load_config(server_name):
     
     if has_mongo_db:
         add_mongo_tools({x[0]: x[1] for x in databases})
+
+    for internal_name, schema_name in server_config.get('mockTools', {}).items():
+        tool_schema = config['toolSchemas'][schema_name]
+        tool = prepare_mock_tool(tool_schema, internal_name)
+        TOOLS.append(tool)
+
+    print('Final additional info:', ADDITIONAL_INFO)
