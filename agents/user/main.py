@@ -33,7 +33,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-def call_using_implementation(task_schema, protocol_id, task_data, target_node):
+def call_using_implementation(task_type, task_schema, protocol_id, task_data, target_node):
     def send_to_server(query):
         print('Sending query:', query)
         response = send_raw_query(query, protocol_id, target_node, PROTOCOL_INFOS[protocol_id]['source'])
@@ -104,15 +104,15 @@ def run_task(task_type, task_data, target_server):
         increment_num_protocol_uses(protocol_id)
 
         # Check if we have an implementation
-        if has_implementation(protocol_id):
-            return call_using_implementation(task_schema, protocol_id, task_data, target_node)
+        if has_implementation(task_type, protocol_id):
+            return call_using_implementation(task_type, task_schema, protocol_id, task_data, target_node)
         # If we've talked enough times using a certain protocol, write an implementation
         elif get_num_protocol_uses(protocol_id) > NUM_CONVERSATIONS_FOR_ROUTINE:
             protocol_document = load_protocol_document(Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents', protocol_id)
             routine = write_routine_for_task(task_schema, protocol_document)
 
-            add_routine(protocol_id, routine)
-            return call_using_implementation(task_schema, protocol_id, task_data, target_node)
+            add_routine(task_type, protocol_id, routine)
+            return call_using_implementation(task_type, task_schema, protocol_id, task_data, target_node)
         else:
             # Use the querier with the protocol
             response = send_query_with_protocol(task_schema, task_data, target_node, protocol_id, source)

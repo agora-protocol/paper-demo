@@ -24,11 +24,14 @@ def query_protocols(target_node):
     else:
         return []
 
-def has_implementation(protocol_id):
+def has_implementation(task_type, protocol_id):
     if protocol_id not in PROTOCOL_INFOS:
         return False
+
+    if task_type not in PROTOCOL_INFOS[protocol_id]['has_implementation']:
+        return False
     
-    return PROTOCOL_INFOS[protocol_id]['has_implementation']
+    return PROTOCOL_INFOS[protocol_id]['has_implementation'][task_type]
 
 def is_adequate(task_type, protocol_id):
     if protocol_id not in PROTOCOL_INFOS:
@@ -122,7 +125,7 @@ def register_new_protocol(protocol_id, source, protocol_data):
     PROTOCOL_INFOS[protocol_id] = {
         'suitability_info': {},
         'source': source,
-        'has_implementation': False,
+        'has_implementation': {},
         'num_uses' : 0,
         'metadata' : {
             'name' : protocol_data['name'],

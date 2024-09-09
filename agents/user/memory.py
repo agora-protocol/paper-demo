@@ -73,9 +73,9 @@ def increment_num_conversations(task_type, target_node):
     NUM_CONVERSATIONS[task_type][target_node] += 1
 
 
-def add_routine(protocol_id, implementation):
-    PROTOCOL_INFOS[protocol_id]['has_implementation'] = True
-    base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
+def add_routine(task_type, protocol_id, implementation):
+    PROTOCOL_INFOS[protocol_id]['has_implementation'][task_type] = True
+    base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines' / task_type
 
     save_routine(base_folder, protocol_id, implementation)
 
