@@ -46,13 +46,12 @@ def call_using_implementation(task_schema, protocol_id, task_data, target_node):
 
 @app.route("/", methods=['POST'])
 def main():
-    response = run_task()
+    response = run_random_task()
     print('Response:', response, flush=True)
     save_memory()
     return response
 
-def run_task():
-    # Generate task info (with structured data) and pick a target node
+def run_task(task_type, task_data, target_server):
     # Query the node to know its preferred protocols
     # If you already support a protocol, use it and call the corresponding routine
 
@@ -67,8 +66,7 @@ def run_task():
     # If you've checked all the public protocols and none are suitable:
     # - If the communication is sufficiently rare, use the querier without any protocol
     # - Otherwise, use the negotiator to reach an agreement with the target on a new protocol
-    
-    task_type, task_data, target_server = get_task()
+
     task_schema = TASK_SCHEMAS[task_type]
     target_node = NODE_URLS[target_server]
 
@@ -103,6 +101,19 @@ def run_task():
         print('Using the querier without any protocol')
         response = send_query_without_protocol(task_schema, task_data, target_node)
         return response.text
+
+def run_random_task():
+    # Generate task info (with structured data) and pick a target node
+    task_type, task_data, target_server = get_task()
+    return run_task(task_type, task_data, target_server)
+
+@app.route('/customTask', methods=['POST'])
+def custom_task():
+    data = request.get_json()
+    task_type = data['taskType']
+    task_data = data['taskData']
+    target_server = data['targetServer']
+    return run_task(task_type, task_data, target_server)
 
 def init():
     load_memory()
