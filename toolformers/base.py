@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import json
 
 class Parameter:
     def __init__(self, name, description, required):
@@ -73,11 +74,13 @@ class EnumParameter(Parameter):
         return EnumParameter(api_info["name"], api_info["description"], api_info["values"], api_info["required"])
 
 class Tool:
-    def __init__(self, name, description, parameters, function):
-         self.name = name
-         self.description = description
-         self.parameters = parameters
-         self.function = function
+    def __init__(self, name, description, parameters, function, output_schema=None):
+        self.name = name
+        self.description = description
+        self.parameters = parameters
+        self.function = function
+        self.output_schema = output_schema
+    
     
     def as_openai_info(self):
         return {
@@ -94,7 +97,12 @@ class Tool:
         }
 
     def as_natural_language(self):
-        return f'Function {self.name}: {self.description}. Parameters:\n' + '\n'.join([parameter.as_natural_language() for parameter in self.parameters])
+        nl = f'Function {self.name}: {self.description}. Parameters:\n' + '\n'.join([parameter.as_natural_language() for parameter in self.parameters])
+
+        if self.output_schema is not None:
+            nl += f'\nOutput schema: {json.dumps(self.output_schema, indent=2)}'
+        
+        return nl
 
     def as_standard_api(self):
         return {
@@ -104,7 +112,13 @@ class Tool:
         }
     
     def as_documented_python(self):
-        return f'Tool {self.name}:\n\n{self.description}\nParameters:\n' + '\n'.join([parameter.as_documented_python() for parameter in self.parameters])
+        documented_python = f'Tool {self.name}:\n\n{self.description}\nParameters:\n' + \
+            '\n'.join([parameter.as_documented_python() for parameter in self.parameters])
+        
+        if self.output_schema is not None:
+            documented_python += f'\nOutput schema: {json.dumps(self.output_schema, indent=2)}'
+
+        return documented_python
 
     def as_executable_function(self):
         # Create an actual function that can be called
