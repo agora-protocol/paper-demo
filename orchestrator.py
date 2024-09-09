@@ -37,6 +37,15 @@ def create_id_to_url_mappings(config):
 
     return mapping
 
+def launch_instance(tmux_server, instance_type, agent_id, base_log_path, base_storage_path, id_to_url_mappings):
+    session = tmux_server.new_session(session_name=agent_id, kill_session=True)
+    pane = session.active_window.active_pane
+    port = id_to_url_mappings[agent_id].split(':')[-1]
+    storage_path = base_storage_path / instance_type / agent_id
+    log_path = base_log_path / instance_type / (agent_id + '.log')
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={agent_id} flask --app agents/{instance_type}/main.py run --port {port} 2>&1 | tee {log_path}')
+
 def main():
     # 1. Reset the databases and the memory (optional)
     reset_databases()
@@ -58,37 +67,19 @@ def main():
     tmux_server = libtmux.Server()
 
     for protocol_db_id in config['protocolDbs']:
-        session = tmux_server.new_session(session_name=protocol_db_id, kill_session=True)
-        pane = session.active_window.active_pane
-        port = id_to_url_mappings[protocol_db_id].split(':')[-1]
-        storage_path = base_storage_path / 'protocol_db' / protocol_db_id
-        log_path = base_log_path / 'protocol_db' / (protocol_db_id + '.log')
-        log_path.parent.mkdir(parents=True, exist_ok=True)
-        pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={protocol_db_id} flask --app agents/protocol_db/main.py run --port {port} 2>&1 | tee {log_path}')
+        launch_instance(tmux_server, 'protocol_db', protocol_db_id, base_log_path, base_storage_path, id_to_url_mappings)
 
     time.sleep(1)
+
     # 4. Launch the server agents
-
     for server_id in config['servers'].keys():
-        session = tmux_server.new_session(session_name=server_id, kill_session=True)
-        pane = session.active_window.active_pane
-        port = id_to_url_mappings[server_id].split(':')[-1]
-        storage_path = base_storage_path / 'server' / server_id
-        log_path = base_log_path / 'server' / (server_id + '.log')
-        log_path.parent.mkdir(parents=True, exist_ok=True)
-        pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={server_id} flask --app agents/server/main.py run --port {port} 2>&1 | tee {log_path}')
+        launch_instance(tmux_server, 'server', server_id, base_log_path, base_storage_path, id_to_url_mappings)
 
     time.sleep(1)
-    # 5. Launch the user agents
 
+    # 5. Launch the user agents
     for user_id in config['users'].keys():
-        session = tmux_server.new_session(session_name=user_id, kill_session=True)
-        pane = session.active_window.active_pane
-        port = id_to_url_mappings[user_id].split(':')[-1]
-        storage_path = base_storage_path / 'user' / user_id
-        log_path = base_log_path / 'user' / (user_id + '.log')
-        log_path.parent.mkdir(parents=True, exist_ok=True)
-        pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={user_id} flask --app agents/user/main.py run --port {port} 2>&1 | tee {log_path}')
+        launch_instance(tmux_server, 'user', user_id, base_log_path, base_storage_path, id_to_url_mappings)
 
     # 6. Wait for the agents to be ready
     
