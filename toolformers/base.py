@@ -85,8 +85,11 @@ class Tool:
         print(f'Toolformer called tool {self.name} with args {args} and kwargs {kwargs}')
         # Unlike a call from a routine, this call catches exceptions and returns them as strings
         try:
-            return self.function(*args, **kwargs)
+            tool_reply = self.function(*args, **kwargs)
+            print(f'Tool {self.name} returned: {tool_reply}')
+            return tool_reply
         except Exception as e:
+            print(f'Tool {self.name} failed with exception: {e}')
             return 'Tool call failed: ' + str(e)
     
     def as_openai_info(self):

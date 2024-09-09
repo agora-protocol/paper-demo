@@ -7,7 +7,7 @@ dotenv.load_dotenv()
 import json
 import os
 from pathlib import Path
-import random
+import traceback
 
 if os.environ.get('STORAGE_PATH') is None:
     os.environ['STORAGE_PATH'] = str(Path().parent / 'storage' / 'user')
@@ -60,6 +60,7 @@ def call_using_implementation(task_type, task_schema, protocol_id, task_data, ta
 
         return parsed_response
     except Exception as e:
+        print(traceback.print_exception(type(e), e, e.__traceback__))
         print('Error executing routine:', e)
         print('Falling back to querier')
         response = send_query_with_protocol(task_schema, task_data, target_node, protocol_id, PROTOCOL_INFOS[protocol_id]['source'])

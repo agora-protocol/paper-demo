@@ -11,6 +11,7 @@ if os.environ.get('STORAGE_PATH') is None:
     os.environ['STORAGE_PATH'] = str(Path().parent / 'storage' / 'server')
 
 import json
+import traceback
 
 from flask import Flask, request
 
@@ -40,6 +41,7 @@ def call_implementation(protocol_hash, query):
             'body': output
         }
     except Exception as e:
+        print(traceback.print_exception(type(e), e, e.__traceback__))
         print('Error executing routine:', e)
         print('Falling back to responder')
         return reply_to_query(query, protocol_hash, TOOLS, get_additional_info())
