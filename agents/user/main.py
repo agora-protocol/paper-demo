@@ -68,6 +68,12 @@ def call_using_implementation(task_type, task_schema, protocol_id, task_data, ta
 
 @app.route("/", methods=['POST'])
 def main():
+    if os.environ.get('AGENT_ID').endswith('_helper'):
+        return json.dumps({
+            'status': 'error',
+            'message': 'This agent is a helper agent and cannot be used for direct communication.'
+        })
+
     response = run_random_task()
     print('Response:', response, flush=True)
     save_memory()
@@ -129,16 +135,16 @@ def run_random_task():
     task_type, task_data, target_server = get_task()
     return run_task(task_type, task_data, target_server)
 
-@app.route('/customTask', methods=['POST'])
-def custom_task():
+@app.route('/customRun', methods=['POST'])
+def custom_run():
     data = request.get_json()
-    task_type = data['taskType']
-    task_data = data['taskData']
+    task_type = data['type']
+    task_data = data['data']
     target_server = data['targetServer']
+    print('Custom run:', task_type, task_data, target_server)
     return run_task(task_type, task_data, target_server)
 
 def init():
-    load_memory()
     load_config(os.environ.get('AGENT_ID'))
     print('Agent initialized')
 
