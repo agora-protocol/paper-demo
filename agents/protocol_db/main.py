@@ -135,12 +135,12 @@ def load_memory():
     PROTOCOLS.clear()
 
     storage_path = Path(os.environ.get('STORAGE_PATH'))
-
-    if not storage_path.exists():
-        print('No storage path found, using empty memory')
-        return
     
     memory_file = storage_path / 'memory.json'
+
+    if not memory_file.exists():
+        print('No memory file found, using empty memory')
+        return
 
     with open(memory_file, 'r') as f:
         memory = json.load(f)

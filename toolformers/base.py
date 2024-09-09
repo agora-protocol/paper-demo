@@ -82,6 +82,7 @@ class Tool:
         self.output_schema = output_schema
     
     def call_tool_for_toolformer(self, *args, **kwargs):
+        print(f'Toolformer called tool {self.name} with args {args} and kwargs {kwargs}')
         # Unlike a call from a routine, this call catches exceptions and returns them as strings
         try:
             return self.function(*args, **kwargs)
