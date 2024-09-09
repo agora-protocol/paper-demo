@@ -4,6 +4,7 @@ sys.path.append('.')
 import dotenv
 dotenv.load_dotenv()
 
+import json
 import os
 from pathlib import Path
 import random
@@ -18,6 +19,8 @@ from agents.user.memory import load_memory, increment_num_conversations, get_num
 from specialized_toolformers.querier import send_query_with_protocol, send_query_without_protocol
 from specialized_toolformers.programmer import write_routine_for_task
 
+from toolformers.base import Tool, StringParameter
+
 from agents.user.protocol_management import decide_protocol, has_implementation
 from agents.user.config import get_task, load_config, TASK_SCHEMAS, NODE_URLS
 
@@ -31,18 +34,36 @@ from flask import Flask, request
 app = Flask(__name__)
 
 def call_using_implementation(task_schema, protocol_id, task_data, target_node):
+    def send_to_server(query):
+        print('Sending query:', query)
+        response = send_raw_query(query, protocol_id, target_node, PROTOCOL_INFOS[protocol_id]['source'])
+
+        if response.status_code == 200:
+            parsed_response = json.loads(response.text)
+
+            if parsed_response['status'] == 'success':
+                return parsed_response['body']
+        
+        raise Exception('Error calling the server:', response.text)
+
+    send_to_server_tool = Tool(
+        'send_to_server',
+        'Sends a query to the server and returns the response as described in the protocol document.', [
+            StringParameter('query', 'The query to send to the server.', True)
+        ],
+        send_to_server
+    )
+
     try:
         base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
-        formatted_query = execute_routine(base_folder, protocol_id, task_data, [])
-        print('Sending query:', formatted_query)
-        response = send_raw_query(formatted_query, protocol_id, target_node, PROTOCOL_INFOS[protocol_id]['source'])
+        parsed_response = execute_routine(base_folder, protocol_id, task_data, [send_to_server_tool])
 
-        return response.text
+        return parsed_response
     except Exception as e:
         print('Error executing routine:', e)
         print('Falling back to querier')
         response = send_query_with_protocol(task_schema, task_data, target_node, protocol_id, PROTOCOL_INFOS[protocol_id]['source'])
-        return response.text
+        return response
 
 @app.route("/", methods=['POST'])
 def main():
@@ -95,12 +116,12 @@ def run_task(task_type, task_data, target_server):
         else:
             # Use the querier with the protocol
             response = send_query_with_protocol(task_schema, task_data, target_node, protocol_id, source)
-            return response.text
+            return response
     else:
         # Use the querier without any protocol
         print('Using the querier without any protocol')
         response = send_query_without_protocol(task_schema, task_data, target_node)
-        return response.text
+        return response
 
 def run_random_task():
     # Generate task info (with structured data) and pick a target node
