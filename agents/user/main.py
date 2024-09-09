@@ -55,7 +55,7 @@ def call_using_implementation(task_type, task_schema, protocol_id, task_data, ta
     )
 
     try:
-        base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
+        base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines' / task_type
         parsed_response = execute_routine(base_folder, protocol_id, task_data, [send_to_server_tool])
 
         return parsed_response
@@ -146,6 +146,7 @@ def custom_run():
 
 def init():
     load_config(os.environ.get('AGENT_ID'))
+    load_memory()
     print('Agent initialized')
 
 init()

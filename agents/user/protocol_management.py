@@ -55,7 +55,7 @@ def get_an_adequate_protocol(task_type, eligible_protocols):
     # Will ignore protocols that haven't been downloaded yet
 
     # First, try with protocols having an implementation
-    protocols_with_implementations = [ protocol_id for protocol_id in eligible_protocols if is_adequate(task_type, protocol_id) and has_implementation(protocol_id) ]
+    protocols_with_implementations = [ protocol_id for protocol_id in eligible_protocols if is_adequate(task_type, protocol_id) and has_implementation(task_type, protocol_id) ]
 
     if len(protocols_with_implementations) > 0:
         print('Found protocol with implementation:', protocols_with_implementations[0])
@@ -103,6 +103,7 @@ def prefilter_protocols(protocol_ids, task_type):
     protocol_metadatas = []
 
     for protocol_id in protocol_ids:
+        print('Checking suitability for protocol:', protocol_id)
         if task_type not in PROTOCOL_INFOS[protocol_id]['suitability_info'] or \
           PROTOCOL_INFOS[protocol_id]['suitability_info'][task_type] == Suitability.UNKNOWN:
             protocol_metadatas.append({ 'id' : protocol_id, **PROTOCOL_INFOS[protocol_id]['metadata']})

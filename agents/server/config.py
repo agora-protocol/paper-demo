@@ -101,12 +101,10 @@ def prepare_mock_tool(tool_schema, internal_name):
         else:
             raise ValueError('Unknown parameter type:', parameter_data['type'])
 
-    output_description = json.dumps(tool_schema['output'])
-
     def run_mock_tool(*args, **kwargs):
         return json.dumps(random.choice(tool_schema['mockValues']))
 
-    mock_tool = Tool(internal_name, tool_schema['description'] + '\nOutput schema:' + output_description, [], run_mock_tool)
+    mock_tool = Tool(internal_name, tool_schema['description'], [], run_mock_tool, output_schema=tool_schema['output'])
 
     return mock_tool
 
@@ -179,7 +177,7 @@ def load_config(server_name):
     if server_config['internalDbSchema'] is not None:
         databases.append(('internalDb', server_name, server_config['internalDbSchema']))
     
-    databases += [(x, x, x) for x in server_config['externalDbs']]
+    databases += [(x, x, x) for x in server_config.get('externalDbs', [])]
     
     has_mongo_db = False
     for internal_name, external_name, schema_name in databases:

@@ -127,6 +127,7 @@ class Tool:
         
         if self.output_schema is not None:
             documented_python += f'\nOutput schema: {json.dumps(self.output_schema, indent=2)}'
+            documented_python += '\nKeep in mind that the output is a JSON formatted string, so you might need to parse it.'
 
         return documented_python
 
