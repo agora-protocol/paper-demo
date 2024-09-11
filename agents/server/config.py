@@ -5,6 +5,7 @@ import random
 import requests as request_manager
 
 import databases.mongo as mongo
+import databases.sql as sql
 from toolformers.base import Tool, StringParameter
 
 TOOLS = []
@@ -81,6 +82,64 @@ def add_mongo_tools(server_name):
     TOOLS.append(delete_element_tool)
 
     # TODO: Test insert and delete tools
+
+def add_sql_database(table_schemas, server_name):
+    global ADDITIONAL_INFO
+    name_mappings = sql.create_database_from_schema(table_schemas, server_name)
+
+    global ADDITIONAL_INFO
+
+    ADDITIONAL_INFO += f'\n\nYou have access to an SQL Server database. You can run SQL queries on the database. The database has the following tables:\n\n'
+    for table_name, table_schema in table_schemas.items():
+        ADDITIONAL_INFO += f'=={table_name}==\n'
+        ADDITIONAL_INFO += f'Description: {table_schema["description"]}\n'
+
+        ADDITIONAL_INFO += 'Columns:\n'
+
+        for column_name, column_data in table_schema['columns'].items():
+            ADDITIONAL_INFO += f'\n- {column_name}: {column_data}'
+
+
+        constraints = table_schema.get('constraints', [])
+        if len(constraints) > 0:
+            print('Constraints:', constraints)
+            ADDITIONAL_INFO += '\n\nConstraints:\n'
+            for constraint in constraints:
+                ADDITIONAL_INFO += f'\n- {constraint}'
+
+        extra_table_schema_info = table_schema.get('extraInfo', '')
+
+        if extra_table_schema_info:
+            ADDITIONAL_INFO += '\n\nOther info:' + extra_table_schema_info
+
+        for starting_value in table_schema.get('startingValues', []):
+            sql.insert(table_name, server_name, starting_value)
+        
+        ADDITIONAL_INFO += '\n\n========\n\n'
+    
+    ADDITIONAL_INFO += '\n'
+    ADDITIONAL_INFO += 'For security reasons, you are not allowed to create other tables or modify the schema of the existing tables.\n\n'
+
+    return name_mappings
+
+def add_sql_tools(name_mappings):
+    def run_query(query):
+        for internal_table_name, external_table_name in name_mappings.items():
+            query = query.replace(internal_table_name, external_table_name)
+        print('Running SQL query:', query)
+        response = sql.run_query(query)
+        print('SQL Response:', response)
+        return response
+    
+    tool_description = 'Run an SQL query. Returns a JSON-formatted list of results, where each element is an object ' \
+        'with the column names as keys. You might need to parse it. If the query does not return any results, \"No results\" is returned.'
+
+    query_tool = Tool('run_sql_query', tool_description, [
+        StringParameter('query', 'The query to run', True)
+    ], run_query)
+
+    TOOLS.append(query_tool)
+
 
 def prepare_mock_tool(tool_schema, internal_name):
     input_schema = tool_schema['input']
@@ -165,22 +224,17 @@ def load_config(server_name):
     
     ADDITIONAL_INFO += '\n====\n\n'
 
-    databases = []
-
     if server_config['internalDbSchema'] is not None:
-        databases.append(('internalDb', server_name, server_config['internalDbSchema']))
-    
-    databases += [(x, x, x) for x in server_config.get('externalDbs', [])]
-    
-    has_mongo_db = False
-    for internal_name, external_name, schema_name in databases:
-        schema = config['dbSchemas'][schema_name]
-        if schema['dbType'] == 'mongo':
-            add_mongo_database(internal_name, external_name, schema)
-            has_mongo_db = True
-    
-    if has_mongo_db:
-        add_mongo_tools({x[0]: x[1] for x in databases})
+        db_config = config['dbSchemas'][server_config['internalDbSchema']]
+
+        if db_config['dbType'] == 'mongo':
+            add_mongo_database(server_name, db_config)
+            add_mongo_tools(server_name)
+        elif db_config['dbType'] == 'sql':
+            name_mappings = add_sql_database(db_config['tables'], server_name)
+            add_sql_tools(name_mappings)
+        else:
+            raise ValueError('Unknown database type:', db_config['dbType'])
 
     for internal_name, schema_name in server_config.get('mockTools', {}).items():
         tool_schema = config['toolSchemas'][schema_name]

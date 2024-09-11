@@ -11,7 +11,8 @@ import time
 import libtmux
 import requests as request_manager
 
-from databases.mongo import reset_databases
+import databases.mongo as mongo
+import databases.sql as sql
 
 
 def create_id_to_url_mappings(config):
@@ -54,7 +55,8 @@ def launch_instance(tmux_server, instance_type, agent_id, base_log_path, base_st
 
 def main():
     # 1. Reset the databases and the memory (optional)
-    reset_databases()
+    mongo.reset_databases()
+    sql.reset_database()
     # TODO: Reset the memory
 
     # 2. Create the id-to-url mappings
