@@ -14,12 +14,12 @@ NODE_URLS = {}
 def get_additional_info():
     return ADDITIONAL_INFO
 
-def add_mongo_database(internal_name, external_name, schema):
+def add_mongo_database(external_name, schema):
     global ADDITIONAL_INFO
     # TODO: Support hot-loading?
     mongo.create_database_from_schema(external_name, schema)
 
-    ADDITIONAL_INFO += f'You have access to a database named {internal_name}.\n'
+    ADDITIONAL_INFO += f'You have access to a MongoDB database.\n'
     ADDITIONAL_INFO += 'The database has the following collections (with schemas):\n\n'
 
     for collection_name, collection_schema in schema['collections'].items():
@@ -30,50 +30,43 @@ def add_mongo_database(internal_name, external_name, schema):
 
         ADDITIONAL_INFO += json.dumps(collection_schema, indent=2) + '\n\n'
 
-def add_mongo_tools(name_mappings):
-    def insert_element(database, collection, doc):
+def add_mongo_tools(server_name):
+    def insert_element(collection, doc):
         doc = json.loads(doc)
-        external_name = name_mappings[database]
-        mongo.insert_one(external_name, collection, doc)
+        mongo.insert_one(server_name, collection, doc)
         return 'Done'
 
     insert_element_tool = Tool('insert_into_database', 'Insert into a database (MongoDB).', [
-        StringParameter('database', 'The database to insert into', True),
         StringParameter('collection', 'The collection to insert into', True),
         StringParameter('doc', 'The document to insert, as a formatted JSON string for MongoDB', True)
     ], insert_element)
 
-    def query_database(database, collection, query):
+    def query_database(collection, query):
         query = json.loads(query)
-        external_name = name_mappings[database]
-        output = mongo.query_database(external_name, collection, query)
+        output = mongo.query_database(server_name, collection, query)
         print(output)
         return json.dumps(output)
 
     find_in_database_tool = Tool('find_in_database', 'Find in a database (MongoDB). Returns a JSON formatted string with the result.', [
-        StringParameter('database', 'The database to query', True),
         StringParameter('collection', 'The collection to query', True),
         StringParameter('query', 'The query to run, as a formatted JSON string for MongoDB', True)
     ], query_database)
 
-    def update_element(database, collection, query, update):
+    def update_element(collection, query, update):
         query = json.loads(query)
         update = json.loads(update)
-        external_name = name_mappings[database]
-        mongo.update_one(external_name, collection, query, update)
+        mongo.update_one(server_name, collection, query, update)
         return 'Done'
 
     update_element_tool = Tool('update_one_in_database', 'Update an element in a database (MongoDB).', [
-        StringParameter('database', 'The database to query', True),
         StringParameter('collection', 'The collection to query', True),
         StringParameter('query', 'The query to run, as a formatted JSON string for MongoDB', True),
         StringParameter('update', 'The update to run, as a formatted JSON string for MongoDB. Remember the $ operator (e.g. {$set : {...}})', True)
     ], update_element)
 
-    def delete_element(database, collection, query):
+    def delete_element(collection, query):
         query = json.loads(query)
-        external_name = name_mappings[database]
-        mongo.delete_one(external_name, collection, query)
+        mongo.delete_one(server_name, collection, query)
         return 'Done'
 
     delete_element_tool = Tool('delete_element_in_database', 'Delete an element in a database (MongoDB).', [
