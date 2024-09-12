@@ -2,6 +2,9 @@ from abc import ABC, abstractmethod
 
 import json
 
+from google.generativeai.types import CallableFunctionDeclaration
+import google.generativeai.types.content_types as content_types
+
 from databases.mongo import insert_one
 
 class Parameter:
@@ -40,6 +43,12 @@ class StringParameter(Parameter):
 
     def as_documented_python(self):
         return f'{self.name} (str{", required" if self.required else ""}): {self.description}.'
+    
+    def as_gemini_tool(self):
+        return {
+            'type': 'string',
+            'description': self.description
+        }
 
     @staticmethod
     def from_standard_api(api_info):
@@ -71,6 +80,13 @@ class EnumParameter(Parameter):
     
     def as_documented_python(self):
         return f'{self.name} (str{", required" if self.required else ""}): {self.description}. Possible values: {", ".join(self.values)}'
+
+    def as_gemini_tool(self):
+        return {
+            'description': self.description,
+            'type': 'string',
+            'enum': self.values
+        }
     
     @staticmethod
     def from_standard_api(api_info):
@@ -108,6 +124,18 @@ class Tool:
                 }
             }
         }
+    
+    def as_gemini_tool(self) -> CallableFunctionDeclaration:
+        return content_types.Tool([CallableFunctionDeclaration(
+            name=self.name,
+            description=self.description,
+            parameters={
+                'type': 'object',
+                'properties': {parameter.name: parameter.as_gemini_tool() for parameter in self.parameters},
+                'required': [parameter.name for parameter in self.parameters if parameter.required]
+            },
+            function=self.call_tool_for_toolformer
+        )])
 
     def as_natural_language(self):
         nl = f'Function {self.name}: {self.description}. Parameters:\n' + '\n'.join([parameter.as_natural_language() for parameter in self.parameters])
