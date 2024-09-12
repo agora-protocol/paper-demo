@@ -10,7 +10,7 @@ import json
 import os
 
 from toolformers.base import Tool, StringParameter
-from toolformers.openai_toolformer import OpenAIToolformer
+from toolformers.unified import make_default_toolformer
 
 CHECKER_TASK_PROMPT = 'You are ProtocolCheckerGPT. Your task is to look at the provided protocol and determine if it is expressive ' \
     'enough to fullfill the required task (of which you\'ll receive a JSON schema). A protocol is sufficiently expressive if you could write code that, given the input data, sends ' \
@@ -18,7 +18,7 @@ CHECKER_TASK_PROMPT = 'You are ProtocolCheckerGPT. Your task is to look at the p
     'protocol is adequate or "NO"'
 
 def check_protocol_for_task(protocol_document, task_schema):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), CHECKER_TASK_PROMPT, [])
+    toolformer = make_default_toolformer(CHECKER_TASK_PROMPT, [])
 
     conversation = toolformer.new_conversation(category='protocolChecking')
 
@@ -57,7 +57,7 @@ def filter_protocols_for_task(protocol_metadatas, task_schema):
         register_chosen_protocols
     )
 
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), CHECKER_TASK_PROMPT, [pick_protocol_tool])
+    toolformer = make_default_toolformer(CHECKER_TASK_PROMPT, [pick_protocol_tool])
 
     conversation = toolformer.new_conversation(category='protocolChecking')
 
@@ -81,7 +81,7 @@ CHECKER_TOOL_PROMPT = 'You are ProtocolCheckerGPT. Your task is to look at the p
     'protocol is adequate or "NO"'
 
 def check_protocol_for_tools(protocol_document, tools):
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), CHECKER_TOOL_PROMPT, [])
+    toolformer = make_default_toolformer(CHECKER_TOOL_PROMPT, [])
 
     message = 'Protocol document:\n\n' + protocol_document + '\n\n' + 'Additional functions:\n\n'
 

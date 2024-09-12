@@ -12,7 +12,7 @@ import os
 from pathlib import Path
 
 from toolformers.base import Tool, StringParameter
-from toolformers.openai_toolformer import OpenAIToolformer
+from toolformers.unified import make_default_toolformer
 
 import requests as request_manager
 
@@ -84,7 +84,7 @@ def handle_conversation(prompt, message, target_node, protocol_id, source):
         StringParameter('output', 'The structured output to deliver to the machine, as a JSON string formatted according to the output schema', True)
     ], register_output)
 
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), prompt, [send_query_tool, register_output_tool])
+    toolformer = make_default_toolformer(prompt, [send_query_tool, register_output_tool])
 
     conversation = toolformer.new_conversation(category='conversation')
 

@@ -7,9 +7,10 @@ import uuid
 import requests as request_manager
 
 from toolformers.base import Tool, StringParameter
-from toolformers.openai_toolformer import OpenAIToolformer
 
 from utils import send_raw_query
+
+from toolformers.unified import make_default_toolformer
 
 
 NEGOTIATION_RULES = '''
@@ -83,7 +84,7 @@ def negotiate_protocol_for_task(task_schema, target_node):
 
     prompt = TASK_NEGOTIATOR_PROMPT + '\nThe JSON schema of the task is the following:\n\n' + json.dumps(task_schema, indent=4)
 
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), prompt, [registerTool])
+    toolformer = make_default_toolformer(prompt, [registerTool])
 
     conversation = toolformer.new_conversation(category='negotiation')
 
@@ -124,7 +125,7 @@ def create_negotiation_conversation(tools, additional_info):
 
     print('Prompt:', prompt)
 
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), prompt, tools)
+    toolformer = make_default_toolformer(prompt, tools)
 
     return toolformer.new_conversation(category='negotiation')
 

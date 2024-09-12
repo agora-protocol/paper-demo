@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
+
 import json
+
+from databases.mongo import insert_one
 
 class Parameter:
     def __init__(self, name, description, required):
@@ -139,7 +142,7 @@ class Tool:
         return f
 
     @staticmethod
-    def from_standard_api(api_info):
+    def from_standard_api(api_info): # TODO: Drop?
         parameters = []
         for parameter in api_info["parameters"]:
             if parameter["type"] == "string":
@@ -151,14 +154,29 @@ class Tool:
 
         return Tool(api_info["name"], api_info["description"], parameters, None)
 
+def send_usage_to_db(usage, time_start, time_end, agent, category, model):
+    usage = {
+        'timeStart': {
+            '$date': time_start.isoformat()
+        },
+        'timeEnd': {
+            '$date': time_end.isoformat()
+        },
+        'prompt_tokens': usage['prompt_tokens'],
+        'completion_tokens': usage['completion_tokens'],
+        'agent': agent,
+        'category': category,
+        'model': model
+    }
+    insert_one('usageLogs', 'main', usage)
 
 class Conversation(ABC):
     @abstractmethod
-    def chat(self, message, role='user'):
+    def chat(self, message, role='user', print_output=True):
         pass
 
 class Toolformer(ABC):
     @abstractmethod
-    def new_conversation(self, starting_messages=None, print_output=True) -> Conversation:
+    def new_conversation(self, category=None) -> Conversation:
         pass
 

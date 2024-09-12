@@ -11,7 +11,7 @@ import json
 import os
 from pathlib import Path
 
-from toolformers.openai_toolformer import OpenAIToolformer
+from toolformers.unified import make_default_toolformer
 
 import requests as request_manager
 
@@ -27,7 +27,7 @@ PROTOCOL_RESPONDER_PROMPT = 'You are ResponderGPT. You will receive a protocol d
 
 def reply_with_protocol_document(query, protocol_document, tools, additional_info):
     print('===NL RESPONDER (WITH PROTOCOL)===')
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), PROTOCOL_RESPONDER_PROMPT + additional_info, tools)
+    toolformer = make_default_toolformer(PROTOCOL_RESPONDER_PROMPT + additional_info, tools)
 
     conversation = toolformer.new_conversation(category='conversation')
 
@@ -55,7 +55,7 @@ NL_RESPONDER_PROMPT = 'You are NaturalLanguageResponderGPT. You will receive a q
 def reply_to_nl_query(query, tools, additional_info):
     print('===NL RESPONDER (NO PROTOCOL)===')
     print(NL_RESPONDER_PROMPT + additional_info)
-    toolformer = OpenAIToolformer(os.environ.get("OPENAI_API_KEY"), NL_RESPONDER_PROMPT + additional_info, tools)
+    toolformer = make_default_toolformer(NL_RESPONDER_PROMPT + additional_info, tools)
 
     conversation = toolformer.new_conversation(category='conversation')
 
