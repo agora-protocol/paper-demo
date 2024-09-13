@@ -556,7 +556,7 @@ class SambaNovaCloud(LLM):
     sambanova_api_key: str = ''
     """SambaNova Cloud api key"""
 
-    max_tokens: int = 1024
+    max_tokens: int = None
     """max tokens to generate"""
 
     stop_tokens: list = ['<|eot_id|>']

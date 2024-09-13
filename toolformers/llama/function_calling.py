@@ -61,7 +61,7 @@ class FunctionCallingLlm:
         api: str = 'sncloud',
         coe: bool = False,
         do_sample: bool = False,
-        max_tokens_to_generate: int = 500,
+        max_tokens_to_generate: Optional[int] = None,
         temperature: float = 0.2,
         select_expert: Optional[str] = None,
     ) -> None:
@@ -75,7 +75,7 @@ class FunctionCallingLlm:
             api (str): The api to use. Defaults to 'sncloud'.
             coe (bool): Whether to use coe. Defaults to False.
             do_sample (bool): Whether to do sample. Defaults to False.
-            max_tokens_to_generate (int): The max tokens to generate. Defaults to 4096.
+            max_tokens_to_generate (Optional[int]): The max tokens to generate. If None, the model will attempt to use the maximum available tokens.
             temperature (float): The model temperature. Defaults to 0.2.
             select_expert (Optional[str]): The expert to use. Defaults to None.
         """
