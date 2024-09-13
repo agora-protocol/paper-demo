@@ -137,6 +137,19 @@ class Tool:
             function=self.call_tool_for_toolformer
         )])
 
+    def as_llama_schema(self):
+        schema = {
+            'name': self.name,
+            'description': self.description,
+            'parameters': {parameter.name : parameter.as_openai_info() for parameter in self.parameters},
+            'required': [parameter.name for parameter in self.parameters if parameter.required]
+        }
+
+        if self.output_schema is not None:
+            schema['output_schema'] = self.output_schema
+        
+        return schema
+
     def as_natural_language(self):
         nl = f'Function {self.name}: {self.description}. Parameters:\n' + '\n'.join([parameter.as_natural_language() for parameter in self.parameters])
 
