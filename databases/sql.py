@@ -6,6 +6,7 @@ dotenv.load_dotenv()
 
 import json
 import os
+import time
 
 import pymssql
 
@@ -22,6 +23,17 @@ def new_cursor():
     )
 
     return connection.cursor()
+
+def wait_for_sql_server():
+    while True:
+        try:
+            print('Waiting for the SQL server to be ready...', end='', flush=True)
+            new_cursor()
+            break
+        except pymssql.exceptions.OperationalError as e:
+            time.sleep(1)
+            print('.', end='', flush=True)
+    print('')
 
 def create_database_from_schema(table_schemas, server_name):
     name_mappings = {}

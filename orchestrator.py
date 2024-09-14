@@ -56,6 +56,9 @@ def launch_instance(tmux_server, instance_type, agent_id, base_log_path, base_st
 def main():
     # 1. Reset the databases and the memory (optional)
     mongo.reset_databases()
+
+    sql.wait_for_sql_server()
+
     sql.reset_database()
     # TODO: Reset the memory
 
