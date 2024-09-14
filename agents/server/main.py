@@ -149,6 +149,36 @@ def wellknown():
         'protocols': { protocol_hash: [PROTOCOL_INFOS[protocol_hash]['source']] for protocol_hash in PROTOCOL_INFOS if PROTOCOL_INFOS[protocol_hash]['suitability'] == Suitability.ADEQUATE }
     }
 
+# Note: In a real-world case, the server would already register the protocol as part of the negotiation process
+@app.route("/registerNegotiatedProtocol", methods=['POST'])
+def register_negotiated_protocol():
+    data = request.get_json()
+
+    protocol_hash = data['protocolHash']
+    protocol_sources = data['protocolSources']
+
+    protocol_document = None
+
+    for protocol_source in protocol_sources:
+        protocol_document = download_and_verify_protocol(protocol_hash, protocol_source)
+        if protocol_document is not None:
+            break
+    
+    if protocol_document is None:
+        return {
+            'status': 'error',
+            'message': 'No valid protocol source provided.'
+        }
+    
+    register_new_protocol(protocol_hash, protocol_source, protocol_document)
+    PROTOCOL_INFOS[protocol_hash]['suitability'] = Suitability.ADEQUATE
+
+    save_memory()
+
+    return {
+        'status': 'success'
+    }
+
 
 def init():
     load_config(os.environ.get('AGENT_ID'))

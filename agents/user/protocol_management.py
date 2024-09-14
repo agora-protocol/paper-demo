@@ -164,6 +164,15 @@ def negotiate_protocol(task_type, target_node):
     else:
         raise Exception('Failed to submit protocol to public database')
 
+    # Share the protocol with the target
+    response = request_manager.post(f'{target_node}/registerNegotiatedProtocol', json={
+        'protocolHash': protocol_id,
+        'protocolSources': [source_url]
+    })
+
+    if response.status_code != 200:
+        raise Exception('Failed to share the protocol with the target:', response.text)
+
     return protocol_id
 
 def decide_protocol(task_type, target_node, num_conversations_for_protocol):
@@ -206,12 +215,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
         if suitable:
             return protocol_id
-    
-    # protocol = get_an_adequate_protocol(task_info, target_protocols)
 
-    # if protocol is not None:
-    #     return protocol
-    
     # If there are still none, check if we have in our memory a suitable protocol
 
     protocol_id = get_an_adequate_protocol(task_type, PROTOCOL_INFOS.keys())
