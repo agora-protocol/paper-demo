@@ -11,7 +11,7 @@ def make_toolformer(model_type_internal, system_prompt, tools):
     elif model_type_internal in ['gemini-1.5-flash', 'gemini-1.5-pro']:
         return make_gemini_toolformer(model_type_internal, system_prompt, tools)
     elif model_type_internal in ['llama3-8b', 'llama3-70b', 'llama3-405b']:
-        return make_llama_toolformer(system_prompt, tools)
+        return make_llama_toolformer(model_type_internal, system_prompt, tools)
     else:
         raise ValueError(f'Unsupported model type: {model_type_internal}')
 

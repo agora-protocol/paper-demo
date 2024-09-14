@@ -4,12 +4,10 @@ import re
 from pprint import pprint
 from typing import List, Optional, Union
 
-from dotenv import load_dotenv
 from langchain_core.messages.ai import AIMessage
 from langchain_core.messages.human import HumanMessage
 from langchain_core.messages.tool import ToolMessage
-from langchain_core.output_parsers import JsonOutputParser
-from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda
 
 from toolformers.base import Tool, StringParameter
@@ -22,14 +20,20 @@ FUNCTION_CALLING_SYSTEM_PROMPT = """You have access to the following tools:
 
 {tools}
 
-You must always select one or more of the above tools and answer with only a list of JSON objects matching the following schema:
-
+You can call one or more tools by adding a <ToolCalls> section to your message. For example:
+<ToolCalls>
 ```json
 [{{
   "tool": <name of the selected tool>,
   "tool_input": <parameters for the selected tool, matching the tool's JSON schema>
 }}]
 ```
+</ToolCalls>
+
+Note that you can select multiple tools at once by adding more objects to the list. Do not add \
+multiple <ToolCalls> sections to the same message.
+You will see the invocation of the tools in the response.
+
 
 Think step by step
 Do not call a tool if the input depends on another tool output that you do not have yet.
@@ -101,7 +105,7 @@ class FunctionCallingLlm:
             system_prompt = ''
         else:
             system_prompt = system_prompt + '\n\n'
-        self.system_prompt = system_prompt + FUNCTION_CALLING_SYSTEM_PROMPT
+        self.system_prompt = system_prompt.replace('{','{{').replace('}', '}}') + FUNCTION_CALLING_SYSTEM_PROMPT
         if default_tool is None:
             default_tool = conversational_response
 
@@ -125,7 +129,10 @@ class FunctionCallingLlm:
             return final_answer, [invoked_tools[0]['tool_input']['response']]
         for tool in invoked_tools:
             final_answer = False
-            if tool['tool'].lower() != 'conversationalresponse':
+
+            if tool['tool'].lower() == 'invocationerror':
+                tools_msgs.append(f'Tool invocation error: {tool["tool_input"]}')
+            elif tool['tool'].lower() != 'conversationalresponse':
                 print(f"\n\n---\nTool {tool['tool'].lower()} invoked with input {tool['tool_input']}\n")
                 
                 if tool['tool'].lower() not in tools_map:
@@ -144,28 +151,26 @@ class FunctionCallingLlm:
             input_string (str): The string to find the json structure in.
         """
 
-        json_pattern = re.compile(r'(\{.*\}|\[.*\])', re.DOTALL)
+        json_pattern = re.compile(r'<ToolCalls\>(.*)</ToolCalls\>', re.DOTALL + re.IGNORECASE)
         # Find the first JSON structure in the string
         json_match = json_pattern.search(input_string)
         if json_match:
             json_str = json_match.group(1)
-            try:
-                json.loads(json_str)
-            except:
-                print(f'not parsable json: \n{json_str}\n  attempting to fix')
-                json_correction_prompt = """|begin_of_text|><|start_header_id|>system<|end_header_id|> You are a json format corrector tool<|eot_id|><|start_header_id|>user<|end_header_id|>
-                fix the following non parsable json file: {json} 
-                <|eot_id|><|start_header_id|>assistant<|end_header_id|>
-                fixed json: """  # noqa E501
-                json_correction_prompt_template = PromptTemplate.from_template(json_correction_prompt)
-                json_correction_chain = json_correction_prompt_template | self.llm
-                json_str = json_correction_chain.invoke({'json': json_str})
-                print(f'Corrected json: {json_str}')
+
+            # Find the outermost list of JSON objects in the string. It is surrounded by square brackets
+            json_match = re.search(r'\[.*\]', json_str, re.DOTALL)
+
+            if json_match:
+                json_str = json_match.group(0)
+                try:
+                    return json.loads(json_str)
+                except Exception as e:
+                    return [{'tool': 'InvocationError', 'tool_input' : str(e)}]
+            else:
+                return [{'tool': 'InvocationError', 'tool_input' : 'Could not find JSON object in the <ToolCalls> section'}]
         else:
-            # will assume is a conversational response given is not json formatted
-            #warnings.warn('Llama response is not JSON formatted. Assuming conversational response')
             dummy_json_response = [{'tool': 'ConversationalResponse', 'tool_input': {'response': input_string}}]
-            json_str = json.dumps(dummy_json_response)
+            json_str = dummy_json_response
         return json_str
 
     def msgs_to_llama3_str(self, msgs: list) -> str:
@@ -227,13 +232,15 @@ class FunctionCallingLlm:
         """
         function_calling_chat_template = ChatPromptTemplate.from_messages([('system', self.system_prompt)])
         tools_schemas = [tool.as_llama_schema() for tool in self.tools]
+
         history = function_calling_chat_template.format_prompt(tools=tools_schemas).to_messages()
+
         history.append(HumanMessage(query))
         tool_call_id = 0  # identification for each tool calling required to create ToolMessages
         with usage_tracker():
 
             for i in range(max_it):
-                json_parsing_chain = RunnableLambda(self.json_finder) | JsonOutputParser()
+                json_parsing_chain = RunnableLambda(self.json_finder)
 
                 if self.api == 'sncloud':
                     prompt = self.msgs_to_sncloud(history)
@@ -243,11 +250,10 @@ class FunctionCallingLlm:
                 
                 llm_response = self.llm.invoke(prompt, stream_options={'include_usage': True})
                 print('LLM response:', llm_response)
-                
-                #assert False
 
                 # print(f'\nFunction calling LLM response: \n{llm_response}\n---\n')
                 parsed_tools_llm_response = json_parsing_chain.invoke(llm_response)
+
                 history.append(AIMessage(llm_response))
                 final_answer, tools_msgs = self.execute(parsed_tools_llm_response)
                 if final_answer:  # if response was marked as final response in execution
