@@ -31,6 +31,9 @@ app = Flask(__name__)
 
 NUM_CONVERSATIONS_FOR_ROUTINE = -1
 
+NUM_CONVERSATIONS_FOR_PROTOCOL = 5
+no_protocol_conversation_counter = 0
+
 def call_implementation(protocol_hash, query):
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
 
@@ -63,6 +66,9 @@ def handle_query_suitable(protocol_hash, query):
         return reply_to_query(query, protocol_hash, TOOLS, get_additional_info())
 
 def handle_negotiation(raw_query):
+    global no_protocol_conversation_counter
+    no_protocol_conversation_counter = 0
+
     raw_query = json.loads(raw_query)
     conversation_id = raw_query.get('conversationId', None)
     query = raw_query['body']
@@ -83,6 +89,10 @@ def handle_negotiation(raw_query):
 def handle_query(protocol_hash, protocol_sources, query):
     if protocol_hash is None:
         print('No protocol hash provided. Using TOOLS:', TOOLS)
+
+        global no_protocol_conversation_counter
+        no_protocol_conversation_counter += 1
+
         return reply_to_query(query, None, TOOLS, get_additional_info())
     
     if protocol_hash == 'negotiation':
@@ -179,6 +189,14 @@ def register_negotiated_protocol():
         'status': 'success'
     }
 
+# Determines if the user should start a negotiation instead of a regular conversation
+# Note: in a real-world case, this would be determined independently by the server
+@app.route("/requiresNegotiation", methods=['GET'])
+def requires_negotiation():
+    return {
+        'status': 'success',
+        'requiresNegotiation': no_protocol_conversation_counter >= NUM_CONVERSATIONS_FOR_PROTOCOL
+    }
 
 def init():
     load_config(os.environ.get('AGENT_ID'))

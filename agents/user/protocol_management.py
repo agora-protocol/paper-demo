@@ -270,8 +270,11 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
     
     # If there are still none, check if we have talked enough times with the target to warrant a new protocol
+    requires_negotiation_response = request_manager.get(f'{target_node}/requiresNegotiation')
 
-    if get_num_conversations(task_type, target_node) > num_conversations_for_protocol:
+    requires_negotiation = requires_negotiation_response.json()['requiresNegotiation']
+
+    if get_num_conversations(task_type, target_node) > num_conversations_for_protocol or requires_negotiation:
         protocol_id = negotiate_protocol(task_type, target_node)
         # Negotiated protocols are always suitable
         PROTOCOL_INFOS[protocol_id]['suitability_info'][task_type] = Suitability.ADEQUATE
