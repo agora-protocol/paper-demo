@@ -83,7 +83,7 @@ CHECKER_TOOL_PROMPT = 'You are ProtocolCheckerGPT. Your task is to look at the p
 def check_protocol_for_tools(protocol_document, tools):
     toolformer = make_default_toolformer(CHECKER_TOOL_PROMPT, [])
 
-    message = 'Protocol document:\n\n' + protocol_document + '\n\n' + 'Additional functions:\n\n'
+    message = 'Protocol document:\n\n' + protocol_document + '\n\n' + 'Functions that the implementer will have access to:\n\n'
 
     if len(tools) == 0:
         message += 'No additional functions provided'

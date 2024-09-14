@@ -3,7 +3,7 @@ import os
 from typing import List
 import warnings
 
-from toolformers.base import Conversation, Toolformer
+from toolformers.base import Conversation, Toolformer, Tool, send_usage_to_db
 from camel.messages import BaseMessage
 from camel.models import ModelFactory
 from camel.types import ModelPlatformType, ModelType
@@ -11,9 +11,6 @@ from camel.messages import BaseMessage as bm
 from camel.agents import ChatAgent
 from camel.toolkits.openai_function import OpenAIFunction
 from camel.configs.openai_config import ChatGPTConfig
-
-from toolformers.base import send_usage_to_db
-from toolformers.base import Tool
 
 class CamelConversation(Conversation):
     def __init__(self, toolformer, agent, category=None):

@@ -249,3 +249,4 @@ def load_config(server_name):
         TOOLS.append(tool)
 
     print('Final additional info:', ADDITIONAL_INFO)
+    print('Final tools:', TOOLS)

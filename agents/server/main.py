@@ -59,6 +59,7 @@ def handle_query_suitable(protocol_hash, query):
         add_routine(protocol_hash, implementation)
         return call_implementation(protocol_hash, query)
     else:
+        print('Calling with protocol_hash. Using tools:', TOOLS)
         return reply_to_query(query, protocol_hash, TOOLS, get_additional_info())
 
 def handle_negotiation(raw_query):
@@ -81,6 +82,7 @@ def handle_negotiation(raw_query):
 
 def handle_query(protocol_hash, protocol_sources, query):
     if protocol_hash is None:
+        print('No protocol hash provided. Using TOOLS:', TOOLS)
         return reply_to_query(query, None, TOOLS, get_additional_info())
     
     if protocol_hash == 'negotiation':

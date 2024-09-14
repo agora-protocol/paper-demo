@@ -98,7 +98,7 @@ def categorize_protocol(protocol_id, task_type):
     return suitable
 
 def prefilter_protocols(protocol_ids, task_type):
-    print('Prefiltering protocols:', protocol_ids)
+    print('Prefiltering protocols:', protocol_ids, 'for task type:', task_type)
 
     protocol_metadatas = []
 
@@ -255,7 +255,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
             }
             register_new_protocol(protocol_id, uri, protocol_data)
 
-    public_protocols = prefilter_protocols(public_protocols, task_type)
+    public_protocols = prefilter_protocols([x['id'] for x in public_protocols], task_type)
 
     for protocol_metadata in public_protocols:
         # Categorize the protocol
