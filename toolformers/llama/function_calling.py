@@ -103,9 +103,14 @@ class FunctionCallingLlm:
         self.tools = tools
         if system_prompt is None:
             system_prompt = ''
-        else:
-            system_prompt = system_prompt + '\n\n'
-        self.system_prompt = system_prompt.replace('{','{{').replace('}', '}}') + FUNCTION_CALLING_SYSTEM_PROMPT
+
+        system_prompt = system_prompt.replace('{','{{').replace('}', '}}')
+        
+        if len(self.tools) > 0:
+            system_prompt += '\n\n'
+            system_prompt += FUNCTION_CALLING_SYSTEM_PROMPT
+        self.system_prompt = system_prompt
+
         if default_tool is None:
             default_tool = conversational_response
 
