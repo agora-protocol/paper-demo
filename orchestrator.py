@@ -44,14 +44,18 @@ def create_id_to_url_mappings(config):
 
     return mapping
 
-def launch_instance(tmux_server, instance_type, agent_id, base_log_path, base_storage_path, id_to_url_mappings):
+def launch_instance(tmux_server, instance_type, model_type, agent_id, base_log_path, base_storage_path, id_to_url_mappings):
     session = tmux_server.new_session(session_name=agent_id, kill_session=True)
     pane = session.active_window.active_pane
     port = id_to_url_mappings[agent_id].split(':')[-1]
     storage_path = base_storage_path / instance_type / agent_id
     log_path = base_log_path / instance_type / (agent_id + '.log')
     log_path.parent.mkdir(parents=True, exist_ok=True)
-    pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} AGENT_ID={agent_id} flask --app agents/{instance_type}/main.py run --port {port} 2>&1 | tee {log_path}')
+
+    model_type_info = f'MODEL_TYPE={model_type}' if model_type is not None else ''
+
+    pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} {model_type_info} AGENT_ID={agent_id} flask --app agents/{instance_type}/main.py run --port {port} 2>&1 | tee {log_path}')
+
 
 def main():
     # 1. Reset the databases and the memory (optional)
@@ -78,26 +82,26 @@ def main():
     tmux_server = libtmux.Server()
 
     for protocol_db_id in config['protocolDbs']:
-        launch_instance(tmux_server, 'protocol_db', protocol_db_id, base_log_path, base_storage_path, id_to_url_mappings)
+        launch_instance(tmux_server, 'protocol_db', None, protocol_db_id, base_log_path, base_storage_path, id_to_url_mappings)
 
     time.sleep(1)
 
     # 4. Launch the server agents
     for server_id, server_config in config['servers'].items():
-        launch_instance(tmux_server, 'server', server_id, base_log_path, base_storage_path, id_to_url_mappings)
+        launch_instance(tmux_server, 'server', server_config['modelType'], server_id, base_log_path, base_storage_path, id_to_url_mappings)
 
         external_tools_config = server_config.get('externalTools', {})
 
         if len(external_tools_config) > 0:
             # Build a helper user agent
             helper_user_id = server_id + '_helper'
-            launch_instance(tmux_server, 'user', helper_user_id, base_log_path, base_storage_path, id_to_url_mappings)
+            launch_instance(tmux_server, 'user', server_config['modelType'], helper_user_id, base_log_path, base_storage_path, id_to_url_mappings)
 
     time.sleep(1)
 
     # 5. Launch the user agents
-    for user_id in config['users'].keys():
-        launch_instance(tmux_server, 'user', user_id, base_log_path, base_storage_path, id_to_url_mappings)
+    for user_id, user_config in config['users'].items():
+        launch_instance(tmux_server, 'user', user_config['modelType'], user_id, base_log_path, base_storage_path, id_to_url_mappings)
 
     # 6. Wait for the agents to be ready
     
@@ -109,7 +113,7 @@ def main():
 
     print('Sending sample ping.')
 
-    # 6. Send a sample ping to a user agent
+    # 7. Send a sample ping to a user agent
     response = request_manager.post(id_to_url_mappings['alice'])
     print('Response from Alice:', response.text)
 
