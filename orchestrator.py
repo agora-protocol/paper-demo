@@ -35,6 +35,7 @@ def create_id_to_url_mappings(config):
             # Build a helper user agent
             helper_user_id = server_id + '_helper'
             mapping[helper_user_id] = f'http://localhost:{user_agent_port}'
+            user_agent_port += 1
     
     protocol_db_port = config['orchestration']['startingPorts']['protocolDb']
 
