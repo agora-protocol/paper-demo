@@ -156,7 +156,7 @@ def prepare_mock_tool(tool_schema, internal_name):
     def run_mock_tool(*args, **kwargs):
         return json.dumps(random.choice(tool_schema['mockValues']))
 
-    mock_tool = Tool(internal_name, tool_schema['description'], [], run_mock_tool, output_schema=tool_schema['output'])
+    mock_tool = Tool(internal_name, tool_schema['description'], parameters, run_mock_tool, output_schema=tool_schema['output'])
 
     return mock_tool
 
