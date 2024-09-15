@@ -24,7 +24,7 @@ from toolformers.base import Tool, StringParameter
 from agents.user.protocol_management import decide_protocol, has_implementation
 from agents.user.config import get_task, load_config, TASK_SCHEMAS, NODE_URLS
 
-from utils import load_protocol_document, execute_routine, send_raw_query
+from utils import load_protocol_document, execute_routine, send_raw_query, use_query_id
     
 NUM_CONVERSATIONS_FOR_PROTOCOL = -1
 NUM_CONVERSATIONS_FOR_ROUTINE = -1
@@ -73,8 +73,18 @@ def main():
             'status': 'error',
             'message': 'This agent is a helper agent and cannot be used for direct communication.'
         })
+    data = request.get_json()
 
-    response = run_random_task()
+    query_id = data['queryId']
+
+    if query_id is None:
+        print('No query ID provided.')
+    else:
+        print('Query ID:', query_id)
+
+    with use_query_id(query_id):
+        response = run_random_task()
+
     print('Response:', response, flush=True)
     save_memory()
     return response
@@ -141,8 +151,17 @@ def custom_run():
     task_type = data['type']
     task_data = data['data']
     target_server = data['targetServer']
+    query_id = data['queryId']
+
+    if query_id is None:
+        print('No query ID provided.')
+    else:
+        print('Query ID:', query_id)
+
     print('Custom run:', task_type, task_data, target_server)
-    return run_task(task_type, task_data, target_server)
+
+    with use_query_id(query_id):
+        return run_task(task_type, task_data, target_server)
 
 def init():
     load_config(os.environ.get('AGENT_ID'))

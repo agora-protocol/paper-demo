@@ -18,7 +18,7 @@ from flask import Flask, request
 
 from agents.common.core import Suitability
 from agents.server.memory import PROTOCOL_INFOS, register_new_protocol, has_implementation, get_num_conversations, increment_num_conversations, has_implementation, add_routine, load_memory, save_memory
-from utils import load_protocol_document, execute_routine, download_and_verify_protocol
+from utils import load_protocol_document, execute_routine, download_and_verify_protocol, use_query_id
 from specialized_toolformers.responder import reply_to_query
 from specialized_toolformers.protocol_checker import check_protocol_for_tools
 from specialized_toolformers.programmer import write_routine_for_tools
@@ -147,8 +147,16 @@ def main():
 
     protocol_hash = data.get('protocolHash', None)
     protocol_sources = data.get('protocolSources', [])
+    query_id = data.get('queryId', None)
 
-    response = handle_query(protocol_hash, protocol_sources, data['body'])
+    if query_id is None:
+        print('No query ID provided.')
+    else:
+        print('Query ID:', query_id)
+
+    with use_query_id(query_id):
+        response = handle_query(protocol_hash, protocol_sources, data['body'])
+
     print('Final response:', response)
     return response
 

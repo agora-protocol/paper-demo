@@ -1,4 +1,5 @@
 import base64
+from contextlib import contextmanager
 import hashlib
 import importlib
 from pathlib import Path
@@ -104,5 +105,22 @@ def send_raw_query(text, protocol_id, target_node, source):
     return request_manager.post(target_node, json={
         'protocolHash': protocol_id,
         'body': text,
-        'protocolSources' : [source]
+        'protocolSources' : [source],
+        'queryId': get_query_id()
     })
+
+
+_QUERY_ID = None
+
+@contextmanager
+def use_query_id(query_id):
+    global _QUERY_ID
+
+    assert _QUERY_ID is None, 'Cannot nest query IDs'
+
+    _QUERY_ID = query_id
+    yield
+    _QUERY_ID = None
+
+def get_query_id():
+    return _QUERY_ID

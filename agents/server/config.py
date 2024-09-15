@@ -8,6 +8,8 @@ import databases.mongo as mongo
 import databases.sql as sql
 from toolformers.base import Tool, StringParameter
 
+from utils import get_query_id
+
 TOOLS = []
 ADDITIONAL_INFO = ''
 NODE_URLS = {}
@@ -186,7 +188,8 @@ def prepare_external_tool(tool_schema, internal_name, external_server_name):
         query_parameters = {
             'type' : internal_name, # TODO: Use the schema name instead? Must be matched on the other side
             'data' : kwargs,
-            'targetServer' : external_server_name
+            'targetServer' : external_server_name,
+            'queryId': get_query_id()
         }
         response = request_manager.post(helper_url + '/customRun', json=query_parameters)
 
