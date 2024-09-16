@@ -28,8 +28,8 @@ def add_mongo_database(external_name, schema):
     for collection_name, collection_schema in schema['collections'].items():
         ADDITIONAL_INFO += f'=={collection_name}==\n'
 
-        if 'startingValues' in collection_schema:
-            del collection_schema['startingValues']
+        if 'initialValues' in collection_schema:
+            del collection_schema['initialValues']
 
         ADDITIONAL_INFO += json.dumps(collection_schema, indent=2) + '\n\n'
 
