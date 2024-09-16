@@ -1,10 +1,7 @@
 # The negotiator negotiates a protocol based on the task schema and data (for the user) and the tools available (for the server).
 
 import json
-import os
 import uuid
-
-import requests as request_manager
 
 from toolformers.base import Tool, StringParameter
 
@@ -21,6 +18,7 @@ Here are some rules (that should also be explained to the other GPT):
 - The implementation will be written by a programmer that does not have access to the negotiation process, so make sure the protocol is clear and unambiguous.
 - The implementation will receive a string and return a string, so structure your protocol accordingly.
 - The other party might have a different internal data schema, so make sure that the protocol is flexible enough to accommodate that.
+- There will only be one message sent by the sender and one message sent by the receiver. Design the protocol accordingly.
 - Keep the negotiation short: no need to repeat the same things over and over.
 - If the other party has proposed a protocol and you're good with it, there's no reason to keep negotiating or to repeat the protocol to the other party.
 - Do not restate parts of the protocols that have already been agreed upon.
@@ -32,7 +30,9 @@ You are ProtocolNegotiatorGPT. Your task is to negotiate a protocol that can be 
 You will receive a JSON schema of the task that the service must perform. Negotiate with the service to determine a protocol that can be used to query it.
 To do so, you will chat with another GPT (role: user) that will negotiate on behalf of the service.
 {NEGOTIATION_RULES}
-Once you are ready to save the protocol, call the tool "registerProtocol" with the protocol as argument. In that case, do not write anything else, just call the tool.
+Once you are ready to save the protocol, call the tool "registerProtocol" with the protocol as argument. \
+In that case, do not write anything else, just call the tool. \
+Note that since the implementer will not have access to the conversation, make sure to include the protocol in the argument (no "see above").
 '''
 
 TOOLS_NEGOTIATOR_PROMPT = f'''
