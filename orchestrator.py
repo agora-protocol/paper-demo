@@ -87,6 +87,8 @@ def main():
 
     time.sleep(1)
 
+    print('Launching server agents...')
+
     # 4. Launch the server agents
     for server_id, server_config in config['servers'].items():
         launch_instance(tmux_server, 'server', server_config['modelType'], server_id, base_log_path, base_storage_path, id_to_url_mappings)
@@ -98,7 +100,9 @@ def main():
             helper_user_id = server_id + '_helper'
             launch_instance(tmux_server, 'user', server_config['modelType'], helper_user_id, base_log_path, base_storage_path, id_to_url_mappings)
 
-    time.sleep(1)
+    time.sleep(2)
+
+    print('Launching user agents...')
 
     # 5. Launch the user agents
     for user_id, user_config in config['users'].items():
@@ -114,9 +118,19 @@ def main():
 
     print('Sending sample ping.')
 
-    # 7. Send a sample ping to a user agent
-    response = request_manager.post(id_to_url_mappings['alice'])
-    print('Response from Alice:', response.text)
+    # 7. Execute the screenplay
+
+    with open('actions.json', 'r') as f:
+        actions = json.load(f)
+    
+    for i, (user_id, (target, task), data) in enumerate(actions):
+        response = request_manager.post(id_to_url_mappings[user_id] +'/customRun', json={
+            'queryId': str(i),
+            'targetServer': target,
+            'type': task,
+            'data': data
+        })
+        print('Response from', user_id, ':', response.text)
 
 if __name__ == '__main__':
     main()
