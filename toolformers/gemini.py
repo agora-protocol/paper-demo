@@ -1,5 +1,7 @@
 import datetime
 import os
+from random import random
+import time
 from typing import List
 
 from toolformers.base import Conversation, Tool, Toolformer, send_usage_to_db
@@ -19,12 +21,24 @@ class GeminiConversation(Conversation):
         agent_id = os.environ.get('AGENT_ID', None)
         time_start = datetime.datetime.now()
 
-        response = self.chat_agent.send_message({
-            'role': role,
-            'parts': [
-                message
-            ]
-        })
+        exponential_backoff_lower = 30
+        exponential_backoff_higher = 60
+        for i in range(5):
+            try:
+                response = self.chat_agent.send_message({
+                    'role': role,
+                    'parts': [
+                        message
+                    ]
+                })
+                break
+            except Exception as e:
+                print(e)
+                if '429' in str(e):
+                    print('Rate limit exceeded. Waiting with random exponential backoff.')
+                    time.sleep(random() * (exponential_backoff_higher - exponential_backoff_lower) + exponential_backoff_lower)
+                    exponential_backoff_lower *= 2
+                    exponential_backoff_higher *= 2
 
         time_end = datetime.datetime.now()
 
@@ -56,6 +70,8 @@ class GeminiToolformer(Toolformer):
         self.tools = tools
 
     def new_conversation(self, category=None) -> Conversation:
+        print('Tools:')
+        print('\n'.join([str(tool.as_openai_info()) for tool in self.tools]))
         model = genai.GenerativeModel(
             model_name=self.model_name,
             system_instruction=self.system_prompt,
