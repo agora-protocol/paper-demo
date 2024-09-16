@@ -30,9 +30,8 @@ You are ProtocolNegotiatorGPT. Your task is to negotiate a protocol that can be 
 You will receive a JSON schema of the task that the service must perform. Negotiate with the service to determine a protocol that can be used to query it.
 To do so, you will chat with another GPT (role: user) that will negotiate on behalf of the service.
 {NEGOTIATION_RULES}
-Once you are ready to save the protocol, call the tool "registerProtocol" with the protocol as argument. \
-In that case, do not write anything else, just call the tool. \
-Note that since the implementer will not have access to the conversation, make sure to include the protocol in the argument (no "see above").
+Once you are ready to save the protocol, reply wrapping the final version of the protocol, as agreed in your negotiation, between the tags <FINALPROTOCOL> and </FINALPROTOCOL>.
+Within the body of the tag, add the tags <NAME></NAME> and <DESCRIPTION></DESCRIPTION> to specify the name and description of the protocol.
 '''
 
 TOOLS_NEGOTIATOR_PROMPT = f'''
@@ -61,48 +60,58 @@ def chat(message, conversation_id, target_node):
 
     return wrapped_reply['body'], wrapped_reply['conversationId']
 
+
+def extract(text, start_tag, end_tag):
+    start_position = text.lower().find(start_tag.lower())
+    end_position = text.lower().find(end_tag.lower())
+
+    if start_position == -1 or end_position == -1:
+        return None
+
+    return text[start_position + len(start_tag):end_position].strip()
+
 def negotiate_protocol_for_task(task_schema, target_node):
     found_protocol = None
 
-    def register_protocol(protocolName, protocolDescription, protocol):
-        nonlocal found_protocol
-        
-        found_protocol = {
-            'name': protocolName,
-            'description': protocolDescription,
-            'protocol': protocol
-        }
-
-        return 'done'
-
-    registerTool = Tool(
-        'registerProtocol', 'Register a protocol document. Returns "done" if done.', [
-            StringParameter('protocolName', 'The name of the protocol', True),
-            StringParameter('protocolDescription', 'A short description of the protocol', True),
-            StringParameter('protocol', 'The protocol document to register', True),
-        ], register_protocol)
-
     prompt = TASK_NEGOTIATOR_PROMPT + '\nThe JSON schema of the task is the following:\n\n' + json.dumps(task_schema, indent=4)
 
-    toolformer = make_default_toolformer(prompt, [registerTool])
+    toolformer = make_default_toolformer(prompt, [])
 
     conversation = toolformer.new_conversation(category='negotiation')
 
     other_message = 'Hello! How may I help you?'
     conversation_id = None
 
-    while found_protocol is None:
+    for i in range(10):
         print('===NegotiatorGPT===')
         message = conversation.chat(other_message, print_output=True)
 
-        if found_protocol is not None:
-            break
+        print('Checking if we can extract from:', message)
+        print('---------')
+        protocol = extract(message, '<FINALPROTOCOL>', '</FINALPROTOCOL>')
 
-        other_message, conversation_id = chat(message, conversation_id, target_node)
-        print()
-        print('===Other GPT===')
-        print(other_message)
-        print()
+        if protocol is None:
+            print('Could not extract')
+            other_message, conversation_id = chat(message, conversation_id, target_node)
+            print()
+            print('===Other GPT===')
+            print(other_message)
+            print()
+        else:
+            name = extract(protocol, '<NAME>', '</NAME>')
+            description = extract(protocol, '<DESCRIPTION>', '</DESCRIPTION>')
+
+            if name is None:
+                name = 'Unnamed protocol'
+            if description is None:
+                description = 'No description provided'
+            
+            found_protocol = {
+                'name': name,
+                'description': description,
+                'protocol': protocol
+            }
+            break
 
     return found_protocol
 
