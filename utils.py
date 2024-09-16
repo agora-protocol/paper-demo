@@ -119,8 +119,10 @@ def use_query_id(query_id):
     assert _QUERY_ID is None, 'Cannot nest query IDs'
 
     _QUERY_ID = query_id
-    yield
-    _QUERY_ID = None
+    try:
+        yield
+    finally:
+        _QUERY_ID = None
 
 def get_query_id():
     return _QUERY_ID

@@ -24,13 +24,13 @@ def check_protocol_for_task(protocol_document, task_schema):
 
     message = 'The protocol is the following:\n\n' + protocol_document + '\n\nThe task is the following:\n\n' + json.dumps(task_schema)
 
-    reply = conversation.chat(message, print_output=False)
+    reply = conversation.chat(message, print_output=True)
 
     return 'yes' in reply.lower().strip()[-10:]
 
 FILTER_TASK_PROMPT = 'You are ProtocolFilterGPT. Your task is to look at the provided protocols (you will only see the name and a short description) and ' \
     'determine which protocols might be suitable for the given task (of which you\'ll receive a JSON schema). Think about it and at the end call the "pickProtocols" tool ' \
-    'with a JSON-formatted list of the protocol IDs that you think are suitable'
+    'with a JSON-formatted list of the protocol IDs that you think are suitable. If no protocols are suitable, call it anyway with an empty list.'
 
 def filter_protocols_for_task(protocol_metadatas, task_schema):
     if len(protocol_metadatas) == 0:
@@ -52,7 +52,7 @@ def filter_protocols_for_task(protocol_metadatas, task_schema):
 
     pick_protocol_tool = Tool(
         'pickProtocols', 'Pick the protocols that are suitable for the task', [
-            StringParameter('protocolIds', 'The IDs of the protocols that are suitable for the task, as a JSON-formatted list of integers', True)
+            StringParameter('protocolIds', 'The IDs of the protocols that are suitable for the task, as a JSON-formatted list of integers. Use an empty list if none are suitable.', True)
         ],
         register_chosen_protocols
     )
@@ -76,9 +76,9 @@ def filter_protocols_for_task(protocol_metadatas, task_schema):
 
 
 CHECKER_TOOL_PROMPT = 'You are ProtocolCheckerGPT. Your task is to look at the provided protocol and determine if you have access ' \
-    'to the tools required to implement it. A protocol is sufficiently expressive if you could write code that, given a query formatted according to the protocol and the tools ' \
+    'to the tools required to implement it. A protocol is sufficiently expressive if an implementer could write code that, given a query formatted according to the protocol and the tools ' \
     'at your disposal, can parse the query according to the protocol\'s specification and send a reply. Think about it and at the end of the reply write "YES" if the' \
-    'protocol is adequate or "NO"'
+    'protocol is adequate or "NO". Do not attempt to implement the protocol or call the tools: that will be done by the implementer.'
 
 def check_protocol_for_tools(protocol_document, tools):
     toolformer = make_default_toolformer(CHECKER_TOOL_PROMPT, [])

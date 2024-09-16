@@ -25,9 +25,9 @@ def new_cursor():
     return connection.cursor()
 
 def wait_for_sql_server():
+    print('Waiting for the SQL server to be ready...', end='', flush=True)
     while True:
         try:
-            print('Waiting for the SQL server to be ready...', end='', flush=True)
             new_cursor()
             break
         except pymssql.exceptions.OperationalError as e:

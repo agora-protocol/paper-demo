@@ -259,14 +259,14 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
             }
             register_new_protocol(protocol_id, uri, protocol_data)
 
-    public_protocols = prefilter_protocols([x['id'] for x in public_protocols], task_type)
+    public_protocol_ids = prefilter_protocols([x['id'] for x in public_protocols], task_type)
 
-    for protocol_metadata in public_protocols:
+    for protocol_id in public_protocol_ids:
         # Categorize the protocol
-        suitable = categorize_protocol(protocol_metadata['id'], task_type)
+        suitable = categorize_protocol(protocol_id, task_type)
 
         if suitable:
-            return protocol_metadata['id']
+            return protocol_id
 
     
     # If there are still none, check if we have talked enough times with the target to warrant a new protocol

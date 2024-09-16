@@ -14,8 +14,6 @@ from pathlib import Path
 from toolformers.base import Tool, StringParameter
 from toolformers.unified import make_default_toolformer
 
-import requests as request_manager
-
 from utils import load_protocol_document, send_raw_query
 
 PROTOCOL_QUERIER_PROMPT = 'You are QuerierGPT. You will receive a protocol document detailing how to query a service. Reply with a structured query which can be sent to the service.' \
@@ -40,7 +38,7 @@ NL_QUERIER_PROMPT = 'You are NaturalLanguageQuerierGPT. You act as an intermedia
     'You will receive a task description (including a schema of the input and output) that the machine uses and the corresponding data. Call the \"sendQuery\" tool with a natural language message where you ask to perform the task according to the data.' \
     'Do not worry about managing communication, everything is already set up for you. Just focus on asking the right question.' \
     'The sendQuery tool will return the reply of the service.\n' \
-    'Once you receive the reply, call the \"deliverStructuredOutput\" tool with a JSON-formatted message according to the machine\'s output schema.\n' \
+    'Once you receive the reply, call the \"deliverStructuredOutput\" tool with a JSON-formatted message according to the machine\'s output schema. IMPORTANT: Deliver it as one single string, not as multiple parameters. I will parse it later.\n' \
     'Note: you cannot call sendQuery multiple times, so make sure to ask the right question the first time. Similarly, you cannot call deliverStructuredOutput multiple times, so make sure to deliver the right output the first time.'
 
 def parse_and_handle_query(query, target_node, protocol_id, source):
@@ -87,7 +85,7 @@ def handle_conversation(prompt, message, target_node, protocol_id, source):
         found_output = output
         return 'Done'
 
-    register_output_tool = Tool('deliverStructuredOutput', 'Deliver the structured output to the machine.', [
+    register_output_tool = Tool('deliverStructuredOutput', 'Deliver the structured output to the machine as a string.', [
         StringParameter('output', 'The structured output to deliver to the machine, as a JSON string formatted according to the output schema', True)
     ], register_output)
 
@@ -95,7 +93,7 @@ def handle_conversation(prompt, message, target_node, protocol_id, source):
 
     conversation = toolformer.new_conversation(category='conversation')
 
-    while True:
+    for i in range(5):
         conversation.chat(message, print_output=True)
 
         if found_output is not None:
@@ -106,7 +104,6 @@ def handle_conversation(prompt, message, target_node, protocol_id, source):
             message = 'You must send a query before delivering the structured output.'
         elif found_output is None:
             message = 'You must deliver the structured output.'
-        # TODO: Anti-infinite loop mechanism
 
     return found_output
 

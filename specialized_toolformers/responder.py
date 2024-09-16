@@ -13,8 +13,6 @@ from pathlib import Path
 
 from toolformers.unified import make_default_toolformer
 
-import requests as request_manager
-
 from utils import load_protocol_document
 
 # TODO: A tool to declare an error?

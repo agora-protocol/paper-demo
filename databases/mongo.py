@@ -11,7 +11,8 @@ def create_database_from_schema(name, schema):
     for collection_name, collection_schema in schema['collections'].items():
         db.create_collection(collection_name)
         collection = db[collection_name]
-        for doc in collection_schema['startingValues']:
+        print('Collection schema:', collection_schema)
+        for doc in collection_schema.get('initialValues', []):
             collection.insert_one(dict(doc))
 
 def update_one(database, collection, query, update):

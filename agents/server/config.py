@@ -6,7 +6,9 @@ import requests as request_manager
 
 import databases.mongo as mongo
 import databases.sql as sql
-from toolformers.base import Tool, StringParameter
+from toolformers.base import Tool, StringParameter, EnumParameter
+
+import mocks.mock_tools as mock_tools
 
 from utils import get_query_id
 
@@ -114,7 +116,7 @@ def add_sql_database(table_schemas, server_name):
         if extra_table_schema_info:
             ADDITIONAL_INFO += '\n\nOther info:' + extra_table_schema_info
 
-        for starting_value in table_schema.get('startingValues', []):
+        for starting_value in table_schema.get('initialValues', []):
             sql.insert(table_name, server_name, starting_value)
         
         ADDITIONAL_INFO += '\n\n========\n\n'
@@ -143,14 +145,18 @@ def add_sql_tools(name_mappings):
     TOOLS.append(query_tool)
 
 
-def prepare_mock_tool(tool_schema, internal_name):
+def prepare_mock_tool(tool_schema, internal_name, schema_name):
+    print('Internal name:', internal_name)
+    print('Tool schema:', tool_schema)
     input_schema = tool_schema['input']
 
     required_parameter_names = input_schema['required']
     parameters = []
 
     for parameter_name, parameter_data in input_schema['properties'].items():
-        if parameter_data['type'] == 'string':
+        if 'enum' in parameter_data:
+            parameters.append(EnumParameter(parameter_name, parameter_data['description'], parameter_data['enum'], parameter_name in required_parameter_names))
+        elif parameter_data['type'] == 'string':
             parameters.append(StringParameter(parameter_name, parameter_data['description'], parameter_name in required_parameter_names))
         else:
             raise ValueError('Unknown parameter type:', parameter_data['type'])
@@ -174,7 +180,9 @@ def prepare_external_tool(tool_schema, internal_name, external_server_name):
     parameters = []
 
     for parameter_name, parameter_data in input_schema['properties'].items():
-        if parameter_data['type'] == 'string':
+        if 'enum' in parameter_data:
+            parameters.append(EnumParameter(parameter_name, parameter_data['description'], parameter_data['enum'], parameter_name in required_parameter_names))
+        elif parameter_data['type'] == 'string':
             parameters.append(StringParameter(parameter_name, parameter_data['description'], parameter_name in required_parameter_names))
         else:
             raise ValueError('Unknown parameter type:', parameter_data['type'])
@@ -198,7 +206,7 @@ def prepare_external_tool(tool_schema, internal_name, external_server_name):
         }
         response = request_manager.post(helper_url + '/customRun', json=query_parameters)
 
-        print('Response from external tool:', response.text)
+        print(f'Response from external tool {internal_name}:', response.text)
 
         if response.status_code == 200:
             parsed_response = json.loads(response.text)
@@ -246,7 +254,7 @@ def load_config(server_name):
 
     for internal_name, schema_name in server_config.get('mockTools', {}).items():
         tool_schema = config['toolSchemas'][schema_name]
-        tool = prepare_mock_tool(tool_schema, internal_name)
+        tool = prepare_mock_tool(tool_schema, internal_name, schema_name)
         TOOLS.append(tool)
 
     for internal_name, external_tool_config in server_config.get('externalTools', {}).items():

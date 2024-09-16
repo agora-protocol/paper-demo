@@ -7,8 +7,10 @@ def usage_tracker():
     global USAGE_TRACKER
     assert USAGE_TRACKER is None
     USAGE_TRACKER = []
-    yield USAGE_TRACKER
-    USAGE_TRACKER = None
+    try:
+        yield
+    finally:
+        USAGE_TRACKER = None
 
 def get_total_usage():
     global USAGE_TRACKER

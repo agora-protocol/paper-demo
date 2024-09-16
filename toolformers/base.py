@@ -7,6 +7,8 @@ import google.generativeai.types.content_types as content_types
 
 from databases.mongo import insert_one
 
+from utils import get_query_id
+
 class Parameter:
     def __init__(self, name, description, required):
         self.name = name
@@ -151,6 +153,8 @@ class Tool:
         return schema
 
     def as_natural_language(self):
+        print('Converting to natural language')
+        print('Number of parameters:', len(self.parameters))
         nl = f'Function {self.name}: {self.description}. Parameters:\n' + '\n'.join([parameter.as_natural_language() for parameter in self.parameters])
 
         if self.output_schema is not None:
@@ -207,7 +211,8 @@ def send_usage_to_db(usage, time_start, time_end, agent, category, model):
         'completion_tokens': usage['completion_tokens'],
         'agent': agent,
         'category': category,
-        'model': model
+        'model': model,
+        'queryId': get_query_id()
     }
     insert_one('usageLogs', 'main', usage)
 
