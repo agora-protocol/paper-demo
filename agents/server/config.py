@@ -156,7 +156,12 @@ def prepare_mock_tool(tool_schema, internal_name):
             raise ValueError('Unknown parameter type:', parameter_data['type'])
 
     def run_mock_tool(*args, **kwargs):
-        return json.dumps(random.choice(tool_schema['mockValues']))
+        print('Running mock tool:', internal_name, 'Schema name:', schema_name, args, kwargs)
+        if schema_name not in mock_tools.__dict__:
+            raise ValueError('Unknown mock tool schema:', schema_name)
+        response = json.dumps(mock_tools.__dict__[schema_name](*args, **kwargs))
+        print(f'Mock tool {internal_name} response:', response)
+        return response
 
     mock_tool = Tool(internal_name, tool_schema['description'], parameters, run_mock_tool, output_schema=tool_schema['output'])
 
