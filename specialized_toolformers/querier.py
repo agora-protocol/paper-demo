@@ -70,9 +70,16 @@ def handle_conversation(prompt, message, target_node, protocol_id, source):
 
     found_output = None
 
-    def register_output(output):
-        print('Registering output:', output)
+    def register_output(**kwargs):
+        print('Registering output:', kwargs)
+
         nonlocal found_output
+
+        if 'output' in kwargs:
+            output = kwargs['output']
+        else:
+            # The tool was called incorrectly. Treat the kwargs as the field of the output
+            output = json.dumps(kwargs)
 
         if found_output is not None:
             return 'You have already registered an output. You cannot register another one.'
