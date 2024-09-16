@@ -1,7 +1,9 @@
 import json
 import os
 import re
+from random import random
 from pprint import pprint
+import time
 from typing import List, Optional, Union
 
 from langchain_core.messages.ai import AIMessage
@@ -127,14 +129,15 @@ class FunctionCallingLlm:
             tools_map = {tool.name.lower(): tool for tool in self.tools}
         else:
             tools_map = {}
-        tool_msg = "Tool '{name}'response: {response}"
+        tool_msg = "Tool '{name}' response: {response}"
         tools_msgs = []
         if len(invoked_tools) == 1 and invoked_tools[0]['tool'].lower() == 'conversationalresponse':
             final_answer = True
             return final_answer, [invoked_tools[0]['tool_input']['response']]
-        for tool in invoked_tools:
-            final_answer = False
 
+        final_answer = False
+
+        for tool in invoked_tools:
             if tool['tool'].lower() == 'invocationerror':
                 tools_msgs.append(f'Tool invocation error: {tool["tool_input"]}')
             elif tool['tool'].lower() != 'conversationalresponse':
@@ -253,7 +256,22 @@ class FunctionCallingLlm:
                     prompt = self.msgs_to_llama3_str(history)
                 # print(f'\n\n---\nCalling function calling LLM with prompt: \n{prompt}\n')
                 
-                llm_response = self.llm.invoke(prompt, stream_options={'include_usage': True})
+                exponential_backoff_lower = 30
+                exponential_backoff_higher = 60
+                llm_response = None
+                for _ in range(5):
+                    try:
+                        llm_response = self.llm.invoke(prompt, stream_options={'include_usage': True})
+                        break
+                    except Exception as e:
+                        if '429' in str(e):
+                            print('Rate limit exceeded. Waiting with random exponential backoff.')
+                            time.sleep(random() * (exponential_backoff_higher - exponential_backoff_lower) + exponential_backoff_lower)
+                            exponential_backoff_lower *= 2
+                            exponential_backoff_higher *= 2
+                        else:
+                            raise e
+
                 print('LLM response:', llm_response)
 
                 # print(f'\nFunction calling LLM response: \n{llm_response}\n---\n')
