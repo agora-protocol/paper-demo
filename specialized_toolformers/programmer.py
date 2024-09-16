@@ -89,12 +89,23 @@ def write_routine_for_tools(tools, protocol_document, additional_info):
 
     conversation = toolformer.new_conversation(category='programming')
 
-    reply = conversation.chat(message, print_output=True)
+    for i in range(5):
+        reply = conversation.chat(message, print_output=True)
 
-    if reply.find('<IMPLEMENTATION>') == -1 or reply.find('</IMPLEMENTATION>') == -1:
+        if reply.lower().find('<implementation>') != -1 and reply.lower().find('</implementation>') != -1:
+            break
+        message = 'You have not provided an implementation yet. Please provide one by surrounding it in the tags <IMPLEMENTATION> and </IMPLEMENTATION>.'
+
+    start_position = reply.lower().find('<implementation>')
+    end_position = reply.lower().find('</implementation>')
+
+    if start_position == -1 or end_position == -1:
         raise Exception('No implementation found')
     
-    implementation = reply[reply.find('<IMPLEMENTATION>') + len('<IMPLEMENTATION>'):reply.find('</IMPLEMENTATION>')].strip()
+    implementation = reply[start_position + len('<IMPLEMENTATION>'):end_position].strip()
+
+    # Sometimes the LLM leaves the Markdown formatting in the implementation
+    implementation = implementation.replace('```python', '').replace('```', '').strip()
 
     implementation = implementation.replace('def reply(', 'def run(')
 
