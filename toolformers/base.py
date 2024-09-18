@@ -204,14 +204,18 @@ class Tool:
         }
     
     def as_gemini_tool(self) -> CallableFunctionDeclaration:
-        return content_types.Tool([CallableFunctionDeclaration(
-            name=self.name,
-            description=self.description,
-            parameters={
+        if len(self.parameters) == 0:
+            parameters = None
+        else:
+            parameters = {
                 'type': 'object',
                 'properties': {parameter.name: parameter.as_gemini_tool() for parameter in self.parameters},
                 'required': [parameter.name for parameter in self.parameters if parameter.required]
-            },
+            }
+        return content_types.Tool([CallableFunctionDeclaration(
+            name=self.name,
+            description=self.description,
+            parameters=parameters,
             function=self.call_tool_for_toolformer
         )])
 
@@ -231,7 +235,13 @@ class Tool:
     def as_natural_language(self):
         print('Converting to natural language')
         print('Number of parameters:', len(self.parameters))
-        nl = f'Function {self.name}: {self.description}. Parameters:\n' + '\n'.join([parameter.as_natural_language() for parameter in self.parameters])
+        nl = f'Function {self.name}: {self.description}. Parameters:\n'
+        
+        if len(self.parameters) == 0:
+            nl += 'No parameters.'
+        else:
+            for parameter in self.parameters:
+                nl += '\t' + parameter.as_natural_language() + '\n'
 
         if self.output_schema is not None:
             nl += f'\nOutput schema: {json.dumps(self.output_schema, indent=2)}'
@@ -246,8 +256,13 @@ class Tool:
         }
     
     def as_documented_python(self):
-        documented_python = f'Tool {self.name}:\n\n{self.description}\nParameters:\n' + \
-            '\n'.join([parameter.as_documented_python() for parameter in self.parameters])
+        documented_python = f'Tool {self.name}:\n\n{self.description}\nParameters:\n'
+
+        if len(self.parameters) == 0:
+            documented_python += 'No parameters.'
+        else:
+            for parameter in self.parameters:
+                documented_python += '\t' + parameter.as_documented_python() + '\n'
         
         if self.output_schema is not None:
             documented_python += f'\nOutput schema: {json.dumps(self.output_schema, indent=2)}'
