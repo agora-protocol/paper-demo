@@ -93,7 +93,7 @@ def add_sql_database(table_schemas, server_name):
 
     global ADDITIONAL_INFO
 
-    ADDITIONAL_INFO += f'\n\nYou have access to an SQL Server database. You can run SQL queries on the database. The database has the following tables:\n\n'
+    ADDITIONAL_INFO += f'\n\nYou have access to a Microsoft SQL Server database. You can run SQL queries on the database. The database has the following tables:\n\n'
     for table_name, table_schema in table_schemas.items():
         ADDITIONAL_INFO += f'=={table_name}==\n'
         ADDITIONAL_INFO += f'Description: {table_schema["description"]}\n'
@@ -122,7 +122,9 @@ def add_sql_database(table_schemas, server_name):
         ADDITIONAL_INFO += '\n\n========\n\n'
     
     ADDITIONAL_INFO += '\n'
-    ADDITIONAL_INFO += 'For security reasons, you are not allowed to create other tables or modify the schema of the existing tables.\n\n'
+    ADDITIONAL_INFO += 'For security reasons, you are not allowed to create other tables or modify the schema of the existing tables.\n'
+
+    ADDITIONAL_INFO += 'Remember: Microsoft SQL Server uses single quotes (\') for literals!'
 
     return name_mappings
 
@@ -130,13 +132,17 @@ def add_sql_tools(name_mappings):
     def run_query(query):
         for internal_table_name, external_table_name in name_mappings.items():
             query = query.replace(internal_table_name, external_table_name)
+        
+        # Some models (especially Gemini) really struggle with escaping, adding escaping where it's not necessary
+        query = query.replace("\\'", "'")
+
         print('Running SQL query:', query)
         response = sql.run_query(query)
         print('SQL Response:', response)
         return response
     
-    tool_description = 'Run an SQL query. Returns a JSON-formatted list of results, where each element is an object ' \
-        'with the column names as keys. You might need to parse it. If the query does not return any results, \"No results\" is returned.'
+    tool_description = 'Run a Microsoft SQL Server query. Returns a list of results, where each element is a dictionary ' \
+        'with the column names as keys. If the query does not return any results, an empty list is returned.'
 
     query_tool = Tool('run_sql_query', tool_description, [
         StringParameter('query', 'The query to run', True)

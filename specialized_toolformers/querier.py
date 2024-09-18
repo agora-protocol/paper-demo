@@ -30,20 +30,22 @@ def construct_query_description(protocol_document, task_schema, task_data):
         query_description += protocol_document + '\n\n'
     query_description += 'JSON schema of the task:\n\n'
     query_description += 'Input (i.e. what the machine will provide you):\n'
-    query_description += json.dumps(task_schema['input'], indent=4) + '\n\n'
+    query_description += json.dumps(task_schema['input'], indent=2) + '\n\n'
     query_description += 'Output (i.e. what you have to provide to the machine):\n'
-    query_description += json.dumps(task_schema['output'], indent=4) + '\n\n'
+    query_description += json.dumps(task_schema['output'], indent=2) + '\n\n'
     query_description += 'JSON data of the task:\n\n'
-    query_description += json.dumps(task_data, indent=4) + '\n\n'
+    query_description += json.dumps(task_data, indent=2) + '\n\n'
 
     return query_description
 
 NL_QUERIER_PROMPT = 'You are NaturalLanguageQuerierGPT. You act as an intermediary between a machine (who has a very specific input and output schema) and an agent (who uses natural language).' \
     'You will receive a task description (including a schema of the input and output) that the machine uses and the corresponding data. Call the \"sendQuery\" tool with a natural language message where you ask to perform the task according to the data.' \
+    'Make sure to mention all the relevant information. ' \
     'Do not worry about managing communication, everything is already set up for you. Just focus on asking the right question.' \
     'The sendQuery tool will return the reply of the service.\n' \
-    'Once you receive the reply, call the \"deliverStructuredOutput\" tool with a JSON-formatted message according to the machine\'s output schema. IMPORTANT: Deliver it as one single string, not as multiple parameters. I will parse it later.\n' \
-    'Note: you cannot call sendQuery multiple times, so make sure to ask the right question the first time. Similarly, you cannot call deliverStructuredOutput multiple times, so make sure to deliver the right output the first time.'
+    'Once you receive the reply, call the \"deliverStructuredOutput\" tool with parameters according to the task\'s output schema. \n' \
+    'Note: you cannot call sendQuery multiple times, so make sure to ask the right question the first time. Similarly, you cannot call deliverStructuredOutput multiple times, so make sure to deliver the right output the first time.' \
+    'If the query fails, do not attempt to send another query.'
 
 def parse_and_handle_query(query, target_node, protocol_id, source):
     response = send_raw_query(query, protocol_id, target_node, source)
@@ -53,7 +55,7 @@ def parse_and_handle_query(query, target_node, protocol_id, source):
         if parsed_response['status'] == 'success':
             return parsed_response['body']
 
-    return 'Error calling the tool: ' + response.text
+    return 'Error calling the tool: ' + response.text + ' (status code: ' + str(response.status_code) + ')'
 
 def get_output_parameters(task_schema):
     output_schema = task_schema['output']

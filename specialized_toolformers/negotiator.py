@@ -15,7 +15,7 @@ Here are some rules (that should also be explained to the other GPT):
 - The protocol must specify the exact format of what is sent and received. Do not leave it open to interpretation.
 - The implementation will be written by a programmer that does not have access to the negotiation process, so make sure the protocol is clear and unambiguous.
 - The implementation will receive a string and return a string, so structure your protocol accordingly.
-- The other party might have a different internal data schema, so make sure that the protocol is flexible enough to accommodate that.
+- The other party might have a different internal data schema or set of tools, so make sure that the protocol is flexible enough to accommodate that.
 - There will only be one message sent by the sender and one message sent by the receiver. Design the protocol accordingly.
 - Keep the negotiation short: no need to repeat the same things over and over.
 - If the other party has proposed a protocol and you're good with it, there's no reason to keep negotiating or to repeat the protocol to the other party.
@@ -61,7 +61,7 @@ def chat(message, conversation_id, target_node):
 def negotiate_protocol_for_task(task_schema, target_node):
     found_protocol = None
 
-    prompt = TASK_NEGOTIATOR_PROMPT + '\nThe JSON schema of the task is the following:\n\n' + json.dumps(task_schema, indent=4)
+    prompt = TASK_NEGOTIATOR_PROMPT + '\nThe JSON schema of the task is the following:\n\n' + json.dumps(task_schema, indent=2)
 
     toolformer = make_default_toolformer(prompt, [])
 
@@ -112,7 +112,7 @@ def create_negotiation_conversation(tools, additional_info):
 
     prompt += '\n\n' + additional_info
 
-    prompt += '\n\nThe tools available are:\n\n'
+    prompt += '\n\nThe tools that the implementer will have access to are:\n\n'
 
     if len(tools) == 0:
         prompt += 'No additional tools provided'

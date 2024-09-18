@@ -20,8 +20,8 @@ from utils import load_protocol_document
 
 PROTOCOL_RESPONDER_PROMPT = 'You are ResponderGPT. You will receive a protocol document detailing how to respond to a query. '\
     'Use the provided functions to execute what is requested and provide the response according to the protocol\'s specification. ' \
-    'Only reply with the response itself, with no additional information or escaping. Similarly, do not add any additional whitespace or formatting.' \
-    'If you do not have enough information to reply, or if you cannot execute the request, reply with "ERROR" (without quotes).'
+    'Only reply with the response itself, with no additional information or escaping. Similarly, do not add any additional whitespace or formatting.'# \
+   # 'If you do not have enough information to reply, or if you cannot execute the request, reply with "ERROR" (without quotes).'
 
 def reply_with_protocol_document(query, protocol_document, tools, additional_info):
     print('===NL RESPONDER (WITH PROTOCOL)===')
@@ -47,8 +47,8 @@ def reply_with_protocol_document(query, protocol_document, tools, additional_inf
 
 NL_RESPONDER_PROMPT = 'You are NaturalLanguageResponderGPT. You will receive a query from a user. ' \
     'Use the provided functions to execute what is requested and reply with a response (in natural language). ' \
-    'If you do not have enough information to reply, if you cannot execute the request, or if the request is invalid, reply with "ERROR" (without quotes).' \
     'Important: the user does not have the capacity to respond to follow-up questions, so if you think you have enough information to reply/execute the actions, do so.'
+    #'If you do not have enough information to reply, if you cannot execute the request, or if the request is invalid, reply with "ERROR" (without quotes).' \
 
 def reply_to_nl_query(query, tools, additional_info):
     print('===NL RESPONDER (NO PROTOCOL)===')

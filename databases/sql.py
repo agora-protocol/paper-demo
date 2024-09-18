@@ -64,10 +64,10 @@ def run_query(query):
     with new_cursor() as cursor:
         cursor.execute(query)
         try:
-            return json.dumps(cursor.fetchall())
+            return cursor.fetchall()
         except Exception as e:
             if 'no resultset' in str(e):
-                return 'No results'
+                return []
             else:
                 raise e
 
