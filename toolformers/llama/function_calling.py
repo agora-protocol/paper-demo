@@ -159,19 +159,38 @@ class FunctionCallingLlm:
             input_string (str): The string to find the json structure in.
         """
 
-        json_pattern = re.compile(r'<ToolCalls\>(.*)</ToolCalls\>', re.DOTALL + re.IGNORECASE)
+        # 1. Ideal pattern: correctly surrounded by <ToolCalls> tags
+        json_pattern_1 = re.compile(r'<ToolCalls\>(.*)</ToolCalls\>', re.DOTALL + re.IGNORECASE)
+        # 2. Sometimes the closing tag is missing
+        json_pattern_2 = re.compile(r'<ToolCalls\>(.*)', re.DOTALL + re.IGNORECASE)
+        # 3. Sometimes it accidentally uses <ToolCall> instead of <ToolCalls>
+        json_pattern_3 = re.compile(r'<ToolCall\>(.*)</ToolCall\>', re.DOTALL + re.IGNORECASE)
+        # 4. Sometimes it accidentally uses <ToolCall> instead of <ToolCalls> and the closing tag is missing
+        json_pattern_4 = re.compile(r'<ToolCall\>(.*)', re.DOTALL + re.IGNORECASE)
+
         # Find the first JSON structure in the string
-        json_match = json_pattern.search(input_string)
+        json_match = json_pattern_1.search(input_string) or json_pattern_2.search(input_string) or json_pattern_3.search(input_string) or json_pattern_4.search(input_string)
         if json_match:
             json_str = json_match.group(1)
 
-            # Find the outermost list of JSON objects in the string. It is surrounded by square brackets
-            json_match = re.search(r'\[.*\]', json_str, re.DOTALL)
+            # 1. Outermost list of JSON object
+            call_pattern_1 = re.compile(r'\[.*\]', re.DOTALL)
+            # 2. Outermost JSON object
+            call_pattern_2 = re.compile(r'\{.*\}', re.DOTALL)
 
-            if json_match:
-                json_str = json_match.group(0)
+            call_match_1 = call_pattern_1.search(json_str)
+            call_match_2 = call_pattern_2.search(json_str)
+
+            if call_match_1:
+                json_str = call_match_1.group(0)
                 try:
                     return json.loads(json_str)
+                except Exception as e:
+                    return [{'tool': 'InvocationError', 'tool_input' : str(e)}]
+            elif call_match_2:
+                json_str = call_match_2.group(0)
+                try:
+                    return [json.loads(json_str)]
                 except Exception as e:
                     return [{'tool': 'InvocationError', 'tool_input' : str(e)}]
             else:
