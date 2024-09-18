@@ -94,6 +94,82 @@ class EnumParameter(Parameter):
     def from_standard_api(api_info):
         return EnumParameter(api_info["name"], api_info["description"], api_info["values"], api_info["required"])
 
+class NumberParameter(Parameter):
+    def __init__(self, name, description, required):
+        super().__init__(name, description, required)
+
+    def as_openai_info(self):
+        return {
+            "type": "number",
+            "description": self.description
+        }
+
+    def as_standard_api(self):
+        return {
+            "type": "number",
+            "name": self.name,
+            "description": self.description,
+            "required": self.required
+        }
+
+    def as_natural_language(self):
+        return f'{self.name} (number): {self.description}'
+
+    def as_documented_python(self):
+        return f'{self.name} (number): {self.description}'
+    
+    def as_gemini_tool(self):
+        return {
+            'description': self.description,
+            'type': 'number'
+        }
+    
+class ArrayParameter(Parameter):
+    def __init__(self, name, description, required, item_schema):
+        super().__init__(name, description, required)
+        self.item_schema = item_schema
+
+    def as_openai_info(self):
+        return {
+            "type": "array",
+            "description": self.description,
+            "items": self.item_schema
+        }
+
+    def as_standard_api(self):
+        return {
+            "type": "array",
+            "name": self.name,
+            "description": self.description,
+            "required": self.required,
+            "item_schema": self.item_schema
+        }
+
+    def as_natural_language(self):
+        return f'{self.name} (array): {self.description}. Each item should follow the JSON schema: {json.dumps(self.item_schema)}'
+
+    def as_documented_python(self):
+        return f'{self.name} (list): {self.description}. Each item should follow the JSON schema: {json.dumps(self.item_schema)}'
+    
+    def as_gemini_tool(self):
+        return {
+            'description': self.description,
+            'type': 'array',
+            'items': self.item_schema
+        }
+
+def parameter_from_openai_api(parameter_name, schema, required):
+    if 'enum' in schema:
+        return EnumParameter(parameter_name, schema['description'], schema['enum'], required)
+    elif schema['type'] == 'string':
+        return StringParameter(parameter_name, schema['description'], required)
+    elif schema['type'] == 'number':
+        return NumberParameter(parameter_name, schema['description'], required)
+    elif schema['type'] == 'array':
+        return ArrayParameter(parameter_name, schema['description'], required, schema['items'])
+    else:
+        raise ValueError(f'Unknown parameter type: {schema["type"]}')
+
 class Tool:
     def __init__(self, name, description, parameters, function, output_schema=None):
         self.name = name
