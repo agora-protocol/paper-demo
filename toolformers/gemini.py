@@ -2,6 +2,7 @@ import datetime
 import os
 from random import random
 import time
+import traceback
 from typing import List
 
 from toolformers.base import Conversation, Tool, Toolformer, send_usage_to_db
@@ -39,6 +40,17 @@ class GeminiConversation(Conversation):
                     time.sleep(random() * (exponential_backoff_higher - exponential_backoff_lower) + exponential_backoff_lower)
                     exponential_backoff_lower *= 2
                     exponential_backoff_higher *= 2
+                elif 'candidates[0]' in traceback.format_exc():
+                    # When Gemini has nothing to say, it raises an error with this message
+                    print('No response')
+                    return 'No response'
+                elif '500' in str(e):
+                    # Sometimes Gemini just decides to return a 500 error for absolutely no reason. Retry.
+                    print('500 error')
+                    print(e)
+                    traceback.print_exc()
+                else:
+                    raise e
 
         time_end = datetime.datetime.now()
 
