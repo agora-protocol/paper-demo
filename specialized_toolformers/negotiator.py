@@ -3,9 +3,7 @@
 import json
 import uuid
 
-from toolformers.base import Tool, StringParameter
-
-from utils import send_raw_query
+from utils import send_raw_query, extract
 
 from toolformers.unified import make_default_toolformer
 
@@ -59,16 +57,6 @@ def chat(message, conversation_id, target_node):
     wrapped_reply = json.loads(raw_reply['body'])
 
     return wrapped_reply['body'], wrapped_reply['conversationId']
-
-
-def extract(text, start_tag, end_tag):
-    start_position = text.lower().find(start_tag.lower())
-    end_position = text.lower().find(end_tag.lower())
-
-    if start_position == -1 or end_position == -1:
-        return None
-
-    return text[start_position + len(start_tag):end_position].strip()
 
 def negotiate_protocol_for_task(task_schema, target_node):
     found_protocol = None
