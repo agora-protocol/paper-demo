@@ -2,6 +2,7 @@ import base64
 from contextlib import contextmanager
 import hashlib
 import importlib
+import json
 from pathlib import Path
 import urllib
 
@@ -85,7 +86,7 @@ def extract(text, start_tag, end_tag):
     return text[start_position + len(start_tag):end_position].strip()
 
 def download_and_verify_protocol(protocol_hash, protocol_source):
-    response = request_manager.get(protocol_source)
+    response = request_manager.get(protocol_source, timeout=shared_config('timeout'))
     # It's just a simple txt file
     if response.status_code == 200:
         protocol = response.text
@@ -116,7 +117,7 @@ def send_raw_query(text, protocol_id, target_node, source):
         'body': text,
         'protocolSources' : [source],
         'queryId': get_query_id()
-    })
+    }, timeout=shared_config('timeout'))
 
 
 _QUERY_ID = None
@@ -135,3 +136,17 @@ def use_query_id(query_id):
 
 def get_query_id():
     return _QUERY_ID
+
+SHARED_CONFIG = None
+
+def shared_config(key, fallback='no_fallback'):
+    global SHARED_CONFIG
+
+    if SHARED_CONFIG is None:
+        with open('config.json') as f:
+            SHARED_CONFIG = json.load(f)['shared']
+    
+    if fallback == 'no_fallback':
+        return SHARED_CONFIG[key]
+    else:
+        return SHARED_CONFIG.get(key, fallback)

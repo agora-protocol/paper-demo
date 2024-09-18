@@ -10,7 +10,7 @@ from toolformers.base import Tool, StringParameter, EnumParameter
 
 import mocks.mock_tools as mock_tools
 
-from utils import get_query_id
+from utils import get_query_id, shared_config
 
 TOOLS = []
 ADDITIONAL_INFO = ''
@@ -210,7 +210,7 @@ def prepare_external_tool(tool_schema, internal_name, external_server_name):
             'targetServer' : external_server_name,
             'queryId': get_query_id()
         }
-        response = request_manager.post(helper_url + '/customRun', json=query_parameters)
+        response = request_manager.post(helper_url + '/customRun', json=query_parameters, timeout=shared_config('timeout'))
 
         print(f'Response from external tool {internal_name}:', response.text)
 

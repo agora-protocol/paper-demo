@@ -5,7 +5,7 @@ from pathlib import Path
 import requests as request_manager
 
 
-from utils import load_protocol_document, save_protocol_document, compute_hash
+from utils import load_protocol_document, save_protocol_document, compute_hash, shared_config
 from agents.user.config import TASK_SCHEMAS
 from agents.user.memory import get_num_conversations, PROTOCOL_INFOS, save_memory
 
@@ -16,7 +16,7 @@ from agents.common.core import Suitability
 from agents.user.config import get_protocol_db_url
 
 def query_protocols(target_node):
-    response = request_manager.get(f'{target_node}/wellknown')
+    response = request_manager.get(f'{target_node}/wellknown', timeout=shared_config('timeout'))
     response = response.json()
 
     if response['status'] == 'success':
@@ -146,7 +146,7 @@ def submit_protocol_to_public_db(protocol_id, protocol_data):
         'name': protocol_data['name'],
         'description': protocol_data['description'],
         'protocol': protocol_data['protocol']
-    })
+    }, timeout=shared_config('timeout'))
 
     source_url = f'{get_protocol_db_url()}/protocol?' + urllib.parse.urlencode({
             'id': protocol_id
@@ -172,7 +172,7 @@ def negotiate_protocol(task_type, target_node):
     response = request_manager.post(f'{target_node}/registerNegotiatedProtocol', json={
         'protocolHash': protocol_id,
         'protocolSources': [source_url]
-    })
+    }, timeout=shared_config('timeout'))
 
     if response.status_code != 200:
         raise Exception('Failed to share the protocol with the target:', response.text)
@@ -193,10 +193,10 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol, num_
     for protocol_id, sources in target_protocols.items():
         if protocol_id not in PROTOCOL_INFOS:
             for source in sources:
-                response = request_manager.get(source)
+                response = request_manager.get(source, timeout=shared_config('timeout'))
                 protocol_document = response.text
 
-                metadata = request_manager.get(source.replace('protocol', 'metadata')).json()
+                metadata = request_manager.get(source.replace('protocol', 'metadata'), timeout=shared_config('timeout')).json()
 
                 if metadata['status'] != 'success':
                     print('Failed to retrieve metadata:', metadata)
@@ -235,7 +235,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol, num_
     # Note: in a real system, we wouldn't get all protocols from the database, but rather
     # only the ones likely to be suitable for the task
 
-    public_protocols_response = request_manager.get(get_protocol_db_url()).json()
+    public_protocols_response = request_manager.get(get_protocol_db_url(), timeout=shared_config('timeout')).json()
 
     if public_protocols_response['status'] == 'success':
         public_protocols = [x for x in public_protocols_response['protocols']]
@@ -256,7 +256,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol, num_
         })
         print('URI:', uri)
 
-        protocol_document_response = request_manager.get(uri)
+        protocol_document_response = request_manager.get(uri, timeout=shared_config('timeout'))
 
         if protocol_document_response.status_code == 200:
             protocol_document = protocol_document_response.text
@@ -278,7 +278,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol, num_
 
     
     # If there are still none, check if we have talked enough times with the target to warrant a new protocol
-    requires_negotiation_response = request_manager.get(f'{target_node}/requiresNegotiation')
+    requires_negotiation_response = request_manager.get(f'{target_node}/requiresNegotiation', timeout=shared_config('timeout'))
 
     requires_negotiation = requires_negotiation_response.json()['requiresNegotiation']
 
