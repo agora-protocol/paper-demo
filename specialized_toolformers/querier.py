@@ -14,11 +14,7 @@ from pathlib import Path
 from toolformers.base import Tool, StringParameter, parameter_from_openai_api
 from toolformers.unified import make_default_toolformer
 
-from proto.marshal.collections.repeated import RepeatedComposite
-from proto.marshal.collections.maps import MapComposite
-
-
-from utils import load_protocol_document, send_raw_query
+from utils import load_protocol_document, send_raw_query, serialize_gemini_data
 
 PROTOCOL_QUERIER_PROMPT = 'You are QuerierGPT. You will receive a protocol document detailing how to query a service. Reply with a structured query which can be sent to the service.' \
     'Only reply with the query itself, with no additional information or escaping. Similarly, do not add any additional whitespace or formatting.'
@@ -69,31 +65,6 @@ def get_output_parameters(task_schema):
     
     return parameters
 
-def clear_repeated_composite(output):
-    # RepeatedComposite is a Gemini object that is not JSON-serializable, so we need to serialize it manually
-    if isinstance(output, RepeatedComposite):
-        print('RepeatedComposite:', output)
-        parsed = []
-        for i in range(len(output)):
-            parsed.append(clear_repeated_composite(output[i]))
-        return parsed
-    elif isinstance(output, MapComposite):
-        print('MapComposite:', output)
-
-        parsed = {}
-        for key in output:
-            parsed[key] = clear_repeated_composite(output[key])
-
-        return parsed
-
-    elif isinstance(output, list):
-        for i, item in enumerate(output):
-            output[i] = clear_repeated_composite(item)
-    elif isinstance(output, dict):
-        for key, value in output.items():
-            output[key] = clear_repeated_composite(value)
-    return output
-
 def handle_conversation(prompt, message, target_node, protocol_id, source, output_parameters):
     has_sent_query = False
     
@@ -119,7 +90,7 @@ def handle_conversation(prompt, message, target_node, protocol_id, source, outpu
         if found_output is not None:
             return 'You have already registered an output. You cannot register another one.'
 
-        output = clear_repeated_composite(kwargs)
+        output = serialize_gemini_data(kwargs)
 
         output = json.dumps(kwargs)
 

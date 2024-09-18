@@ -6,8 +6,9 @@ import json
 from pathlib import Path
 import urllib
 
-
 import requests as request_manager
+from proto.marshal.collections.repeated import RepeatedComposite
+from proto.marshal.collections.maps import MapComposite
 
 def compute_hash(s):
     # Hash a string using SHA-1 and return the base64 encoded result
@@ -150,3 +151,27 @@ def shared_config(key, fallback='no_fallback'):
         return SHARED_CONFIG[key]
     else:
         return SHARED_CONFIG.get(key, fallback)
+
+def serialize_gemini_data(output):
+    # Some Gemini objects are not JSON-serializable, so we need to serialize them manually
+    if isinstance(output, RepeatedComposite):
+        print('RepeatedComposite:', output)
+        parsed = []
+        for i in range(len(output)):
+            parsed.append(serialize_gemini_data(output[i]))
+        return parsed
+    elif isinstance(output, MapComposite):
+        print('MapComposite:', output)
+
+        parsed = {}
+        for key in output:
+            parsed[key] = serialize_gemini_data(output[key])
+
+        return parsed
+    elif isinstance(output, list):
+        for i, item in enumerate(output):
+            output[i] = serialize_gemini_data(item)
+    elif isinstance(output, dict):
+        for key, value in output.items():
+            output[key] = serialize_gemini_data(value)
+    return output
