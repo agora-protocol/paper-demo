@@ -11,8 +11,9 @@ import json
 import os
 from pathlib import Path
 
-from toolformers.base import Tool, StringParameter
+from toolformers.base import Tool, StringParameter, parameter_from_openai_api
 from toolformers.unified import make_default_toolformer
+
 
 from utils import load_protocol_document, send_raw_query
 
@@ -51,7 +52,20 @@ def parse_and_handle_query(query, target_node, protocol_id, source):
 
     return 'Error calling the tool: ' + response.text
 
-def handle_conversation(prompt, message, target_node, protocol_id, source):
+def get_output_parameters(task_schema):
+    output_schema = task_schema['output']
+    required_parameters = output_schema['required']
+
+    parameters = []
+
+    for parameter_name, parameter_schema in output_schema['properties'].items():
+        parameter = parameter_from_openai_api(parameter_name, parameter_schema, parameter_name in required_parameters)
+        parameters.append(parameter)
+    
+    return parameters
+
+
+def handle_conversation(prompt, message, target_node, protocol_id, source, output_parameters):
     has_sent_query = False
     
     def send_query_internal(query):
@@ -82,12 +96,15 @@ def handle_conversation(prompt, message, target_node, protocol_id, source):
         if found_output is not None:
             return 'You have already registered an output. You cannot register another one.'
 
+
+        output = json.dumps(kwargs)
+
         found_output = output
         return 'Done'
 
-    register_output_tool = Tool('deliverStructuredOutput', 'Deliver the structured output to the machine as a string.', [
-        StringParameter('output', 'The structured output to deliver to the machine, as a JSON string formatted according to the output schema', True)
-    ], register_output)
+    register_output_tool = Tool('deliverStructuredOutput', 'Deliver the structured output to the machine.',
+        output_parameters
+    , register_output)
 
     toolformer = make_default_toolformer(prompt, [send_query_tool, register_output_tool])
 
@@ -111,10 +128,12 @@ def send_query_with_protocol(task_schema, task_data, target_node, protocol_id, s
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'protocol_documents'
     protocol_document = load_protocol_document(base_folder, protocol_id)
     query_description = construct_query_description(protocol_document, task_schema, task_data)
+    output_parameters = get_output_parameters(task_schema)
 
-    return handle_conversation(PROTOCOL_QUERIER_PROMPT, query_description, target_node, protocol_id, source)
+    return handle_conversation(PROTOCOL_QUERIER_PROMPT, query_description, target_node, protocol_id, source, output_parameters)
 
 def send_query_without_protocol(task_schema, task_data, target_node):
     query_description = construct_query_description(None, task_schema, task_data)
+    output_parameters = get_output_parameters(task_schema)
 
-    return handle_conversation(NL_QUERIER_PROMPT, query_description, target_node, None, None)
+    return handle_conversation(NL_QUERIER_PROMPT, query_description, target_node, None, None, output_parameters)
