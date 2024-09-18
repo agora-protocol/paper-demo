@@ -272,7 +272,10 @@ class Tool:
     def as_executable_function(self):
         # Create an actual function that can be called
         def f(*args, **kwargs):
-            return self.function(*args, **kwargs)
+            print('Routine called tool', self.name, 'with args', args, 'and kwargs', kwargs)
+            response = self.function(*args, **kwargs)
+            print('Tool', self.name, 'returned:', response)
+            return response
         
         return f
 

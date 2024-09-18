@@ -37,9 +37,10 @@ class GeminiConversation(Conversation):
                 print(e)
                 if '429' in str(e):
                     print('Rate limit exceeded. Waiting with random exponential backoff.')
-                    time.sleep(random() * (exponential_backoff_higher - exponential_backoff_lower) + exponential_backoff_lower)
-                    exponential_backoff_lower *= 2
-                    exponential_backoff_higher *= 2
+                    if i < 4:
+                        time.sleep(random() * (exponential_backoff_higher - exponential_backoff_lower) + exponential_backoff_lower)
+                        exponential_backoff_lower *= 2
+                        exponential_backoff_higher *= 2
                 elif 'candidates[0]' in traceback.format_exc():
                     # When Gemini has nothing to say, it raises an error with this message
                     print('No response')
@@ -47,7 +48,7 @@ class GeminiConversation(Conversation):
                 elif '500' in str(e):
                     # Sometimes Gemini just decides to return a 500 error for absolutely no reason. Retry.
                     print('500 error')
-                    print(e)
+                    time.sleep(5)
                     traceback.print_exc()
                 else:
                     raise e

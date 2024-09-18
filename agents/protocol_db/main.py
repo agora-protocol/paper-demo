@@ -15,7 +15,7 @@ import requests as request_manager
 
 import json
 
-from utils import compute_hash
+from utils import compute_hash, shared_config
 
 app = Flask(__name__)
 
@@ -107,12 +107,12 @@ def get_metadata():
 def trigger_share():
     for other_db in OTHER_DBS:
         print('Checking known protocols of:', other_db)
-        known_protocols = request_manager.get(f'{other_db}/').json()
+        known_protocols = request_manager.get(f'{other_db}/', timeout=shared_config('timeout')).json()
 
         for protocol_id, protocol_data in PROTOCOLS.items():
             if protocol_id not in known_protocols:
                 print('Sharing protocol:', protocol_id)
-                request_manager.post(f'{other_db}/', json=protocol_data)
+                request_manager.post(f'{other_db}/', json=protocol_data, timeout=shared_config('timeout'))
     
     return json.dumps({
         'status': 'success'
