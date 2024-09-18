@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import traceback
+from threading import Lock
 
 if os.environ.get('STORAGE_PATH') is None:
     os.environ['STORAGE_PATH'] = str(Path().parent / 'storage' / 'user')
@@ -32,6 +33,8 @@ NUM_CONVERSATIONS_FOR_ROUTINE = -1
 from flask import Flask, request
 
 app = Flask(__name__)
+
+mutex = Lock()
 
 def call_using_implementation(task_type, task_schema, protocol_id, task_data, target_node):
     def send_to_server(query):
@@ -82,8 +85,9 @@ def main():
     else:
         print('Query ID:', query_id)
 
-    with use_query_id(query_id):
-        response = run_random_task()
+    with mutex:
+        with use_query_id(query_id):
+            response = run_random_task()
 
     print('Response:', response, flush=True)
     save_memory()
@@ -160,8 +164,9 @@ def custom_run():
 
     print('Custom run:', task_type, task_data, target_server)
 
-    with use_query_id(query_id):
-        return run_task(task_type, task_data, target_server)
+    with mutex:
+        with use_query_id(query_id):
+            return run_task(task_type, task_data, target_server)
 
 def init():
     load_config(os.environ.get('AGENT_ID'))

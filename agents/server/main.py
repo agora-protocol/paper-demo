@@ -11,6 +11,7 @@ if os.environ.get('STORAGE_PATH') is None:
     os.environ['STORAGE_PATH'] = str(Path().parent / 'storage' / 'server')
 
 import json
+from threading import Lock
 import traceback
 
 from flask import Flask, request
@@ -29,10 +30,12 @@ from agents.server.config import TOOLS, get_additional_info, load_config
 
 app = Flask(__name__)
 
-NUM_CONVERSATIONS_FOR_ROUTINE = -1
+NUM_CONVERSATIONS_FOR_ROUTINE = -1# 1e6
 
-NUM_CONVERSATIONS_FOR_PROTOCOL = 5
+NUM_CONVERSATIONS_FOR_PROTOCOL = 5 #1e6
 no_protocol_conversation_counter = 0
+
+mutex = Lock()
 
 def call_implementation(protocol_hash, query):
     base_folder = Path(os.environ.get('STORAGE_PATH')) / 'routines'
@@ -154,8 +157,9 @@ def main():
     else:
         print('Query ID:', query_id)
 
-    with use_query_id(query_id):
-        response = handle_query(protocol_hash, protocol_sources, data['body'])
+    with mutex:
+        with use_query_id(query_id):
+            response = handle_query(protocol_hash, protocol_sources, data['body'])
 
     print('Final response:', response)
     return response
