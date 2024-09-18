@@ -7,9 +7,8 @@ import dotenv
 dotenv.load_dotenv()
 
 import json
-import os
 
-from toolformers.base import Tool, StringParameter
+from toolformers.base import Tool, ArrayParameter
 from toolformers.unified import make_default_toolformer
 
 CHECKER_TASK_PROMPT = 'You are ProtocolCheckerGPT. Your task is to look at the provided protocol and determine if it is expressive ' \
@@ -30,7 +29,7 @@ def check_protocol_for_task(protocol_document, task_schema):
 
 FILTER_TASK_PROMPT = 'You are ProtocolFilterGPT. Your task is to look at the provided protocols (you will only see the name and a short description) and ' \
     'determine which protocols might be suitable for the given task (of which you\'ll receive a JSON schema). Think about it and at the end call the "pickProtocols" tool ' \
-    'with a JSON-formatted list of the protocol IDs that you think are suitable. If no protocols are suitable, call it anyway with an empty list.'
+    'with a list of the protocol IDs that you think are suitable. If no protocols are suitable, call it anyway with an empty list.'
 
 def filter_protocols_for_task(protocol_metadatas, task_schema):
     if len(protocol_metadatas) == 0:
@@ -46,29 +45,43 @@ def filter_protocols_for_task(protocol_metadatas, task_schema):
 
     def register_chosen_protocols(protocolIds):
         nonlocal chosen_protocols
-        chosen_protocols = json.loads(protocolIds)
+
+        if chosen_protocols is not None:
+            return 'You have already chosen the protocols. You cannot choose them again.'
+    
+        try:
+            protocolIds = [int(protocolId) for protocolId in protocolIds]
+        except:
+            return 'The protocol IDs must be integers'
+
+        chosen_protocols = protocolIds
 
         return 'done'
 
     pick_protocol_tool = Tool(
         'pickProtocols', 'Pick the protocols that are suitable for the task', [
-            StringParameter('protocolIds', 'The IDs of the protocols that are suitable for the task, as a JSON-formatted list of integers. Use an empty list if none are suitable.', True)
+            ArrayParameter('protocolIds', 'The IDs of the protocols that are suitable for the task. Use an empty list if none are suitable.', True, {
+                'type': 'integer'
+            })
         ],
         register_chosen_protocols
     )
 
-    toolformer = make_default_toolformer(CHECKER_TASK_PROMPT, [pick_protocol_tool])
+    toolformer = make_default_toolformer(FILTER_TASK_PROMPT, [pick_protocol_tool])
 
     conversation = toolformer.new_conversation(category='protocolChecking')
 
     message = 'The list of protocols is the following:\n\n' + protocol_list + '\n\nThe task is the following:\n\n' + json.dumps(task_schema)
 
-    while True:
+    for i in range(5):
         _ = conversation.chat(message, print_output=True)
 
         if chosen_protocols is not None:
             break
         message = "You haven't called the protocolIds tool yet. Please call it with the IDs of the protocols you think are suitable"
+
+    if chosen_protocols is None:
+        return protocol_metadatas
 
     return [
         protocol_metadatas[i - 1] for i in chosen_protocols
