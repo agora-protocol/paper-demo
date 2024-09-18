@@ -100,6 +100,10 @@ def categorize_protocol(protocol_id, task_type):
 def prefilter_protocols(protocol_ids, task_type):
     print('Prefiltering protocols:', protocol_ids, 'for task type:', task_type)
 
+    if len(protocol_ids) <= 1:
+        # No point in prefiltering if there's only one protocol
+        return protocol_ids
+
     protocol_metadatas = []
 
     for protocol_id in protocol_ids:
