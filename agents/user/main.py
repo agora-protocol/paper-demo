@@ -112,7 +112,7 @@ def run_task(task_type, task_data, target_server):
     task_schema = TASK_SCHEMAS[task_type]
     target_node = NODE_URLS[target_server]
 
-    protocol_id = decide_protocol(task_type, target_node, NUM_CONVERSATIONS_FOR_PROTOCOL)
+    protocol_id = decide_protocol(task_type, target_node, NUM_CONVERSATIONS_FOR_PROTOCOL, NUM_CONVERSATIONS_FOR_NEGOTIATED_PROTOCOL)
     if protocol_id is None:
         source = None
     else:

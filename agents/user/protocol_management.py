@@ -175,7 +175,7 @@ def negotiate_protocol(task_type, target_node):
 
     return protocol_id
 
-def decide_protocol(task_type, target_node, num_conversations_for_protocol):
+def decide_protocol(task_type, target_node, num_conversations_for_protocol, num_conversations_for_negotiated_protocol):
     target_protocols = query_protocols(target_node)
     print('Target protocols:', target_protocols)
 
@@ -215,6 +215,10 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
         if suitable:
             return protocol_id
+
+    if get_num_conversations(task_type, target_node) < num_conversations_for_protocol:
+        # No point in exploring potential protocols (outside of the explicitly supported ones) if we haven't talked enough times with the target
+        return None
 
     # If there are still none, check if we have in our memory a suitable protocol
 
@@ -274,7 +278,7 @@ def decide_protocol(task_type, target_node, num_conversations_for_protocol):
 
     requires_negotiation = requires_negotiation_response.json()['requiresNegotiation']
 
-    if get_num_conversations(task_type, target_node) > num_conversations_for_protocol or requires_negotiation:
+    if get_num_conversations(task_type, target_node) >= num_conversations_for_negotiated_protocol or requires_negotiation:
         protocol_id = negotiate_protocol(task_type, target_node)
         # Negotiated protocols are always suitable
         PROTOCOL_INFOS[protocol_id]['suitability_info'][task_type] = Suitability.ADEQUATE
