@@ -49,7 +49,7 @@ def add_mongo_tools(server_name):
     def query_database(collection, query):
         query = json.loads(query)
         output = mongo.query_database(server_name, collection, query)
-        print(output)
+        print('MongoDB query database output:', output)
         return json.dumps(output)
 
     find_in_database_tool = Tool('find_in_database', 'Find in a database (MongoDB). Returns a JSON formatted string with the result.', [

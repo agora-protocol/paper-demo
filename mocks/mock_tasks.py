@@ -74,7 +74,7 @@ def buyTickets():
     return {
         'date': _get_movie_date(),
         'hour': random.choice([18, 20]),
-        'numTickets': random.randint(1, 10),
+        'numTickets': random.randint(1, 6),
         'movie': random.choice(MOVIES)
     }
 

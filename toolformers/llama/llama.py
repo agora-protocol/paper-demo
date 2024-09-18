@@ -14,7 +14,7 @@ class LlamaConversation(Conversation):
     def chat(self, message, role='user', print_output=True):
         if role != 'user':
             raise ValueError('Role must be "user"')
-        
+
         agent_id = os.environ.get('AGENT_ID', None)
         
         start_time = datetime.datetime.now()

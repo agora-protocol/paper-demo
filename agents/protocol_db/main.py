@@ -103,7 +103,7 @@ def get_metadata():
         }
     })
 
-@app.route('/triggerShare', methods=['POST'])
+@app.route('/synchronize', methods=['POST'])
 def trigger_share():
     for other_db in OTHER_DBS:
         print('Checking known protocols of:', other_db)

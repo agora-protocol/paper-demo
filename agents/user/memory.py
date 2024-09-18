@@ -14,7 +14,6 @@ PROTOCOL_INFOS = {}
 # Indexed by task type and target node
 NUM_CONVERSATIONS = {}
 
-
 def load_memory():
     storage_path = Path(os.environ.get('STORAGE_PATH')) / 'memory.json'
     if not Path(storage_path).exists():

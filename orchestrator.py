@@ -52,8 +52,11 @@ def launch_instance(tmux_server, instance_type, model_type, agent_id, base_log_p
     session = tmux_server.new_session(session_name=agent_id, kill_session=True)
     pane = session.active_window.active_pane
     port = id_to_url_mappings[agent_id].split(':')[-1]
-    storage_path = base_storage_path / instance_type / agent_id
-    log_path = base_log_path / instance_type / (agent_id + '.log')
+
+    storage_instance_type = 'helper' if 'helper' in agent_id else instance_type
+
+    storage_path = base_storage_path / storage_instance_type / agent_id
+    log_path = base_log_path / storage_instance_type / (agent_id + '.log')
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
     model_type_info = f'MODEL_TYPE={model_type}' if model_type is not None else ''
