@@ -244,7 +244,7 @@ class Tool:
                 nl += '\t' + parameter.as_natural_language() + '\n'
 
         if self.output_schema is not None:
-            nl += f'\nOutput schema: {json.dumps(self.output_schema, indent=2)}'
+            nl += f'\Returns a dictionary with schema: {json.dumps(self.output_schema, indent=2)}'
         
         return nl
 
@@ -265,8 +265,7 @@ class Tool:
                 documented_python += '\t' + parameter.as_documented_python() + '\n'
         
         if self.output_schema is not None:
-            documented_python += f'\nOutput schema: {json.dumps(self.output_schema, indent=2)}'
-            documented_python += '\nKeep in mind that the output is a JSON formatted string, so you might need to parse it.'
+            documented_python += f'\Returns a dictionary with schema: {json.dumps(self.output_schema, indent=2)}'
 
         return documented_python
 

@@ -171,7 +171,7 @@ def prepare_mock_tool(tool_schema, internal_name, schema_name):
         print('Running mock tool:', internal_name, 'Schema name:', schema_name, args, kwargs)
         if schema_name not in mock_tools.__dict__:
             raise ValueError('Unknown mock tool schema:', schema_name)
-        response = json.dumps(mock_tools.__dict__[schema_name](*args, **kwargs))
+        response = mock_tools.__dict__[schema_name](*args, **kwargs)
         print(f'Mock tool {internal_name} response:', response)
         return response
 
@@ -217,7 +217,7 @@ def prepare_external_tool(tool_schema, internal_name, external_server_name):
         if response.status_code == 200:
             parsed_response = json.loads(response.text)
 
-            return json.dumps(parsed_response)
+            return parsed_response
             #if parsed_response['status'] == 'success':
             #    return parsed_response['body']
         return 'Failed to call the tool: ' + response.text

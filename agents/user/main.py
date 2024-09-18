@@ -45,7 +45,11 @@ def call_using_implementation(task_type, task_schema, protocol_id, task_data, ta
             parsed_response = json.loads(response.text)
 
             if parsed_response['status'] == 'success':
-                return parsed_response['body']
+                body = parsed_response['body']
+                if isinstance(body, dict):
+                    # Sometimes this gets returned as a dict instead of a string
+                    return json.dumps(body)
+                return body
         
         raise Exception('Error calling the server:', response.text)
 
