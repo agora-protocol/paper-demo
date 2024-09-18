@@ -5,6 +5,7 @@ import dotenv
 dotenv.load_dotenv()
 
 import json
+import multiprocessing as mp
 from pathlib import Path
 import time
 
@@ -13,6 +14,8 @@ import requests as request_manager
 
 import databases.mongo as mongo
 import databases.sql as sql
+
+NUM_WORKERS = 1
 
 
 def create_id_to_url_mappings(config):
@@ -57,6 +60,26 @@ def launch_instance(tmux_server, instance_type, model_type, agent_id, base_log_p
 
     pane.send_keys(f'PYTHONUNBUFFERED=1 STORAGE_PATH={storage_path} {model_type_info} AGENT_ID={agent_id} flask --app agents/{instance_type}/main.py run --port {port} 2>&1 | tee {log_path}')
 
+def run_query(query_id, user_id, user_url, target, task, data):
+    if task == 'synchronization':
+        print('Synchronizing', user_id)
+        response = request_manager.post(user_url + '/synchronize')
+    else:
+        print(f'Sending task {task} to {target} for user {user_id} with data {data}')
+        response = request_manager.post(user_url +'/customRun', json={
+            'queryId': query_id,
+            'targetServer': target,
+            'type': task,
+            'data': data
+        })
+    print('Response from', user_id, ':', response.text)
+    return response.text
+
+def run_query_wrapped(args):
+    return run_query(*args)
+
+def run_asynchronous(actions):
+    return mp.Pool(processes=NUM_WORKERS).map_async(run_query_wrapped, actions).get()
 
 def main():
     # 1. Reset the databases and the memory (optional)
@@ -122,15 +145,22 @@ def main():
 
     with open('actions.json', 'r') as f:
         actions = json.load(f)
+
+    query_id_prefix = 'geminitest_'
+
+    parsed_actions = []
     
-    for i, (user_id, (target, task), data) in enumerate(actions):
-        response = request_manager.post(id_to_url_mappings[user_id] +'/customRun', json={
-            'queryId': str(i),
-            'targetServer': target,
-            'type': task,
-            'data': data
-        })
-        print('Response from', user_id, ':', response.text)
+    query_id_counter = 0
+    for user_id, (target, task), data in list(actions)[:10]:
+        user_url = id_to_url_mappings[user_id]
+        query_id = query_id_prefix + str(query_id_counter)
+        parsed_actions.append(
+            (query_id, user_id, user_url, target, task, data)
+        )
+        if task != 'synchronization':
+            query_id_counter += 1
+    
+    run_asynchronous(parsed_actions)
 
 if __name__ == '__main__':
     main()
