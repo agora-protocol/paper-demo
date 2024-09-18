@@ -4,6 +4,7 @@ import json
 import os
 
 from toolformers.unified import make_default_toolformer
+from utils import extract
 
 TASK_PROGRAMMER_PROMPT = '''
 You are ProtocolProgrammerGPT. You will act as an intermediate between a machine (that has a certain input and output schema in JSON) \
@@ -64,12 +65,22 @@ def reply(query):
 def write_routine_for_task(task_schema, protocol_document):
     toolformer = make_default_toolformer(TASK_PROGRAMMER_PROMPT, [])
     conversation = toolformer.new_conversation(category='programming')
-    reply = conversation.chat('JSON schema:\n\n' + json.dumps(task_schema) + '\n\n' + 'Protocol document:\n\n' + protocol_document, print_output=True)
+    message = 'JSON schema:\n\n' + json.dumps(task_schema) + '\n\n' + 'Protocol document:\n\n' + protocol_document
 
-    if reply.find('<IMPLEMENTATION>') == -1 or reply.find('</IMPLEMENTATION>') == -1:
-        raise Exception('No implementation found')
-    
-    implementation = reply[reply.find('<IMPLEMENTATION>') + len('<IMPLEMENTATION>'):reply.find('</IMPLEMENTATION>')].strip()
+    for i in range(5):
+        reply = conversation.chat(message, print_output=True)
+
+        implementation = extract(reply, '<IMPLEMENTATION>', '</IMPLEMENTATION>')
+
+        if implementation is not None:
+            break
+
+        message = 'You have not provided an implementation yet. Please provide one by surrounding it in the tags <IMPLEMENTATION> and </IMPLEMENTATION>.'
+
+    implementation = implementation.strip()
+
+    # Sometimes the LLM leaves the Markdown formatting in the implementation
+    implementation = implementation.replace('```python', '').replace('```', '').strip()
 
     implementation = implementation.replace('def send_query(', 'def run(')
 
@@ -92,17 +103,14 @@ def write_routine_for_tools(tools, protocol_document, additional_info):
     for i in range(5):
         reply = conversation.chat(message, print_output=True)
 
-        if reply.lower().find('<implementation>') != -1 and reply.lower().find('</implementation>') != -1:
+        implementation = extract(reply, '<IMPLEMENTATION>', '</IMPLEMENTATION>')
+
+        if implementation is not None:
             break
+
         message = 'You have not provided an implementation yet. Please provide one by surrounding it in the tags <IMPLEMENTATION> and </IMPLEMENTATION>.'
 
-    start_position = reply.lower().find('<implementation>')
-    end_position = reply.lower().find('</implementation>')
-
-    if start_position == -1 or end_position == -1:
-        raise Exception('No implementation found')
-    
-    implementation = reply[start_position + len('<IMPLEMENTATION>'):end_position].strip()
+    implementation = implementation.strip()
 
     # Sometimes the LLM leaves the Markdown formatting in the implementation
     implementation = implementation.replace('```python', '').replace('```', '').strip()
