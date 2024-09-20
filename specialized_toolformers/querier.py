@@ -11,6 +11,8 @@ import json
 import os
 from pathlib import Path
 
+import sys
+
 from toolformers.base import Tool, StringParameter, parameter_from_openai_api
 from toolformers.unified import make_default_toolformer
 
@@ -66,14 +68,24 @@ def get_output_parameters(task_schema):
     return parameters
 
 def handle_conversation(prompt, message, target_node, protocol_id, source, output_parameters):
-    has_sent_query = False
+    sent_query_counter = 0
     
     def send_query_internal(query):
         print('Sending query:', query)
-        nonlocal has_sent_query
-        if has_sent_query:
+        nonlocal sent_query_counter
+
+        if sent_query_counter > 50:
+            # All hope is lost, crash
+            sys.exit(-2)
+        elif sent_query_counter > 10:
+            # LLM is not listening, throw an exception
+            raise Exception('Too many attempts to send queries. Exiting.')
+        elif sent_query_counter > 5:
+            # LLM is not listening, issue a warning
+            return 'You have attempted to send too many queries. Finish the message and allow the user to speak, or the system will crash.'
+        elif sent_query_counter > 0:
             return 'You have already sent a query. You cannot send another one.'
-        has_sent_query = True
+        sent_query_counter += 1
         return parse_and_handle_query(query, target_node, protocol_id, source)
 
     send_query_tool = Tool('sendQuery', 'Send a query to the other service based on a protocol document.', [
@@ -81,13 +93,24 @@ def handle_conversation(prompt, message, target_node, protocol_id, source, outpu
     ], send_query_internal)
 
     found_output = None
+    registered_output_counter = 0
 
     def register_output(**kwargs):
         print('Registering output:', kwargs)
 
         nonlocal found_output
+        nonlocal registered_output_counter
 
-        if found_output is not None:
+        if registered_output_counter > 50:
+            # All hope is lost, crash
+            sys.exit(-2)
+        elif registered_output_counter > 10:
+            # LLM is not listening, raise an exception
+            raise Exception('Too many attempts to register outputs. Exiting.')
+        elif registered_output_counter > 5:
+            # LLM is not listening, issue a warning
+            return 'You have attempted to register too many outputs. Finish the message and allow the user to speak, or the system will crash.'
+        elif registered_output_counter > 0:
             return 'You have already registered an output. You cannot register another one.'
 
         output = serialize_gemini_data(kwargs)
@@ -95,6 +118,7 @@ def handle_conversation(prompt, message, target_node, protocol_id, source, outpu
         output = json.dumps(kwargs)
 
         found_output = output
+        registered_output_counter += 1
         return 'Done'
 
     register_output_tool = Tool('deliverStructuredOutput', 'Deliver the structured output to the machine.',
@@ -112,7 +136,7 @@ def handle_conversation(prompt, message, target_node, protocol_id, source, outpu
             break
 
         # If we haven't sent a query yet, we can't proceed
-        if not has_sent_query:
+        if sent_query_counter == 0:
             message = 'You must send a query before delivering the structured output.'
         elif found_output is None:
             message = 'You must deliver the structured output.'
