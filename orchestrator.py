@@ -185,16 +185,19 @@ def main():
     parsed_actions = []
     
     query_id_counter = 0
-    for user_id, (target, task), data in list(actions)[:10]:
+    for user_id, (target, task), data in list(actions):
         user_url = id_to_url_mappings[user_id]
-        query_id = query_id_prefix + str(query_id_counter)
+        query_id = query_id_prefix + str(query_id_counter) + ('_synchronization' if task == 'synchronization' else '')
         parsed_actions.append(
             (query_id, user_id, user_url, target, task, data)
         )
         if task != 'synchronization':
             query_id_counter += 1
-    
-    run_asynchronous(parsed_actions)
+
+    results = run_asynchronous(parsed_actions)
+
+    with open('results.json', 'w') as f:
+        json.dump(results, f, indent=2)
 
 if __name__ == '__main__':
     main()
