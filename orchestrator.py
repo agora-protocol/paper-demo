@@ -4,9 +4,10 @@ sys.path.append('.')
 import dotenv
 dotenv.load_dotenv()
 
+import concurrent.futures
 import json
-import multiprocessing as mp
 from pathlib import Path
+import queue
 import time
 
 import libtmux
@@ -15,7 +16,7 @@ import requests as request_manager
 import databases.mongo as mongo
 import databases.sql as sql
 
-NUM_WORKERS = 1
+NUM_WORKERS = 20
 
 
 def create_id_to_url_mappings(config):
@@ -68,7 +69,7 @@ def run_query(query_id, user_id, user_url, target, task, data):
         print('Synchronizing', user_id)
         response = request_manager.post(user_url + '/synchronize')
     else:
-        print(f'Sending task {task} to {target} for user {user_id} with data {data}')
+        print(f'{query_id}: Sending task {task} to {target} for user {user_id} with data {data}')
         response = request_manager.post(user_url +'/customRun', json={
             'queryId': query_id,
             'targetServer': target,
@@ -78,11 +79,41 @@ def run_query(query_id, user_id, user_url, target, task, data):
     print('Response from', user_id, ':', response.text)
     return response.text
 
-def run_query_wrapped(args):
-    return run_query(*args)
+def process_task(worker_id, task):
+    result = run_query(*task)
+    return result
+
+def worker(worker_id, task_queue, result_list):
+    while not task_queue.empty():
+        try:
+            index, task = task_queue.get_nowait()
+            result = process_task(worker_id, task)
+            result_list[index] = result  # Store the result at the original index
+            task_queue.task_done()
+        except queue.Empty:
+            break
+
+def fifo_task_processor(task_list, num_workers):
+    # Create a queue and add tasks with their indices to it
+    task_queue = queue.Queue()
+    result_list = [None] * len(task_list)  # Placeholder for results in original order
+
+    for index, task in enumerate(task_list):
+        task_queue.put((index, task))
+
+    # Create a thread pool with the specified number of workers
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
+        # Start the worker threads
+        futures = [executor.submit(worker, i, task_queue, result_list) for i in range(num_workers)]
+        
+        # Wait for all tasks to be processed
+        for future in concurrent.futures.as_completed(futures):
+            future.result()
+
+    return result_list
 
 def run_asynchronous(actions):
-    return mp.Pool(processes=NUM_WORKERS).map_async(run_query_wrapped, actions).get()
+    return fifo_task_processor(actions, NUM_WORKERS)
 
 def main():
     # 1. Reset the databases and the memory (optional)
