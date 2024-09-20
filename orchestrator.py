@@ -17,7 +17,7 @@ import databases.mongo as mongo
 import databases.sql as sql
 
 NUM_WORKERS = 20
-
+TIMEOUT = 1200 # 20 minutes
 
 def create_id_to_url_mappings(config):
     mapping = {}
@@ -67,7 +67,7 @@ def launch_instance(tmux_server, instance_type, model_type, agent_id, base_log_p
 def run_query(query_id, user_id, user_url, target, task, data):
     if task == 'synchronization':
         print('Synchronizing', user_id)
-        response = request_manager.post(user_url + '/synchronize')
+        response = request_manager.post(user_url + '/synchronize', timeout=TIMEOUT)
     else:
         print(f'{query_id}: Sending task {task} to {target} for user {user_id} with data {data}')
         response = request_manager.post(user_url +'/customRun', json={
@@ -75,7 +75,7 @@ def run_query(query_id, user_id, user_url, target, task, data):
             'targetServer': target,
             'type': task,
             'data': data
-        })
+        }, timeout=TIMEOUT)
     print('Response from', user_id, ':', response.text)
     return response.text
 
