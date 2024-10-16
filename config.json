@@ -1,0 +1,2125 @@
+{
+  "shared": {
+    "timeout": 1000,
+    "backoff_lower": 15,
+    "backoff_upper": 30,
+    "backoff_factor": 2,
+    "backoff_retries": 4
+  },
+  "orchestration": {
+    "startingPorts": {
+      "user": 5000,
+      "server": 6000,
+      "protocolDb": 7000
+    }
+  },
+  "protocolDbs": {
+    "protocolDb1": {
+      "peers": [
+        "protocolDb2"
+      ]
+    },
+    "protocolDb2": {
+      "peers": [
+        "protocolDb1",
+        "protocolDb3"
+      ]
+    },
+    "protocolDb3": {
+      "peers": [
+        "protocolDb2"
+      ]
+    }
+  },
+  "toolSchemas": {
+    "temperature": {
+      "description": "A tool to get the temperature forecast for a given day",
+      "input": {
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The location for which you want the temperature forecast. Fuzzy matching is allowed."
+          },
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the temperature forecast (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date",
+          "location"
+        ]
+      },
+      "output": {
+        "properties": {
+          "temperature": {
+            "type": "number",
+            "description": "The predicted temperature for that day in \u00b0C"
+          }
+        },
+        "required": [
+          "temperature"
+        ]
+      }
+    },
+    "todayWeather": {
+      "description": "A tool to get the weather forecast for today",
+      "input": {
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The location for which you want the temperature forecast. Fuzzy matching is allowed."
+          }
+        },
+        "required": [
+          "location"
+        ]
+      },
+      "output": {
+        "properties": {
+          "weather": {
+            "type": "string",
+            "description": "The predicted weather for today",
+            "enum": [
+              "sunny",
+              "cloudy",
+              "rainy",
+              "snowy"
+            ]
+          }
+        },
+        "required": [
+          "weather"
+        ]
+      }
+    },
+    "requestDeliveryDriver": {
+      "description": "A tool to request a food delivery at a certain location",
+      "input": {
+        "properties": {
+          "restaurant": {
+            "type": "string",
+            "description": "The name of the restaurant from which the food is being delivered"
+          },
+          "address": {
+            "type": "string",
+            "description": "The address to which the food should be delivered"
+          }
+        },
+        "required": [
+          "address"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the delivery request.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "isOpen": {
+      "description": "A tool to determine if the linked restaurant is open.",
+      "input": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date for which you want to know if the restaurant is open (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "output": {
+        "properties": {
+          "isOpen": {
+            "type": "string",
+            "description": "\"yes\" if the restaurant is open, \"no\" otherwise"
+          }
+        },
+        "required": [
+          "isOpen"
+        ]
+      }
+    },
+    "weather": {
+      "description": "A tool to get the weather forecast for a given day",
+      "input": {
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The location for which you want the temperature forecast. Fuzzy matching is allowed"
+          },
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the weather forecast (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "output": {
+        "properties": {
+          "temperature": {
+            "type": "number",
+            "description": "The predicted temperature for that day in \u00b0C"
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "The predicted precipitation for that day in mm"
+          },
+          "weather": {
+            "type": "string",
+            "description": "The predicted weather for that day",
+            "enum": [
+              "sunny",
+              "cloudy",
+              "rainy",
+              "snowy"
+            ]
+          }
+        },
+        "required": [
+          "temperature",
+          "precipitation"
+        ]
+      }
+    },
+    "currentDate": {
+      "description": "A tool to get the current date",
+      "input": {
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The current date (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      }
+    },
+    "getMenu": {
+      "description": "A tool to get the menu for a restaurant",
+      "input": {
+        "properties": {
+          "cuisineType": {
+            "type": "string",
+            "description": "The type of cuisine of the restaurant",
+            "enum": [
+              "italian",
+              "chinese",
+              "indian",
+              "british"
+            ]
+          }
+        },
+        "required": [
+          "cuisineType"
+        ]
+      },
+      "output": {
+        "properties": {
+          "menu": {
+            "type": "array",
+            "description": "The menu of the restaurant",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the dish"
+                },
+                "price": {
+                  "type": "number",
+                  "description": "The price of the dish"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "menu"
+        ]
+      }
+    },
+    "dayOfTheWeek": {
+      "description": "A tool to get the day of the week for a given date",
+      "input": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the day of the week (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "output": {
+        "properties": {
+          "type": "string",
+          "day": {
+            "enum": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "description": "The day of the week for that date"
+          }
+        },
+        "required": [
+          "day"
+        ]
+      }
+    },
+    "sendDriver": {
+      "description": "A tool to send a driver to deliver food to a certain address",
+      "input": {
+        "properties": {
+          "restaurant": {
+            "type": "string",
+            "description": "The name of the restaurant from which the food is being delivered"
+          },
+          "address": {
+            "type": "string",
+            "description": "The address to which the food should be delivered"
+          }
+        },
+        "required": [
+          "address",
+          "restaurant"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the delivery request.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "trafficInfo": {
+      "description": "A tool to get the traffic information for a given location",
+      "input": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the traffic information (format: YYYY-MM-DD)"
+          },
+          "location": {
+            "type": "string",
+            "description": "The location for which you want the traffic information. Fuzzy matching is allowed."
+          }
+        },
+        "required": [
+          "date",
+          "location"
+        ]
+      },
+      "output": {
+        "properties": {
+          "traffic": {
+            "type": "string",
+            "enum": [
+              "clear",
+              "light",
+              "moderate",
+              "heavy",
+              "accident"
+            ],
+            "description": "The traffic information for that location. Fuzzy matching is allowed."
+          }
+        },
+        "required": [
+          "traffic"
+        ]
+      }
+    },
+    "getAvailableTaxi": {
+      "description": "A tool to determine if there is an available taxi",
+      "input": {
+        "properties": {
+          "time": {
+            "type": "string",
+            "description": "The time for which you want to know if a taxi is available (format: HH:MM)"
+          }
+        },
+        "required": [
+          "time"
+        ]
+      },
+      "output": {
+        "properties": {
+          "taxiId": {
+            "type": "string",
+            "description": "The id of the available taxi. \"000\" if no taxi is available"
+          }
+        },
+        "required": [
+          "taxiId"
+        ]
+      }
+    },
+    "assignTaxi": {
+      "description": "A tool to assign a taxi to a certain address",
+      "input": {
+        "properties": {
+          "taxiId": {
+            "type": "string",
+            "description": "The id of the taxi to assign"
+          },
+          "time": {
+            "type": "string",
+            "description": "The time for which the taxi should be assigned (format: HH:MM)"
+          },
+          "address": {
+            "type": "string",
+            "description": "The address to which the taxi should be assigned"
+          }
+        },
+        "required": [
+          "taxiId",
+          "address"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the taxi assignment.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    }
+  },
+  "dbSchemas": {
+    "hotel-mongo": {
+      "dbType": "mongo",
+      "description": "A MongoDB database schema for a hotel",
+      "collections": {
+        "rooms": {
+          "description": "A collection of rooms in the hotel",
+          "properties": {
+            "roomNumber": {
+              "type": "number",
+              "description": "The number of the room"
+            },
+            "bookings": {
+              "type": "array",
+              "description": "The bookings for this room",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "type": "string",
+                    "description": "The start date of the booking (format: YYYY-MM-DD)"
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "The end date of the booking, inclusive (format: YYYY-MM-DD)"
+                  }
+                }
+              }
+            }
+          },
+          "initialValues": [
+            {
+              "roomNumber": 101,
+              "bookings": []
+            },
+            {
+              "roomNumber": 102,
+              "bookings": []
+            },
+            {
+              "roomNumber": 103,
+              "bookings": []
+            }
+          ]
+        }
+      }
+    },
+    "hotel-sql": {
+      "dbType": "sql",
+      "description": "A SQL database schema for a hotel",
+      "tables": {
+        "Bookings": {
+          "description": "A table of bookings in the hotel",
+          "columns": {
+            "RoomNumber": "INT",
+            "StartDate": "DATE",
+            "EndDate": "DATE"
+          },
+          "constraints": [
+            "PRIMARY KEY (RoomNumber, StartDate)"
+          ]
+        },
+        "Rooms": {
+          "description": "A table of rooms in the hotel",
+          "columns": {
+            "RoomNumber": "INT PRIMARY KEY"
+          },
+          "constraints": [],
+          "initialValues": [
+            {
+              "RoomNumber": 101
+            },
+            {
+              "RoomNumber": 102
+            },
+            {
+              "RoomNumber": 103
+            }
+          ]
+        }
+      }
+    },
+    "skiResort-mongo": {
+      "dbType": "mongo",
+      "description": "A SQL database schema for a ski resort",
+      "collections": {
+        "rooms": {
+          "description": "A collection of rooms in the hotel",
+          "properties": {
+            "roomNumber": {
+              "type": "number",
+              "description": "The number of the room"
+            },
+            "bookings": {
+              "type": "array",
+              "description": "The bookings for this room",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "type": "string",
+                    "description": "The start date of the booking (format: YYYY-MM-DD)"
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "The end date of the booking, inclusive (format: YYYY-MM-DD)"
+                  }
+                }
+              }
+            }
+          },
+          "initialValues": [
+            {
+              "roomNumber": 101,
+              "bookings": []
+            },
+            {
+              "roomNumber": 102,
+              "bookings": []
+            },
+            {
+              "roomNumber": 103,
+              "bookings": []
+            }
+          ]
+        },
+        "skis": {
+          "description": "Skis available for rental",
+          "properties": {
+            "skiId": {
+              "type": "string",
+              "description": "Id of the ski to rent"
+            },
+            "skiType": {
+              "type": "string",
+              "description": "Type of ski",
+              "enum": [
+                "racing",
+                "carving",
+                "backcountry"
+              ]
+            },
+            "bookings": {
+              "type": "array",
+              "description": "The bookings for this ski",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "type": "string",
+                    "description": "The start date of the booking (format: YYYY-MM-DD)"
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "The end date of the booking, inclusive (format: YYYY-MM-DD)"
+                  }
+                }
+              }
+            }
+          },
+          "initialValues": [
+            {
+              "skiId": "A234",
+              "skiType": "racing",
+              "bookings": []
+            },
+            {
+              "skiId": "A453",
+              "skiType": "racing",
+              "bookings": []
+            },
+            {
+              "skiId": "A321",
+              "skiType": "carving",
+              "bookings": []
+            },
+            {
+              "skiId": "A331",
+              "skiType": "carving",
+              "bookings": []
+            },
+            {
+              "skiId": "A212",
+              "skiType": "backcountry",
+              "bookings": []
+            },
+            {
+              "skiId": "A989",
+              "skiType": "backcountry",
+              "bookings": []
+            }
+          ]
+        }
+      }
+    },
+    "skiResort-sql": {
+      "dbType": "sql",
+      "description": "A SQL database schema for a hotel",
+      "tables": {
+        "Bookings": {
+          "description": "A table of bookings in the hotel",
+          "columns": {
+            "RoomNumber": "INT",
+            "StartDate": "DATE",
+            "EndDate": "DATE"
+          },
+          "constraints": [
+            "PRIMARY KEY (RoomNumber, StartDate)"
+          ]
+        },
+        "Rooms": {
+          "description": "A table of rooms in the hotel",
+          "columns": {
+            "RoomNumber": "INT PRIMARY KEY"
+          },
+          "constraints": [],
+          "initialValues": [
+            {
+              "RoomNumber": 101
+            },
+            {
+              "RoomNumber": 102
+            },
+            {
+              "RoomNumber": 103
+            }
+          ]
+        },
+        "Skis": {
+          "description": "A table of skis available for rental",
+          "columns": {
+            "SkiId": "VARCHAR(255) PRIMARY KEY",
+            "SkiType": "VARCHAR(20)"
+          },
+          "constraints": [],
+          "initialValues": [
+            {
+              "SkiId": "A234",
+              "SkiType": "racing"
+            },
+            {
+              "SkiId": "A453",
+              "SkiType": "racing"
+            },
+            {
+              "SkiId": "A321",
+              "SkiType": "carving"
+            },
+            {
+              "SkiId": "A331",
+              "SkiType": "carving"
+            },
+            {
+              "SkiId": "A212",
+              "SkiType": "backcountry"
+            },
+            {
+              "SkiId": "A989",
+              "SkiType": "backcountry"
+            }
+          ]
+        },
+        "SkiRentals": {
+          "description": "A table of ski rentals",
+          "columns": {
+            "SkiId": "VARCHAR(255)",
+            "StartDate": "DATE",
+            "EndDate": "DATE"
+          },
+          "constraints": [
+            "PRIMARY KEY (SkiId, StartDate)"
+          ]
+        }
+      }
+    },
+    "restaurant-mongo": {
+      "dbType": "mongo",
+      "description": "A MongoDB database schema for a restaurant",
+      "collections": {
+        "bookings": {
+          "properties": {
+            "surname": {
+              "type": "string",
+              "description": "The surname linked to the booking"
+            },
+            "numPeople": {
+              "type": "number",
+              "description": "The number of people for the booking"
+            },
+            "date": {
+              "type": "string",
+              "description": "The date of the booking (format: YYYY-MM-DD)"
+            },
+            "hour": {
+              "type": "number",
+              "description": "The hour of the booking (24-hour format, integer). Note that a booking always lasts an hour (e.g. 17 means from 5 pm to 6 pm)"
+            }
+          },
+          "initialValues": []
+        }
+      }
+    },
+    "restaurant-sql": {
+      "dbType": "sql",
+      "description": "A SQL database schema for a restaurant",
+      "tables": {
+        "Bookings": {
+          "description": "A table of bookings in the restaurant",
+          "columns": {
+            "Surname": "VARCHAR(255)",
+            "NumPeople": "INT",
+            "Date": "DATE",
+            "Hour": "INT"
+          },
+          "constraints": [
+            "PRIMARY KEY (Surname, Date, Hour)"
+          ]
+        }
+      }
+    },
+    "cinema-mongo": {
+      "dbType": "mongo",
+      "description": "A MongoDB database schema for a cinema",
+      "collections": {
+        "screenings": {
+          "description": "The screenings of movies",
+          "properties": {
+            "date": {
+              "type": "string",
+              "description": "The date of the screening"
+            },
+            "hour": {
+              "type": "number",
+              "description": "The hour of the movie (24-hour format, integer)."
+            },
+            "movie": {
+              "type": "string",
+              "description": "The title of the movie"
+            },
+            "ticketsLeft": {
+              "type": "number",
+              "description": "The number of tickets left"
+            }
+          },
+          "initialValues": [
+            {
+              "date": "2024-03-15",
+              "movie": "Forrest Gump",
+              "hour": 18,
+              "ticketsLeft": 54
+            },
+            {
+              "date": "2024-03-15",
+              "movie": "Forrest Gump",
+              "hour": 20,
+              "ticketsLeft": 45
+            },
+            {
+              "date": "2024-03-15",
+              "movie": "Stand by Me",
+              "hour": 18,
+              "ticketsLeft": 32
+            },
+            {
+              "date": "2024-03-15",
+              "movie": "The Silence of the Lambs",
+              "hour": 20,
+              "ticketsLeft": 24
+            },
+            {
+              "date": "2024-03-16",
+              "movie": "Forrest Gump",
+              "hour": 18,
+              "ticketsLeft": 32
+            },
+            {
+              "date": "2024-03-16",
+              "movie": "Stand by Me",
+              "hour": 18,
+              "ticketsLeft": 18
+            },
+            {
+              "date": "2024-03-16",
+              "movie": "The Silence of the Lambs",
+              "hour": 18,
+              "ticketsLeft": 27
+            },
+            {
+              "date": "2024-03-17",
+              "movie": "Stand by Me",
+              "hour": 18,
+              "ticketsLeft": 35
+            },
+            {
+              "date": "2024-03-17",
+              "movie": "Stand by Me",
+              "hour": 20,
+              "ticketsLeft": 12
+            }
+          ]
+        }
+      }
+    },
+    "cinema-sql": {
+      "dbType": "sql",
+      "description": "A SQL database schema for a cinema",
+      "tables": {
+        "Screenings": {
+          "description": "A table of screenings in the cinema",
+          "columns": {
+            "Date": "DATE",
+            "Hour": "INT",
+            "Movie": "VARCHAR(255)",
+            "TicketsLeft": "INT"
+          },
+          "constraints": [
+            "PRIMARY KEY (Date, Hour, Movie)"
+          ],
+          "initialValues": [
+            {
+              "Date": "2024-03-15",
+              "Movie": "Forrest Gump",
+              "Hour": 18,
+              "TicketsLeft": 54
+            },
+            {
+              "Date": "2024-03-15",
+              "Movie": "Forrest Gump",
+              "Hour": 20,
+              "TicketsLeft": 45
+            },
+            {
+              "Date": "2024-03-15",
+              "Movie": "Stand by Me",
+              "Hour": 18,
+              "TicketsLeft": 32
+            },
+            {
+              "Date": "2024-03-15",
+              "Movie": "The Silence of the Lambs",
+              "Hour": 20,
+              "TicketsLeft": 24
+            },
+            {
+              "Date": "2024-03-16",
+              "Movie": "Forrest Gump",
+              "Hour": 18,
+              "TicketsLeft": 32
+            },
+            {
+              "Date": "2024-03-16",
+              "Movie": "Stand by Me",
+              "Hour": 18,
+              "TicketsLeft": 18
+            },
+            {
+              "Date": "2024-03-16",
+              "Movie": "The Silence of the Lambs",
+              "Hour": 18,
+              "TicketsLeft": 27
+            },
+            {
+              "Date": "2024-03-17",
+              "Movie": "Stand by Me",
+              "Hour": 18,
+              "TicketsLeft": 35
+            },
+            {
+              "Date": "2024-03-17",
+              "Movie": "Stand by Me",
+              "Hour": 20,
+              "TicketsLeft": 12
+            }
+          ]
+        }
+      }
+    }
+  },
+  "servers": {
+    "weatherServer": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the weather service. Your task is to provide weather forecasts for a given day.",
+      "actionDescriptions": [
+        "You can provide the weather forecast for a given day by interacting with the \"getWeather\" tool."
+      ],
+      "internalDbSchema": null,
+      "externalTools": {},
+      "mockTools": {
+        "getWeather": "weather",
+        "currentDate": "currentDate"
+      },
+      "idealTasks": [
+        "queryWeather"
+      ],
+      "protocolDb": "protocolDb2"
+    },
+    "hotel1": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the Lodge Hotel, a small hotel near Paris. Your task is to handle bookings at your hotel.",
+      "actionDescriptions": [
+        "You can check the availability of the rooms and book a new one by interacting with the database. Make sure that a room is not already booked"
+      ],
+      "internalDbSchema": "hotel-sql",
+      "externalTools": {},
+      "protocolDb": "protocolDb3",
+      "idealTasks": [
+        "bookRoom"
+      ]
+    },
+    "hotel2": {
+      "modelType": "llama3-405b",
+      "description": "You are the server for the Plaza Hotel, a small hotel in Barcelona. Your task is to handle bookings at your hotel.",
+      "actionDescriptions": [
+        "You can check the availability of the rooms and book a new one by interacting with the database. Make sure that a room is not already booked"
+      ],
+      "internalDbSchema": "hotel-sql",
+      "externalTools": {},
+      "protocolDb": "protocolDb3",
+      "idealTasks": [
+        "bookRoom"
+      ]
+    },
+    "hotel3": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the Grand Hotel, a luxurious hotel in London. Your task is to handle bookings at your hotel.",
+      "actionDescriptions": [
+        "You can check the availability of the rooms and book a new one by interacting with the database. Make sure that a room is not already booked",
+        "If a customer asks for a restaurant recommendation, you can suggest the \"Il Forno\", an Italian restaurant. However, you need to make sure that the restaurant is open on the requested date (the hour doesn't matter) with the \"isOpen\" tool."
+      ],
+      "internalDbSchema": "hotel-mongo",
+      "externalTools": {
+        "isOpen": {
+          "schema": "isOpen",
+          "server": "restaurant1"
+        }
+      },
+      "protocolDb": "protocolDb1",
+      "idealTasks": [
+        "bookRoom",
+        "suggestRestaurant"
+      ]
+    },
+    "skiResort1": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the Alpine Resort, a luxurious ski resort near Zurich. Your task is to handle bookings at your resort",
+      "actionDescriptions": [
+        "You can check the availability of the rooms and book a new one by interacting with the database. Make sure that a room is not already booked, and that the predicted temperature on that day is between -10 \u00b0C and +1 \u00b0C before you allow a user to book.",
+        "Customers can rent skis from your resort. You can handle ski rentals by interacting with the database. Don't bother checking if the customers have a booking.",
+        "You can get the weather forecast for a given day by interacting with the \"getWeather\" tool."
+      ],
+      "internalDbSchema": "skiResort-sql",
+      "mockTools": {},
+      "externalTools": {
+        "getTemperature": {
+          "schema": "temperature",
+          "server": "weatherServer"
+        }
+      },
+      "protocolDb": "protocolDb1",
+      "idealTasks": [
+        "bookRoom",
+        "rentSki"
+      ]
+    },
+    "skiResort2": {
+      "modelType": "llama3-405b",
+      "description": "You are the server for the Snowy Peaks Resort, a ski resort near Vienna. Your task is to handle bookings at your resort",
+      "actionDescriptions": [
+        "You can check the availability of the rooms and book a new one by interacting with the database. Make sure that a room is not already booked, and that the predicted temperature on that day is between -10 \u00b0C and +1 \u00b0C before you allow a user to book.",
+        "Customers can rent skis from your resort. You can handle ski rentals by interacting with the database. Don't bother checking if the customers have a booking.",
+        "If a customer asks for a restaurant recommendation, you can suggest the \"Bengal Delight\", an Indian restaurant. However, you need to make sure that the restaurant is open on the requested date (the hour doesn't matter) with the \"isOpen\" tool."
+      ],
+      "internalDbSchema": "skiResort-mongo",
+      "externalTools": {
+        "getTemperature": {
+          "schema": "temperature",
+          "server": "weatherServer"
+        },
+        "isOpen": {
+          "schema": "isOpen",
+          "server": "restaurant3"
+        }
+      },
+      "protocolDb": "protocolDb2",
+      "idealTasks": [
+        "bookRoom",
+        "rentSki",
+        "suggestRestaurant"
+      ]
+    },
+    "restaurant1": {
+      "modelType": "llama3-405b",
+      "description": "You are the server for the Il Forno, an Italian restaurant in London. Your task is to handle bookings at your restaurant.",
+      "actionDescriptions": [
+        "You can check the availability of the tables and book a new one by interacting with the database. Make sure that a table is not already booked. Bookings are univocally identified by surname + date + hour.",
+        "You can get the menu of the restaurant by interacting with the getMenu tool.",
+        "Your opening times are from 12:00 to 22:00 every day, except on Monday, when you're closed.",
+        "You can request a food delivery driver by interacting with the \"requestDeliveryDriver\" tool. Don't worry about the payment or the actual cooking of the food, just make sure the food is delivered to the correct address. Also, the delivery service is extremely fast, so you can deliver far away, even in other countries."
+      ],
+      "mockTools": {
+        "getMenu": "getMenu",
+        "currentDate": "currentDate",
+        "dayOfTheWeek": "dayOfTheWeek"
+      },
+      "internalDbSchema": "restaurant-sql",
+      "externalTools": {
+        "requestDeliveryDriver": {
+          "schema": "requestDeliveryDriver",
+          "server": "deliveryService"
+        }
+      },
+      "protocolDb": "protocolDb1",
+      "idealTasks": [
+        "bookTable",
+        "openingTimes",
+        "orderEverything"
+      ]
+    },
+    "restaurant2": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the Royal Oak, a British restaurant in Cairo. Your task is to handle bookings at your restaurant. Bookings are univocally identified by surname + date + hour.",
+      "actionDescriptions": [
+        "You can check the availability of the tables and book a new one by interacting with the database. Make sure that a table is not already booked",
+        "You can get the menu of the restaurant by interacting with the getMenu tool.",
+        "Your opening times are from 17:00 to 23:00 everyday, except on Tuesday, when you're closed.",
+        "You can request a food delivery driver by interacting with the \"requestDeliveryDriver\" tool. Don't worry about the payment or the actual cooking of the food, just make sure the food is delivered to the correct address. Also, the delivery service is extremely fast, so you can deliver far away, even in other countries."
+      ],
+      "mockTools": {
+        "getMenu": "getMenu",
+        "currentDate": "currentDate",
+        "dayOfTheWeek": "dayOfTheWeek"
+      },
+      "internalDbSchema": "restaurant-mongo",
+      "externalTools": {
+        "requestDeliveryDriver": {
+          "schema": "requestDeliveryDriver",
+          "server": "deliveryService"
+        }
+      },
+      "protocolDb": "protocolDb1",
+      "idealTasks": [
+        "bookTable",
+        "openingTimes",
+        "orderEverything"
+      ]
+    },
+    "restaurant3": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the Bengal Delight, an Indian restaurant in Vienna. Your task is to handle bookings at your restaurant. Bookings are univocally identified by surname + date + hour.",
+      "actionDescriptions": [
+        "You can check the availability of the tables and book a new one by interacting with the database. Make sure that a table is not already booked",
+        "You can get the menu of the restaurant by interacting with the getMenu tool.",
+        "Your opening times are from 17:00 to 23:00 everyday, except on Tuesday, when you're closed."
+      ],
+      "mockTools": {
+        "getMenu": "getMenu",
+        "currentDate": "currentDate",
+        "dayOfTheWeek": "dayOfTheWeek"
+      },
+      "internalDbSchema": "restaurant-sql",
+      "externalTools": {},
+      "protocolDb": "protocolDb3",
+      "idealTasks": [
+        "bookTable",
+        "openingTimes"
+      ]
+    },
+    "deliveryService": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the Fast Delivery Service. Your task is to deliver food to the correct address as quickly as possible.",
+      "actionDescriptions": [
+        "You can send a driver to deliver food to a certain address by interacting with the \"sendDriver\" tool. Don't worry about whether a driver is available or not, just assume that there is always a driver ready to go.",
+        "You can get the current date by interacting with the \"currentDate\" tool.",
+        "If the traffic is \"heavy\" or there is an \"accident\" at the location, you have to refuse the delivery request."
+      ],
+      "mockTools": {
+        "sendDriver": "sendDriver",
+        "currentDate": "currentDate"
+      },
+      "internalDbSchema": null,
+      "externalTools": {
+        "trafficInfo": {
+          "schema": "trafficInfo",
+          "server": "trafficServer"
+        }
+      },
+      "protocolDb": "protocolDb1",
+      "idealTasks": []
+    },
+    "cinema1": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the Silver Screen Cinema, a small cinema in Paris. Your task is to handle movie screenings and ticket sales at your cinema.",
+      "actionDescriptions": [
+        "You can check the available movies for a given date by interacting with the database.",
+        "You can buy tickets for a movie by interacting with the database. Make sure that the movie is available and that there are enough tickets left. Don't worry about payment or the reservation of the seats, simply track the number of tickets left."
+      ],
+      "mockTools": {},
+      "internalDbSchema": "cinema-mongo",
+      "externalTools": {},
+      "protocolDb": "protocolDb3",
+      "idealTasks": [
+        "availableMovies",
+        "buyTickets"
+      ]
+    },
+    "cinema2": {
+      "modelType": "gemini-1.5-pro",
+      "description": "You are the server for the Golden Globe Cinema, a large cinema in Berlin. Your task is to handle movie screenings and ticket sales at your cinema.",
+      "actionDescriptions": [
+        "You can check the available movies for a given date by interacting with the database.",
+        "You can buy tickets for a movie by interacting with the database. Make sure that the movie is available and that there are enough tickets left. Don't worry about payment or the reservation of the seats, simply track the number of tickets left."
+      ],
+      "mockTools": {},
+      "internalDbSchema": "cinema-sql",
+      "externalTools": {},
+      "protocolDb": "protocolDb2",
+      "idealTasks": [
+        "availableMovies",
+        "buyTickets"
+      ]
+    },
+    "taxi1": {
+      "modelType": "gemini-1.5-pro",
+      "description": "You are the server for the Yellow Cab Taxi Company, a taxi company in New York City. Your task is to handle taxi bookings.",
+      "actionDescriptions": [
+        "You can check the availability of any taxis by calling the \"getAvailableTaxi\" tool. If a taxis is available, you can assign it to an address with the \"assignTaxi\" tool (don't worry if you're assigning a taxi to too many hours). The price of a taxi is a fixed $20 fee, regardless of the distance. There is however a +20% surcharge for bookings between 8 pm and 11 pm, and a +20% surcharge if there is heavy traffic today or there is an accident (surcharges are additive, i.e. for rain + rush hour the cost is +40%).",
+        "You can get the traffic information for a given location by interacting with the \"trafficInfo\" tool.",
+        "You can get the current date by interacting with the \"currentDate\" tool."
+      ],
+      "mockTools": {
+        "currentDate": "currentDate",
+        "getAvailableTaxi": "getAvailableTaxi",
+        "assignTaxi": "assignTaxi"
+      },
+      "internalDbSchema": null,
+      "externalTools": {
+        "trafficInfo": {
+          "schema": "trafficInfo",
+          "server": "trafficServer"
+        }
+      },
+      "protocolDb": "protocolDb1",
+      "idealTasks": [
+        "callTaxi"
+      ]
+    },
+    "taxi2": {
+      "modelType": "llama3-405b",
+      "description": "You are the server for the Blue Taxi Company, a taxi company in London. Your task is to handle taxi bookings.",
+      "actionDescriptions": [
+        "You can check the availability of any taxis by calling the \"getAvailableTaxi\" tool. If a taxis is available, you can assign it to an address with the \"assignTaxi\" tool (don't worry if you're assigning a taxi to too many hours). Make sure that a taxi is not already booked. The price of a taxi is a fixed $30 fee, regardless of the distance. There is however a +20% surcharge if today is raining, and a +20% surcharge if today the traffic is heavy or there is an accident (surcharges are additive, i.e. for rain + traffic the cost is +40%).",
+        "You can get the traffic information for a given location by interacting with the \"trafficInfo\" tool.",
+        "You can get the weather information for today by interacting with the \"todayWeather\" tool.",
+        "You can get the current date by interacting with the \"currentDate\" tool."
+      ],
+      "mockTools": {
+        "currentDate": "currentDate",
+        "getAvailableTaxi": "getAvailableTaxi",
+        "assignTaxi": "assignTaxi"
+      },
+      "internalDbSchema": null,
+      "externalTools": {
+        "trafficInfo": {
+          "schema": "trafficInfo",
+          "server": "trafficServer"
+        },
+        "todayWeather": {
+          "schema": "todayWeather",
+          "server": "weatherServer"
+        }
+      },
+      "protocolDb": "protocolDb1",
+      "idealTasks": [
+        "callTaxi"
+      ]
+    },
+    "trafficServer": {
+      "modelType": "gpt-4o",
+      "description": "You are the server for the traffic service. Your task is to provide traffic information for a given location.",
+      "actionDescriptions": [
+        "You can get the traffic information for a given location by interacting with the \"trafficInfo\" tool."
+      ],
+      "internalDbSchema": null,
+      "mockTools": {
+        "trafficInfo": "trafficInfo"
+      },
+      "idealTasks": [
+        "getTraffic"
+      ],
+      "protocolDb": "protocolDb3"
+    }
+  },
+  "taskSchemas": {
+    "queryWeather": {
+      "description": "Query the weather forecast for a given day",
+      "input": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the weather forecast (format: YYYY-MM-DD)"
+          },
+          "location": {
+            "type": "string",
+            "description": "The location for which you want the weather forecast"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "output": {
+        "properties": {
+          "temperature": {
+            "type": "number",
+            "description": "The predicted temperature for that day in \u00b0C"
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "The predicted precipitation for that day in mm"
+          }
+        },
+        "required": [
+          "temperature",
+          "precipitation"
+        ]
+      }
+    },
+    "bookRoom": {
+      "description": "Book a room at the hotel. Any room is fine.",
+      "input": {
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "description": "The start date of the booking (format: YYYY-MM-DD)"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "The end date of the booking, inclusive (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "startDate",
+          "endDate"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the booking.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "roomNumber": {
+            "type": "number",
+            "description": "The number of the room that was booked. Required if status is \"success\"."
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "suggestRestaurant": {
+      "description": "Ask the hotel if there is an open restaurant it recommends",
+      "input": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the restaurant recommendation (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "output": {
+        "properties": {
+          "recommendedRestaurant": {
+            "description": "The name of the recommended restaurant, or \"No restaurant\" if no restaurant is available",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recommendedRestaurant"
+        ]
+      }
+    },
+    "rentSki": {
+      "description": "Rent a ski from the ski resort",
+      "input": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date of the rental"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "racing",
+              "carving",
+              "backcountry"
+            ],
+            "description": "The type of ski to rent"
+          }
+        },
+        "required": [
+          "date",
+          "type"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "failure"
+            ],
+            "description": "Success if the rental was performed, otherwise failure"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "currentWeather": {
+      "description": "Get today's weather",
+      "input": {},
+      "output": {
+        "properties": {
+          "weather": {
+            "type": "string",
+            "description": "The current weather",
+            "enum": [
+              "sunny",
+              "cloudy",
+              "rainy",
+              "snowy"
+            ]
+          }
+        }
+      }
+    },
+    "menu": {
+      "description": "Get the menu for a restaurant",
+      "input": {},
+      "output": {
+        "properties": {
+          "menu": {
+            "type": "array",
+            "description": "The menu of the restaurant",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the dish"
+                },
+                "price": {
+                  "type": "number",
+                  "description": "The price of the dish"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "menu"
+        ]
+      }
+    },
+    "openingTimes": {
+      "description": "Get the opening times of a restaurant",
+      "input": {},
+      "output": {
+        "properties": {
+          "openingTimes": {
+            "type": "array",
+            "description": "The opening times of the restaurant",
+            "items": {
+              "type": "object",
+              "properties": {
+                "day": {
+                  "type": "string",
+                  "enum": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday"
+                  ],
+                  "description": "The day of the week"
+                },
+                "openingHour": {
+                  "type": "number",
+                  "description": "The opening hour (24-hour format)"
+                },
+                "closingHour": {
+                  "type": "number",
+                  "description": "The closing hour (24-hour format)"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "openingTimes"
+        ]
+      }
+    },
+    "bookTable": {
+      "description": "Book a table at a restaurant",
+      "input": {
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "description": "The full name linked to the booking"
+          },
+          "numPeople": {
+            "type": "number",
+            "description": "The number of people for the booking"
+          },
+          "date": {
+            "type": "string",
+            "description": "The date of the booking (format: YYYY-MM-DD)"
+          },
+          "hour": {
+            "type": "number",
+            "description": "The hour of the booking (24-hour format, integer). Note that a booking always lasts an hour (e.g. 17 means from 5 pm to 6 pm)"
+          }
+        },
+        "required": [
+          "fullName",
+          "numPeople",
+          "date",
+          "hour"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the booking.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "orderEverything": {
+      "description": "Order one of each dish from the menu, to be delivered as soon as possible.",
+      "input": {
+        "properties": {
+          "deliveryAddress": {
+            "type": "string",
+            "description": "The address to which the food should be delivered"
+          }
+        },
+        "required": [
+          "deliveryAddress"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the order.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "availableMovies": {
+      "description": "Get the list of available movies on a certain date",
+      "input": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the list of available movies (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "output": {
+        "properties": {
+          "movies": {
+            "type": "array",
+            "description": "The list of available movie titles. Empty if no movies are available.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "movies"
+        ]
+      }
+    },
+    "buyTickets": {
+      "description": "Buy tickets for a movie. Buying is atomic, i.e. either all tickets are bought or none.",
+      "input": {
+        "properties": {
+          "movie": {
+            "type": "string",
+            "description": "The title of the movie for which you want to buy tickets"
+          },
+          "date": {
+            "type": "string",
+            "description": "The date of the screening (format: YYYY-MM-DD)"
+          },
+          "hour": {
+            "type": "number",
+            "description": "The hour of the screening (24-hour format)"
+          },
+          "numTickets": {
+            "type": "number",
+            "description": "The number of tickets to buy"
+          }
+        },
+        "required": [
+          "movie",
+          "date",
+          "hour",
+          "numTickets"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the ticket purchase.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "callTaxi": {
+      "description": "Call a taxi",
+      "input": {
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "The address where you need the taxi"
+          },
+          "time": {
+            "type": "string",
+            "description": "The time you need the taxi (format: HH:MM, 24-hour format)"
+          }
+        },
+        "required": [
+          "address",
+          "time"
+        ]
+      },
+      "output": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the taxi call.",
+            "enum": [
+              "success",
+              "failure"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "description": "The price of the taxi ride. Required if status is \"success\"."
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message. Required if status is \"failure\"."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "getTraffic": {
+      "description": "Get the traffic information for a given location",
+      "input": {
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The location for which you want the traffic information. Fuzzy matching is allowed."
+          },
+          "date": {
+            "type": "string",
+            "description": "The date for which you want the traffic information (format: YYYY-MM-DD)"
+          }
+        },
+        "required": [
+          "date",
+          "location"
+        ]
+      },
+      "output": {
+        "properties": {
+          "traffic": {
+            "type": "string",
+            "enum": [
+              "clear",
+              "light",
+              "moderate",
+              "heavy",
+              "accident"
+            ],
+            "description": "The traffic information for that location. Fuzzy matching is allowed."
+          }
+        },
+        "required": [
+          "traffic"
+        ]
+      }
+    }
+  },
+  "users": {
+    "bael": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "agares": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "vassago": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "samigina": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "marbas": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "valefor": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "amon": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "barbatos": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "paimon": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "buer": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "guison": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "sitri": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "beleth": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "leraje": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "eligos": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "zepar": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "botis": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "bathin": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "sallos": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "purson": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "marax": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "ipos": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "aim": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "naberius": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "glasya-labolas": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "bune": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "ronove": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "berith": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "astaroth": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "forneus": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "foras": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "asmoday": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "gaap": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "furfur": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "marchosias": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "stolas": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "phenex": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "halphas": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "malphas": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "raum": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "focalor": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "vepar": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "sabnock": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "shax": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "vine": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "bifrons": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "vual": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "haagenti": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "crocell": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "furcas": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "balam": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "alloces": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "caim": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "murmur": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "orobas": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "gremory": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "ose": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "amy": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "orias": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "vapula": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "zagan": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "valac": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "andras": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "haures": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "andrealphus": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "cimeies": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "amdusias": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "belial": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "decarabia": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "seere": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "dantalion": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "andromalius": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "pruflas": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "ornias": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "beelzebub": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "onoskelis": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "tephras": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "envy": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "rabdos": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    },
+    "rath": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "tribolaios": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "obizuth": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "enepsigon": {
+      "modelType": "gemini-1.5-pro",
+      "tasks": [],
+      "protocolDb": "protocolDb2"
+    },
+    "kunopaston": {
+      "modelType": "llama3-405b",
+      "tasks": [],
+      "protocolDb": "protocolDb1"
+    },
+    "ephippas": {
+      "modelType": "gpt-4o",
+      "tasks": [],
+      "protocolDb": "protocolDb3"
+    }
+  }
+}
