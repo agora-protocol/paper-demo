@@ -1,0 +1,8 @@
+camel-ai
+python-dotenv
+flask
+google-generativeai
+langchain
+libtmux
+pymongo
+pymssql
