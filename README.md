@@ -16,7 +16,7 @@ Since natural language is supported, very different agents that have never inter
 
 This demo showcases a network of 100 agents interacting with each other. The agents have different LLMs (OpenAI GPT-4o, Llama 3 405b, Gemini 1.5 Pro) and different DB technologies (MongoDB, SQL), but they still complete complex, multi-agent tasks with way lower costs. In a picture:
 
-<img src="./static/readme_comparison.png">
+<img src="./static/readme_comparison.png?raw=true">
 
 
 ## Running the Demo
