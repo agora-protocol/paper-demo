@@ -27,4 +27,4 @@ This demo showcases a network of 100 agents interacting with each other. The age
 
 ## Contributing
 
-We're always open to contributors, especially as we move towards v1 of the protocol. If you're interested in contributing or wanna simply stay updated about Agora, check out our [Discord](https://discord.gg/MXmfhwQ4FB) or subscribe to our [Mailing List](https://forms.gle/KeCMveoRGx2S3i5CA)
+We're building the next iteration of Agora, with more features for real-world use cases. If you're interested in contributing or simply want to stay updated about Agora, check out our [Discord](https://discord.gg/MXmfhwQ4FB) or subscribe to our [Mailing List](https://forms.gle/KeCMveoRGx2S3i5CA)
