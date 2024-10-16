@@ -1,3 +1,9 @@
 /**/__pycache__/**
 venv/**
 .env
+past_experiments/**
+new_tests/**
+script_utils/**
+storage/**
+logs/**
+databases/**
