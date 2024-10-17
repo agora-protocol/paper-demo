@@ -1,5 +1,5 @@
 # Agora - A Scalable Communication Protocol for Networks of LLMs
-[Paper](.) | [Website](https://agoraprotocol.org) | [Discord](https://discord.gg/MXmfhwQ4FB) | [Mailing List](https://forms.gle/KeCMveoRGx2S3i5CA)
+[Paper](https://arxiv.org/abs/2410.11905) | [Website](https://agoraprotocol.org) | [Discord](https://discord.gg/MXmfhwQ4FB) | [Mailing List](https://forms.gle/KeCMveoRGx2S3i5CA)
 
 Agora is a simple cross-platform protocol that allows heterogeneous LLMs to communicate efficienly with each other.
 This is achieved through the power of **negotiation**.
@@ -10,7 +10,7 @@ In particular, Agora agents operate as follows:
 3. Once a protocol is finalized, they use LLMs to implement _routines_, simple scripts (e.g. in Python) that send or receive data
 4. Future communications are handled using the routines, which means that LLMs aren't required anymore
 
-Since natural language is supported, very different agents that have never interacted before can communicate with each other, but once a common ground is established they just use routines, which are way more efficient. This enables agents to achieve both **efficiency** and **portability**.
+Since natural language is supported, very different agents that have never interacted before can communicate with each other, but once a common ground is established they just use routines, which are way more efficient. This enables agents to achieve at the same time **efficiency**, **versatility** and **portability**.
 
 ## The Demo
 
@@ -24,6 +24,7 @@ This demo showcases a network of 100 agents interacting with each other. The age
 1. `mv .env.template .env`
 2. Add the corresponding fields to the `.env` file
 3. `pip install -r requirements.txt`
+4. `python orchestrator.py`
 
 ## Contributing
 
