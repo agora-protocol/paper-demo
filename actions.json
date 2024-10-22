@@ -1,0 +1,11866 @@
+[
+  [
+    "phenex",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "68 Wilson Street"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "21 Taylor Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-04",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-14"
+    }
+  ],
+  [
+    "bune",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "9 Davis Street"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-05"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "2 Brown Street",
+      "time": "20:57"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 18,
+      "numTickets": 2,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "62 Davis Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-19"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "62 Johnson Street"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "sitri",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-11",
+      "endDate": "2024-08-28"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-06"
+    }
+  ],
+  [
+    "naberius",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "71 Johnson Street",
+      "time": "2:15"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-21",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-03",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "10 Smith Street",
+      "time": "0:49"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "83 Jones Street",
+      "time": "20:1"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-17",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-24"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-20"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-17",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-05",
+      "type": "carving"
+    }
+  ],
+  [
+    "ipos",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "60 Williams Street",
+      "time": "10:11"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "75 Brown Street",
+      "time": "5:59"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-23",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-14",
+      "type": "carving"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Williams",
+      "date": "2024-07-21",
+      "numPeople": 1,
+      "hour": 19
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-22",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "88 Williams Street",
+      "time": "13:56"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Laurel Miller",
+      "date": "2024-03-07",
+      "numPeople": 8,
+      "hour": 20
+    }
+  ],
+  [
+    "caim",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "9 Johnson Street",
+      "time": "18:38"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-25"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "31 Johnson Street",
+      "time": "18:46"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Brown",
+      "date": "2024-07-09",
+      "numPeople": 10,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-14"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-27",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-18",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Maxwell Davis",
+      "date": "2024-08-31",
+      "numPeople": 7,
+      "hour": 18
+    }
+  ],
+  [
+    "samigina",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Maxwell Smith",
+      "date": "2024-05-21",
+      "numPeople": 5,
+      "hour": 18
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-25",
+      "type": "carving"
+    }
+  ],
+  [
+    "leraje",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-23",
+      "endDate": "2024-08-31"
+    }
+  ],
+  [
+    "beleth",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-14",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Madge Miller",
+      "date": "2024-09-11",
+      "numPeople": 1,
+      "hour": 17
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-30",
+      "type": "carving"
+    }
+  ],
+  [
+    "bifrons",
+    [
+      "taxi1",
+      "callTaxi"
+    ],
+    {
+      "address": "79 Miller Street",
+      "time": "11:28"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-20",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-07"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "100 Miller Street",
+      "time": "23:58"
+    }
+  ],
+  [
+    "purson",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2024-03-05",
+      "location": "Zurich"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-22",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-15",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-04",
+      "endDate": "2024-05-05"
+    }
+  ],
+  [
+    "andras",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Nina Johnson",
+      "date": "2023-10-02",
+      "numPeople": 6,
+      "hour": 16
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "87 Johnson Street",
+      "time": "19:1"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-24",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-02",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-25"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-06-20",
+      "endDate": "2024-06-26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "20 Wilson Street",
+      "time": "18:44"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-12",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-05",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-25",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "45 Miller Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-04",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-04",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-27",
+      "type": "carving"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-25"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-07",
+      "type": "racing"
+    }
+  ],
+  [
+    "halphas",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-18",
+      "endDate": "2024-02-26"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-11",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-26",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-07"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-19",
+      "type": "carving"
+    }
+  ],
+  [
+    "marchosias",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-01-16",
+      "endDate": "2024-01-21"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-03-21"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-23",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-03-07"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-24",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "36 Wilson Street",
+      "time": "20:41"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-29"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-09-23",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-19",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-19"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-06",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-30",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-23",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-20",
+      "endDate": "2024-04-07"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-13",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "81 Davis Street"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-15",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-01",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-01",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-08",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-23",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "guison",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "31 White Street",
+      "time": "21:15"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "11 Wilson Street",
+      "time": "18:40"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 18,
+      "numTickets": 3,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2023-09-27",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Miller",
+      "date": "2023-10-26",
+      "numPeople": 10,
+      "hour": 17
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 18,
+      "numTickets": 2,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-07-03",
+      "endDate": "2024-07-08"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-27",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-21",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "marbas",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-21",
+      "endDate": "2024-08-23"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-05",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-09-28",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-02",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "33 Williams Street",
+      "time": "4:17"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Jones",
+      "date": "2024-02-18",
+      "numPeople": 9,
+      "hour": 23
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-14",
+      "type": "racing"
+    }
+  ],
+  [
+    "ronove",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 18,
+      "numTickets": 1,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Davis",
+      "date": "2024-05-22",
+      "numPeople": 8,
+      "hour": 21
+    }
+  ],
+  [
+    "botis",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-27",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-23",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "39 Jones Street",
+      "time": "7:57"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "16 Smith Street",
+      "time": "21:57"
+    }
+  ],
+  [
+    "leraje",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-07-02",
+      "endDate": "2024-07-06"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-09-28"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-16"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-08"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "70 Davis Street",
+      "time": "8:53"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-11",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "41 Jones Street",
+      "time": "20:58"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "31 Williams Street",
+      "time": "10:56"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-10",
+      "type": "racing"
+    }
+  ],
+  [
+    "amon",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-08",
+      "endDate": "2024-08-13"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-20",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ],
+      "hour": 20,
+      "numTickets": 1,
+      "movie": "The Silence of the Lambs"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "100 White Street",
+      "time": "7:59"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-11-25"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-11-22",
+      "endDate": "2023-11-30"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Kara Smith",
+      "date": "2024-06-02",
+      "numPeople": 10,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-26"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "stolas",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "49 Jones Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-30",
+      "type": "racing"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-31",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "28 Davis Street",
+      "time": "18:4"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-15",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-23"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-12",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "marax",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2023-09-29",
+      "location": "London"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-12"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-21"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "55 Williams Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-09-25",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-26",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "11 Taylor Street",
+      "time": "13:35"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-21",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-27",
+      "type": "racing"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "48 Wilson Street"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-05",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "5 Taylor Street",
+      "time": "4:42"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "67 Wilson Street"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "paimon",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "zepar",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ],
+      "hour": 18,
+      "numTickets": 6,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "naberius",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "11 White Street",
+      "time": "2:8"
+    }
+  ],
+  [
+    "aim",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 20,
+      "numTickets": 4,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-15"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "28 Jones Street",
+      "time": "0:24"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-26",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-03",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-19",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Nina Johnson",
+      "date": "2023-12-01",
+      "numPeople": 6,
+      "hour": 19
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-18",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-04"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "75 Taylor Street",
+      "time": "9:58"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-12",
+      "type": "carving"
+    }
+  ],
+  [
+    "asmoday",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ],
+      "hour": 20,
+      "numTickets": 2,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie Williams",
+      "date": "2024-01-29",
+      "numPeople": 1,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-09",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "51 Taylor Street",
+      "time": "22:38"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "81 Johnson Street",
+      "time": "8:53"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-25",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "orobas",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-02",
+      "endDate": "2024-03-21"
+    }
+  ],
+  [
+    "botis",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-24",
+      "type": "carving"
+    }
+  ],
+  [
+    "berith",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-05",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "87 Wilson Street",
+      "time": "17:58"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-09",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-07"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "20 White Street",
+      "time": "8:51"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "17 Davis Street",
+      "time": "17:0"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Nina Jones",
+      "date": "2024-09-21",
+      "numPeople": 3,
+      "hour": 17
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-05"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "95 Johnson Street"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Nina Williams",
+      "date": "2024-09-19",
+      "numPeople": 1,
+      "hour": 16
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-12"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-17",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-30",
+      "endDate": "2024-04-04"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "55 Davis Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "100 Jones Street",
+      "time": "9:38"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-14",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Miller",
+      "date": "2023-10-25",
+      "numPeople": 2,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-17",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-10"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-21",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "marchosias",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "sallos",
+    [
+      "restaurant2",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "valefor",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-01",
+      "type": "carving"
+    }
+  ],
+  [
+    "purson",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-25",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "buer",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-06-04",
+      "endDate": "2024-06-18"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "35 Wilson Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-26",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-30",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-07-04",
+      "endDate": "2024-07-14"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-06"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-24",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "79 Wilson Street",
+      "time": "13:18"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie Smith",
+      "date": "2024-07-26",
+      "numPeople": 7,
+      "hour": 16
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Maxwell Brown",
+      "date": "2024-08-10",
+      "numPeople": 7,
+      "hour": 16
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "4 Jones Street",
+      "time": "17:12"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-19"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-13",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "1 Brown Street",
+      "time": "13:1"
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-16",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-11",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "39 Miller Street",
+      "time": "5:8"
+    }
+  ],
+  [
+    "leraje",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-15"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-08",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "cimeies",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-04",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-07",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "27 Williams Street",
+      "time": "23:39"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-11",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-31",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "51 White Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-09",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-21",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "32 Johnson Street",
+      "time": "6:9"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-05",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "90 Williams Street",
+      "time": "0:23"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-11"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-14",
+      "type": "carving"
+    }
+  ],
+  [
+    "furcas",
+    [
+      "cinema2",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ],
+      "hour": 20,
+      "numTickets": 4,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Brown",
+      "date": "2024-03-03",
+      "numPeople": 1,
+      "hour": 23
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-13",
+      "type": "racing"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-07",
+      "type": "carving"
+    }
+  ],
+  [
+    "eligos",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "79 White Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "41 White Street",
+      "time": "0:4"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "zepar",
+    [
+      "weatherServer",
+      "queryWeather"
+    ],
+    {
+      "date": "2024-05-11",
+      "location": "New York, USA"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "8 Jones Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "56 Smith Street",
+      "time": "1:11"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-25",
+      "type": "carving"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Johnson",
+      "date": "2024-03-08",
+      "numPeople": 1,
+      "hour": 20
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-07"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-07",
+      "endDate": "2024-08-25"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-03-09"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-30"
+    }
+  ],
+  [
+    "gaap",
+    [
+      "restaurant2",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Johnson",
+      "date": "2024-05-07",
+      "numPeople": 8,
+      "hour": 23
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "71 Jones Street",
+      "time": "3:45"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Johnson",
+      "date": "2023-11-11",
+      "numPeople": 8,
+      "hour": 18
+    }
+  ],
+  [
+    "vepar",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ],
+      "hour": 18,
+      "numTickets": 5,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-15",
+      "endDate": "2024-02-25"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "51 Wilson Street",
+      "time": "17:3"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "52 Brown Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "haures",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "63 Williams Street"
+    }
+  ],
+  [
+    "leraje",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-04-01",
+      "endDate": "2024-04-05"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "6 Smith Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-18",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "45 Johnson Street",
+      "time": "20:57"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-24"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "30 Brown Street",
+      "time": "11:39"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "19 Williams Street"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "49 Miller Street"
+    }
+  ],
+  [
+    "astaroth",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-03-25"
+    }
+  ],
+  [
+    "seere",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "beleth",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-11-21",
+      "endDate": "2023-11-27"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-17",
+      "type": "carving"
+    }
+  ],
+  [
+    "amon",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-16",
+      "endDate": "2024-03-20"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "33 Smith Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-21",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 18,
+      "numTickets": 2,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-06",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie Miller",
+      "date": "2024-09-06",
+      "numPeople": 4,
+      "hour": 19
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Nina Wilson",
+      "date": "2024-07-31",
+      "numPeople": 2,
+      "hour": 16
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "85 Smith Street"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-30",
+      "type": "carving"
+    }
+  ],
+  [
+    "bune",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-10",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-17",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "47 White Street",
+      "time": "22:4"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-13",
+      "type": "carving"
+    }
+  ],
+  [
+    "botis",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-01",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-26"
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-29"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-06",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "6 Williams Street"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "79 Wilson Street",
+      "time": "1:41"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "59 Jones Street",
+      "time": "5:49"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "54 Brown Street",
+      "time": "13:8"
+    }
+  ],
+  [
+    "botis",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-02",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "26 Johnson Street",
+      "time": "5:11"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-03-12"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-06",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "98 Williams Street",
+      "time": "4:9"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-18",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-16",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-13",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-19"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Kara Davis",
+      "date": "2024-07-19",
+      "numPeople": 9,
+      "hour": 16
+    }
+  ],
+  [
+    "asmoday",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-28"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-06"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-19",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "enepsigon",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Wilson",
+      "date": "2024-03-15",
+      "numPeople": 10,
+      "hour": 18
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "96 Jones Street",
+      "time": "22:28"
+    }
+  ],
+  [
+    "naberius",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-01-19",
+      "endDate": "2024-01-28"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-25",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-06",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "zagan",
+    [
+      "hotel2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-04-23",
+      "endDate": "2024-05-13"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-17"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-01",
+      "type": "racing"
+    }
+  ],
+  [
+    "forneus",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-10"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Laurel Johnson",
+      "date": "2024-07-10",
+      "numPeople": 9,
+      "hour": 16
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "3 Wilson Street",
+      "time": "23:51"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-06",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-11",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "eligos",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2024-03-14",
+      "location": "Zurich"
+    }
+  ],
+  [
+    "haagenti",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-12"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "90 Williams Street",
+      "time": "13:16"
+    }
+  ],
+  [
+    "envy",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-06",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-17",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-23",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-23",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "94 Wilson Street"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie White",
+      "date": "2024-03-29",
+      "numPeople": 4,
+      "hour": 21
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie Brown",
+      "date": "2024-07-15",
+      "numPeople": 4,
+      "hour": 18
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-11",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-03",
+      "type": "racing"
+    }
+  ],
+  [
+    "leraje",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-12-03",
+      "endDate": "2023-12-23"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "79 Brown Street",
+      "time": "2:36"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-13",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "glasya-labolas",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-04-25",
+      "endDate": "2024-04-26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-20",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-30",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-27"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-06"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-29",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "60 Miller Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-02"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-23",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Kara Davis",
+      "date": "2024-05-12",
+      "numPeople": 9,
+      "hour": 16
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-07",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "82 Williams Street",
+      "time": "10:17"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-30"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-27",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Manfred White",
+      "date": "2024-04-12",
+      "numPeople": 2,
+      "hour": 16
+    }
+  ],
+  [
+    "beleth",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-01-17",
+      "endDate": "2024-01-30"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-01"
+    }
+  ],
+  [
+    "raum",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-10-05",
+      "endDate": "2023-10-07"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-07",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-02",
+      "type": "racing"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-14",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-07"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Nina White",
+      "date": "2023-11-27",
+      "numPeople": 1,
+      "hour": 19
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "28 Johnson Street",
+      "time": "23:49"
+    }
+  ],
+  [
+    "raum",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Madge Taylor",
+      "date": "2023-12-12",
+      "numPeople": 2,
+      "hour": 21
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "30 Davis Street",
+      "time": "13:37"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-09",
+      "endDate": "2024-08-13"
+    }
+  ],
+  [
+    "guison",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-20",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-10"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-26"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "73 Miller Street",
+      "time": "3:46"
+    }
+  ],
+  [
+    "zepar",
+    [
+      "weatherServer",
+      "queryWeather"
+    ],
+    {
+      "date": "2024-01-11",
+      "location": "London, UK"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Kara Jones",
+      "date": "2024-05-07",
+      "numPeople": 4,
+      "hour": 16
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-21",
+      "endDate": "2024-03-04"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "37 Miller Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-02",
+      "type": "racing"
+    }
+  ],
+  [
+    "astaroth",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-10-08",
+      "endDate": "2023-10-13"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Jones",
+      "date": "2024-08-01",
+      "numPeople": 10,
+      "hour": 22
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-01"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-06",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-05"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-01",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-07",
+      "type": "racing"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-19"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-06",
+      "type": "racing"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-21",
+      "endDate": "2024-03-23"
+    }
+  ],
+  [
+    "pruflas",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "94 Miller Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "61 White Street",
+      "time": "7:15"
+    }
+  ],
+  [
+    "botis",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-25",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "stolas",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-07",
+      "type": "carving"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-12-09",
+      "endDate": "2023-12-26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-12",
+      "type": "racing"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "65 Jones Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "15 Brown Street",
+      "time": "0:53"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-11-17",
+      "endDate": "2023-12-03"
+    }
+  ],
+  [
+    "rath",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke White",
+      "date": "2024-03-13",
+      "numPeople": 9,
+      "hour": 23
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-15",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "cinema2",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 20,
+      "numTickets": 2,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-18"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "zepar",
+    [
+      "weatherServer",
+      "queryWeather"
+    ],
+    {
+      "date": "2024-06-30",
+      "location": "New York, USA"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-15",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-21",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "beleth",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-24",
+      "endDate": "2024-05-31"
+    }
+  ],
+  [
+    "crocell",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2024-02-24",
+      "location": "Zurich"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "57 Davis Street",
+      "time": "3:8"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-12",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "31 Miller Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-01",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "79 Jones Street",
+      "time": "22:12"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "53 Brown Street",
+      "time": "9:35"
+    }
+  ],
+  [
+    "andrealphus",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Maxwell Wilson",
+      "date": "2024-03-22",
+      "numPeople": 5,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-21",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-09"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-22",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-11-18"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-17",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "24 Jones Street",
+      "time": "6:16"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "11 Wilson Street",
+      "time": "22:44"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-08",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-22",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-21",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-08",
+      "type": "carving"
+    }
+  ],
+  [
+    "vine",
+    [
+      "weatherServer",
+      "queryWeather"
+    ],
+    {
+      "date": "2024-06-20",
+      "location": "Paris, France"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "41 Williams Street",
+      "time": "23:53"
+    }
+  ],
+  [
+    "amy",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-12",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-12",
+      "type": "racing"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-04"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "51 Miller Street",
+      "time": "5:50"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-12-15",
+      "endDate": "2023-12-20"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-05",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-02",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-23"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-11",
+      "type": "carving"
+    }
+  ],
+  [
+    "vine",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Nina Miller",
+      "date": "2024-08-29",
+      "numPeople": 4,
+      "hour": 17
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "90 Davis Street",
+      "time": "14:57"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "42 Miller Street",
+      "time": "13:22"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-23",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "rabdos",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-05",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-30",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "glasya-labolas",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Manfred Brown",
+      "date": "2024-08-13",
+      "numPeople": 4,
+      "hour": 18
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-09-29"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-28",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "20 Taylor Street",
+      "time": "12:12"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-26",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-06",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-02",
+      "type": "carving"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Brown",
+      "date": "2024-01-31",
+      "numPeople": 1,
+      "hour": 23
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-14",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "93 Brown Street",
+      "time": "2:14"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-16",
+      "type": "racing"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "71 White Street"
+    }
+  ],
+  [
+    "shax",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-14",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-08",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-05",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "15 Williams Street",
+      "time": "11:8"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Laurel Johnson",
+      "date": "2023-12-25",
+      "numPeople": 7,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-27",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-02",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-07",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 20,
+      "numTickets": 1,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby White",
+      "date": "2024-03-24",
+      "numPeople": 1,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-10",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-20"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-13"
+    }
+  ],
+  [
+    "sallos",
+    [
+      "restaurant2",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "90 Brown Street",
+      "time": "9:43"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "6 Williams Street",
+      "time": "17:50"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby White",
+      "date": "2023-10-01",
+      "numPeople": 6,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-02"
+    }
+  ],
+  [
+    "ronove",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-23"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Taylor",
+      "date": "2024-06-23",
+      "numPeople": 2,
+      "hour": 23
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-21"
+    }
+  ],
+  [
+    "balam",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Smith",
+      "date": "2023-10-01",
+      "numPeople": 4,
+      "hour": 18
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "beelzebub",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 18,
+      "numTickets": 5,
+      "movie": "The Silence of the Lambs"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-07",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-31"
+    }
+  ],
+  [
+    "foras",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "61 Miller Street",
+      "time": "5:22"
+    }
+  ],
+  [
+    "furcas",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-09",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-16",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-15",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "69 White Street",
+      "time": "8:48"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-25"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "alloces",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-17"
+    }
+  ],
+  [
+    "glasya-labolas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Laurel Taylor",
+      "date": "2024-09-01",
+      "numPeople": 1,
+      "hour": 20
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-17",
+      "type": "carving"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Smith",
+      "date": "2023-12-29",
+      "numPeople": 10,
+      "hour": 21
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-23"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Maxwell Jones",
+      "date": "2024-04-05",
+      "numPeople": 3,
+      "hour": 20
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-17",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-04",
+      "type": "carving"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-07-09",
+      "endDate": "2024-07-14"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-01",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-29",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-09-24"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "70 Johnson Street",
+      "time": "7:5"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-10",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "12 Johnson Street",
+      "time": "21:32"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-14",
+      "type": "carving"
+    }
+  ],
+  [
+    "furfur",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "54 Johnson Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "94 Brown Street",
+      "time": "3:11"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "70 White Street"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "leraje",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-04-25",
+      "endDate": "2024-05-02"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "8 Miller Street"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-31",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-30"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-09",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-15",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "eligos",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "50 Wilson Street"
+    }
+  ],
+  [
+    "purson",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2023-10-20",
+      "location": "Los Angeles"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "46 White Street",
+      "time": "23:45"
+    }
+  ],
+  [
+    "tephras",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-18",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "kunopaston",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-06"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ],
+      "hour": 20,
+      "numTickets": 6,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "decarabia",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Manfred Miller",
+      "date": "2023-12-13",
+      "numPeople": 7,
+      "hour": 22
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-07"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "18 Johnson Street",
+      "time": "20:0"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-23",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-18"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-18",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-24",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-29"
+    }
+  ],
+  [
+    "beleth",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-15",
+      "endDate": "2024-05-31"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-05"
+    }
+  ],
+  [
+    "eligos",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "21 Brown Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-17",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-06-22",
+      "endDate": "2024-07-07"
+    }
+  ],
+  [
+    "amon",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-20",
+      "type": "carving"
+    }
+  ],
+  [
+    "eligos",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "53 Williams Street"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-20",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-18"
+    }
+  ],
+  [
+    "foras",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "42 Brown Street",
+      "time": "12:22"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "26 Williams Street",
+      "time": "1:36"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-11"
+    }
+  ],
+  [
+    "beleth",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-24",
+      "endDate": "2024-09-01"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie Miller",
+      "date": "2024-06-09",
+      "numPeople": 6,
+      "hour": 18
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "guison",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "96 White Street",
+      "time": "8:11"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "68 Miller Street"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "malphas",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-25",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-22"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-15",
+      "type": "racing"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-11-07"
+    }
+  ],
+  [
+    "leraje",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-06-16",
+      "endDate": "2024-06-26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-01",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "54 Johnson Street",
+      "time": "21:14"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-17"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "63 Brown Street",
+      "time": "17:0"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "49 Miller Street",
+      "time": "12:55"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-12",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-18",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-31",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-12",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Taylor",
+      "date": "2024-09-07",
+      "numPeople": 6,
+      "hour": 22
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Manfred Williams",
+      "date": "2024-07-07",
+      "numPeople": 6,
+      "hour": 21
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "25 Taylor Street",
+      "time": "20:51"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-11",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-13",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-05"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "42 Jones Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-27",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-10",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-15",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "77 Jones Street",
+      "time": "3:2"
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-25",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "forneus",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-29",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-12",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "2 Miller Street",
+      "time": "10:54"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-23",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-20"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-03",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-05",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-27"
+    }
+  ],
+  [
+    "foras",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "4 White Street"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-22"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-02",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Kara Wilson",
+      "date": "2023-11-24",
+      "numPeople": 9,
+      "hour": 20
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "66 Davis Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-19",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bathin",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "59 Taylor Street",
+      "time": "9:14"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Kara Williams",
+      "date": "2024-05-04",
+      "numPeople": 9,
+      "hour": 19
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "10 Taylor Street",
+      "time": "21:32"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-29",
+      "type": "racing"
+    }
+  ],
+  [
+    "orias",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "23 Davis Street"
+    }
+  ],
+  [
+    "andromalius",
+    [
+      "restaurant2",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-20",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "7 Smith Street",
+      "time": "0:40"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-23"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-29"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "68 Taylor Street",
+      "time": "2:24"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "64 White Street",
+      "time": "7:26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-08",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Madge Wilson",
+      "date": "2024-08-18",
+      "numPeople": 8,
+      "hour": 19
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "39 Brown Street",
+      "time": "20:6"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-31"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-07",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-16",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "21 Williams Street",
+      "time": "2:11"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "91 White Street",
+      "time": "8:59"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-26",
+      "type": "racing"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "6 Miller Street"
+    }
+  ],
+  [
+    "leraje",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-28"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 18,
+      "numTickets": 3,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-16",
+      "type": "racing"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff White",
+      "date": "2023-11-12",
+      "numPeople": 5,
+      "hour": 20
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-18",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-14",
+      "type": "carving"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-01-21",
+      "endDate": "2024-02-09"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-28",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "37 Williams Street",
+      "time": "5:13"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-25",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-09",
+      "type": "racing"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-30",
+      "endDate": "2024-06-06"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-16",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "43 Johnson Street",
+      "time": "13:13"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-21",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 18,
+      "numTickets": 5,
+      "movie": "The Silence of the Lambs"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-26",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-29",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-27"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-09-10"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-07",
+      "type": "carving"
+    }
+  ],
+  [
+    "dantalion",
+    [
+      "weatherServer",
+      "queryWeather"
+    ],
+    {
+      "date": "2023-11-06",
+      "location": "Paris, France"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-12",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-23"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-21",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "48 Taylor Street",
+      "time": "6:26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-10",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-29",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-02"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-05",
+      "type": "carving"
+    }
+  ],
+  [
+    "murmur",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ],
+      "hour": 18,
+      "numTickets": 5,
+      "movie": "The Silence of the Lambs"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "30 Brown Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-23",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "36 Johnson Street"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-05",
+      "endDate": "2024-03-11"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-08"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "37 Brown Street",
+      "time": "9:28"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "aim",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-09-04",
+      "endDate": "2024-09-05"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-18",
+      "type": "carving"
+    }
+  ],
+  [
+    "tribolaios",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "59 Taylor Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-06",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-08",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-11",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-19",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-15",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-10"
+    }
+  ],
+  [
+    "ipos",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-09",
+      "endDate": "2024-05-20"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-02",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "51 Taylor Street",
+      "time": "5:9"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "60 Miller Street",
+      "time": "22:28"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-02",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "17 Davis Street"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-28",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ],
+      "hour": 20,
+      "numTickets": 5,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "obizuth",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-09",
+      "type": "carving"
+    }
+  ],
+  [
+    "sabnock",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-04",
+      "endDate": "2024-05-19"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-08",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "84 Wilson Street"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Laurel Brown",
+      "date": "2024-03-10",
+      "numPeople": 9,
+      "hour": 17
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "amon",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-12",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "beleth",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-16",
+      "type": "racing"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Wilson",
+      "date": "2024-04-29",
+      "numPeople": 8,
+      "hour": 20
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-24",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-04"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-13",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-04"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "99 Jones Street",
+      "time": "6:39"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "11 Miller Street",
+      "time": "6:39"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "48 Jones Street",
+      "time": "2:4"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "96 Johnson Street",
+      "time": "8:59"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "32 Jones Street"
+    }
+  ],
+  [
+    "sallos",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-30",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-16",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-01",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "gaap",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-15",
+      "endDate": "2024-03-16"
+    }
+  ],
+  [
+    "berith",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-10-23",
+      "endDate": "2023-11-10"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "38 Davis Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "31 Wilson Street",
+      "time": "17:42"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-24"
+    }
+  ],
+  [
+    "bathin",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "25 Smith Street",
+      "time": "20:23"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-16",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "94 Taylor Street"
+    }
+  ],
+  [
+    "ronove",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie Jones",
+      "date": "2024-06-13",
+      "numPeople": 4,
+      "hour": 18
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-23",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Wilson",
+      "date": "2023-10-23",
+      "numPeople": 10,
+      "hour": 18
+    }
+  ],
+  [
+    "amon",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-01-05",
+      "endDate": "2024-01-23"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "79 Taylor Street"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vapula",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-08-25"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-04"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-03"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-18",
+      "type": "carving"
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Smith",
+      "date": "2024-05-14",
+      "numPeople": 4,
+      "hour": 17
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "75 Brown Street"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Manfred Taylor",
+      "date": "2024-09-16",
+      "numPeople": 9,
+      "hour": 19
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "sitri",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-28",
+      "endDate": "2024-03-08"
+    }
+  ],
+  [
+    "bathin",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "63 White Street",
+      "time": "15:3"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-21",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "91 Taylor Street",
+      "time": "22:14"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Jones",
+      "date": "2024-05-07",
+      "numPeople": 6,
+      "hour": 19
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-09",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ],
+      "hour": 20,
+      "numTickets": 5,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-08",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Taylor",
+      "date": "2024-02-28",
+      "numPeople": 4,
+      "hour": 22
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "54 Miller Street",
+      "time": "17:20"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-03",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-04",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-10",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-09-29",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-18",
+      "type": "racing"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-19"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-10-27",
+      "endDate": "2023-10-31"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-24",
+      "type": "racing"
+    }
+  ],
+  [
+    "crocell",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-10",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-16",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "purson",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "10 Williams Street"
+    }
+  ],
+  [
+    "sitri",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-04-13",
+      "endDate": "2024-05-03"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-26"
+    }
+  ],
+  [
+    "shax",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-12",
+      "endDate": "2024-03-01"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-01",
+      "type": "carving"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-26",
+      "endDate": "2024-03-04"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-09-05",
+      "endDate": "2024-09-13"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-24",
+      "type": "racing"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 18,
+      "numTickets": 1,
+      "movie": "The Silence of the Lambs"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-31",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-04"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-18",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "33 Williams Street",
+      "time": "9:46"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-05",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-21",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-09"
+    }
+  ],
+  [
+    "ose",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-26",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bune",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-13",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "sallos",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-25",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-12",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "40 Williams Street",
+      "time": "18:28"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "76 Miller Street",
+      "time": "0:10"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "65 Johnson Street"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "62 Johnson Street"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-01-21",
+      "endDate": "2024-02-09"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-03",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-04",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-20",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "alloces",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-15",
+      "type": "carving"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Jones",
+      "date": "2023-12-15",
+      "numPeople": 7,
+      "hour": 23
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "38 Jones Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-15",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-16"
+    }
+  ],
+  [
+    "marax",
+    [
+      "hotel2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-07-22",
+      "endDate": "2024-08-05"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "5 Jones Street",
+      "time": "1:28"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-02",
+      "type": "racing"
+    }
+  ],
+  [
+    "phenex",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ],
+      "hour": 18,
+      "numTickets": 1,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Valerie Williams",
+      "date": "2024-04-10",
+      "numPeople": 1,
+      "hour": 18
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-20"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-08",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "focalor",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Toby Williams",
+      "date": "2024-03-27",
+      "numPeople": 6,
+      "hour": 19
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-30"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-30",
+      "type": "racing"
+    }
+  ],
+  [
+    "bathin",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2024-05-29",
+      "location": "Cairo"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "60 White Street"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Smith",
+      "date": "2024-04-02",
+      "numPeople": 6,
+      "hour": 16
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "26 White Street",
+      "time": "20:41"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "46 Jones Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "68 Miller Street",
+      "time": "11:40"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-22",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "89 Johnson Street",
+      "time": "8:48"
+    }
+  ],
+  [
+    "bathin",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-20",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "100 Jones Street",
+      "time": "14:20"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-10-26",
+      "endDate": "2023-11-10"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "2 Brown Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-04",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "6 Brown Street",
+      "time": "18:33"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-09"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-05",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "aim",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-15",
+      "type": "carving"
+    }
+  ],
+  [
+    "beleth",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-03-28",
+      "endDate": "2024-04-05"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-02",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "botis",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "71 Jones Street"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Miller",
+      "date": "2024-06-04",
+      "numPeople": 3,
+      "hour": 19
+    }
+  ],
+  [
+    "marbas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 20,
+      "numTickets": 1,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Davis",
+      "date": "2024-09-15",
+      "numPeople": 9,
+      "hour": 21
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-08"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valac",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "70 Miller Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-12",
+      "type": "racing"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-27"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff Smith",
+      "date": "2024-09-19",
+      "numPeople": 6,
+      "hour": 17
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-16",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Laurel Jones",
+      "date": "2024-04-10",
+      "numPeople": 4,
+      "hour": 22
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-02",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-06",
+      "type": "racing"
+    }
+  ],
+  [
+    "marax",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-11-22",
+      "endDate": "2023-12-01"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-07-06",
+      "endDate": "2024-07-25"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Williams",
+      "date": "2023-12-14",
+      "numPeople": 10,
+      "hour": 23
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-03",
+      "type": "racing"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-22",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-17",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "72 Brown Street",
+      "time": "8:0"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Maxwell Davis",
+      "date": "2024-04-19",
+      "numPeople": 5,
+      "hour": 22
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2023-09-30",
+      "endDate": "2023-10-18"
+    }
+  ],
+  [
+    "vepar",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-11-20"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "73 Taylor Street"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-21",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "70 Smith Street",
+      "time": "23:40"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-21",
+      "type": "carving"
+    }
+  ],
+  [
+    "sabnock",
+    [
+      "taxi1",
+      "callTaxi"
+    ],
+    {
+      "address": "49 Smith Street",
+      "time": "0:20"
+    }
+  ],
+  [
+    "amon",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-30",
+      "endDate": "2024-06-03"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "89 Brown Street"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "51 Davis Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "85 Williams Street",
+      "time": "21:56"
+    }
+  ],
+  [
+    "amdusias",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-04",
+      "type": "racing"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Cliff White",
+      "date": "2024-03-03",
+      "numPeople": 9,
+      "hour": 18
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "naberius",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-10"
+    }
+  ],
+  [
+    "glasya-labolas",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Wilson",
+      "date": "2024-06-04",
+      "numPeople": 8,
+      "hour": 23
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "12 Johnson Street",
+      "time": "11:39"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-21",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-22",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-13"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-02",
+      "type": "racing"
+    }
+  ],
+  [
+    "gaap",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-15",
+      "endDate": "2024-02-29"
+    }
+  ],
+  [
+    "ipos",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-24",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "eligos",
+    [
+      "taxi1",
+      "callTaxi"
+    ],
+    {
+      "address": "82 Johnson Street",
+      "time": "19:31"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-28",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-16"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-18",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-12"
+    }
+  ],
+  [
+    "beleth",
+    [
+      "hotel1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-15",
+      "endDate": "2024-08-21"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-03",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-27"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ],
+      "hour": 20,
+      "numTickets": 2,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Miller",
+      "date": "2024-04-02",
+      "numPeople": 1,
+      "hour": 23
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-02",
+      "type": "carving"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-05"
+    }
+  ],
+  [
+    "malphas",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "81 Jones Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "58 Williams Street"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "samigina",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 18,
+      "numTickets": 4,
+      "movie": "The Silence of the Lambs"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-12-11"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-06",
+      "type": "racing"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-05-12",
+      "endDate": "2024-05-26"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-04",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-06-12",
+      "endDate": "2024-06-24"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "47 Davis Street",
+      "time": "15:9"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-04",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-23",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "57 Brown Street",
+      "time": "1:22"
+    }
+  ],
+  [
+    "vual",
+    [
+      "restaurant2",
+      "bookTable"
+    ],
+    {
+      "fullName": "Laurel Davis",
+      "date": "2024-06-21",
+      "numPeople": 4,
+      "hour": 19
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-07"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-06-27",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-24",
+      "type": "racing"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-09-15",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-28"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-24",
+      "type": "carving"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-20",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-29",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-30",
+      "type": "racing"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-04-18",
+      "endDate": "2024-04-24"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "80 Jones Street",
+      "time": "12:22"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-07",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-06-17"
+    }
+  ],
+  [
+    "berith",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "47 Brown Street"
+    }
+  ],
+  [
+    "guison",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-17",
+      "type": "racing"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Manfred Johnson",
+      "date": "2024-04-24",
+      "numPeople": 5,
+      "hour": 21
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-13",
+      "type": "racing"
+    }
+  ],
+  [
+    "aim",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-17",
+      "type": "carving"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-21",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "zepar",
+    [
+      "restaurant1",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "bifrons",
+    [
+      "skiResort1",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-08-10",
+      "endDate": "2024-08-20"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-26",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-08",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "ephippas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ],
+      "hour": 20,
+      "numTickets": 4,
+      "movie": "Stand by Me"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-28",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "sallos",
+    [
+      "restaurant2",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "45 White Street",
+      "time": "18:2"
+    }
+  ],
+  [
+    "ipos",
+    [
+      "hotel3",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-27",
+      "endDate": "2024-03-15"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-07",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "cinema2",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ],
+      "hour": 20,
+      "numTickets": 5,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "balam",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "bathin",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "84 White Street",
+      "time": "3:18"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-07-03"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-24",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-30",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "marbas",
+    [
+      "cinema1",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 18,
+      "numTickets": 4,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-11-28"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "2 Smith Street",
+      "time": "18:43"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-29"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-15",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-23",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-30",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "7 Smith Street",
+      "time": "8:55"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-12-18",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-31",
+      "type": "carving"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "87 Williams Street",
+      "time": "3:53"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-28",
+      "type": "racing"
+    }
+  ],
+  [
+    "focalor",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-02-11"
+    }
+  ],
+  [
+    "haagenti",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2024-03-30",
+      "location": "Cairo"
+    }
+  ],
+  [
+    "ornias",
+    [
+      "hotel2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-06-25",
+      "endDate": "2024-07-13"
+    }
+  ],
+  [
+    "marbas",
+    [
+      "restaurant1",
+      "bookTable"
+    ],
+    {
+      "fullName": "Kara Brown",
+      "date": "2024-04-21",
+      "numPeople": 10,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-23"
+    }
+  ],
+  [
+    "forneus",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-17"
+      ]
+    }
+  ],
+  [
+    "purson",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2023-10-11",
+      "location": "Rome"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "15 Taylor Street",
+      "time": "12:51"
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Madge Williams",
+      "date": "2023-12-21",
+      "numPeople": 8,
+      "hour": 19
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-18"
+      ]
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "36 Jones Street",
+      "time": "2:9"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "99 Davis Street",
+      "time": "18:2"
+    }
+  ],
+  [
+    "furfur",
+    [
+      "cinema1",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-30",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-31",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "hotel3",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-04-11"
+    }
+  ],
+  [
+    "buer",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-14",
+      "type": "racing"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "86 Davis Street"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "51 Wilson Street",
+      "time": "19:32"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "cinema2",
+      "buyTickets"
+    ],
+    {
+      "date": [
+        "2024-03-16"
+      ],
+      "hour": 20,
+      "numTickets": 6,
+      "movie": "Forrest Gump"
+    }
+  ],
+  [
+    "amon",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-05-09",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "42 Taylor Street",
+      "time": "10:42"
+    }
+  ],
+  [
+    "vassago",
+    [
+      "restaurant2",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "85 Miller Street"
+    }
+  ],
+  [
+    "eligos",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "12 Brown Street"
+    }
+  ],
+  [
+    "onoskelis",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-01-10"
+    }
+  ],
+  [
+    "belial",
+    [
+      "restaurant3",
+      "openingTimes"
+    ],
+    {}
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "56 Jones Street",
+      "time": "19:24"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-25",
+      "type": "racing"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "98 Brown Street",
+      "time": "17:46"
+    }
+  ],
+  [
+    "barbatos",
+    [
+      "skiResort2",
+      "bookRoom"
+    ],
+    {
+      "startDate": "2024-02-27",
+      "endDate": "2024-02-29"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2024-05-29"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-02",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-24",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "astaroth",
+    [
+      "weatherServer",
+      "queryWeather"
+    ],
+    {
+      "date": "2024-03-28",
+      "location": "London, UK"
+    }
+  ],
+  [
+    "valefor",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Brooke Davis",
+      "date": "2024-01-22",
+      "numPeople": 8,
+      "hour": 18
+    }
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "96 Smith Street",
+      "time": "19:24"
+    }
+  ],
+  [
+    "gremory",
+    [
+      "restaurant1",
+      "orderEverything"
+    ],
+    {
+      "deliveryAddress": "16 Davis Street"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "protocolDb2",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "agares",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "49 Miller Street",
+      "time": "5:41"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-16",
+      "type": "carving"
+    }
+  ],
+  [
+    "paimon",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-11-15"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-08",
+      "type": "racing"
+    }
+  ],
+  [
+    "halphas",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-08-25",
+      "type": "racing"
+    }
+  ],
+  [
+    "samigina",
+    [
+      "restaurant3",
+      "bookTable"
+    ],
+    {
+      "fullName": "Maxwell Miller",
+      "date": "2023-09-29",
+      "numPeople": 4,
+      "hour": 21
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-02-26",
+      "type": "racing"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "71 Johnson Street",
+      "time": "16:6"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-07-20",
+      "type": "racing"
+    }
+  ],
+  [
+    "marax",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2024-04-26",
+      "location": "Zurich"
+    }
+  ],
+  [
+    "protocolDb3",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-04-08",
+      "type": "carving"
+    }
+  ],
+  [
+    "vual",
+    [
+      "trafficServer",
+      "getTraffic"
+    ],
+    {
+      "date": "2023-10-29",
+      "location": "Tokyo"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-11-10",
+      "type": "carving"
+    }
+  ],
+  [
+    "asmoday",
+    [
+      "skiResort1",
+      "rentSki"
+    ],
+    {
+      "date": "2024-01-23",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "zepar",
+    [
+      "weatherServer",
+      "queryWeather"
+    ],
+    {
+      "date": "2023-09-24",
+      "location": "Paris, France"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "suggestRestaurant"
+    ],
+    {
+      "date": "2023-10-27"
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2024-03-16",
+      "type": "carving"
+    }
+  ],
+  [
+    "bael",
+    [
+      "taxi2",
+      "callTaxi"
+    ],
+    {
+      "address": "45 Jones Street",
+      "time": "3:56"
+    }
+  ],
+  [
+    "agares",
+    [
+      "cinema2",
+      "availableMovies"
+    ],
+    {
+      "date": [
+        "2024-03-15"
+      ]
+    }
+  ],
+  [
+    "bael",
+    [
+      "skiResort2",
+      "rentSki"
+    ],
+    {
+      "date": "2023-10-30",
+      "type": "backcountry"
+    }
+  ],
+  [
+    "protocolDb1",
+    [
+      null,
+      "synchronization"
+    ],
+    null
+  ]
+]
