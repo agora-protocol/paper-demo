@@ -1,5 +1,5 @@
 # Agora - A Scalable Communication Protocol for Networks of LLMs
-[Paper](https://arxiv.org/abs/2410.11905) | [Website](https://agoraprotocol.org) | [Discord](https://discord.gg/MXmfhwQ4FB) | [Mailing List](https://forms.gle/KeCMveoRGx2S3i5CA)
+[Paper](https://arxiv.org/abs/2410.11905) | [Website](https://agoraprotocol.org) | [Twitter](https://x.com/Agora_Protocol) | [Discord](https://discord.gg/MXmfhwQ4FB) | [Mailing List](https://forms.gle/KeCMveoRGx2S3i5CA)
 
 Agora is a simple cross-platform protocol that allows heterogeneous LLMs to communicate efficienly with each other.
 This is achieved through the power of **negotiation**.
@@ -17,6 +17,8 @@ Since natural language is supported, very different agents that have never inter
 This demo showcases a network of 100 agents interacting with each other. The agents have different LLMs (OpenAI GPT-4o, Llama 3 405b, Gemini 1.5 Pro) and different DB technologies (MongoDB, SQL), but they still complete complex, multi-agent tasks with way lower costs. In a picture:
 
 <img src="./static/readme_comparison.png?raw=true">
+
+You might also be interested in our [HuggingFace demo](https://huggingface.co/spaces/agora-protocol/agora-demo).
 
 
 ## Running the Demo
