@@ -1,6 +1,8 @@
 # Agora - A Scalable Communication Protocol for Networks of LLMs
 [Paper](https://arxiv.org/abs/2410.11905) | [Website](https://agoraprotocol.org) | [Twitter](https://x.com/Agora_Protocol) | [Discord](https://discord.gg/MXmfhwQ4FB) | [Mailing List](https://forms.gle/KeCMveoRGx2S3i5CA)
 
+## **Important**: This demo was originally made for the paper. Check out our [updated HuggingFace demo](https://huggingface.co/spaces/agora-protocol/agora-demo) and our [Python library](https://github.com/agora-protocol/python).
+
 Agora is a simple cross-platform protocol that allows heterogeneous LLMs to communicate efficienly with each other.
 This is achieved through the power of **negotiation**.
 
